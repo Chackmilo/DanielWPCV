@@ -1,0 +1,31 @@
+# Node / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Herramientas de Auditoría
+squirrel.exe
+squirrel_report.xml
+download.html
+
+# IDEs y Sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Agentes IA y configuraciones locales
+.claude/
+.agents/
+.gemini/
+skills-lock.json

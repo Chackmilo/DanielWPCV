@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Color Palette - Light Mode (Default) */
+  --color-primary: #0f172a;
+  --color-secondary: #4338ca;
+  --color-accent: #10b981;
+  --color-text-dark: #1e293b;
+  --color-text-light: #f8fafc;
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #1e293b;
+  --color-bg-section: #f1f5f9;
+  --color-border: #e2e8f0;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-heading: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', var(--font-sans);
+
+  /* Shadows */
+  --shadow-card: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.08);
+  --shadow-card-hover: 0 20px 25px -5px rgba(15, 23, 42, 0.15);
+
+  /* Brand Colors */
+  --color-linkedin: #0A66C2;
+  --color-linkedin-hover: #084B95;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1DA851;
+  --color-github: #333333;
+  --color-github-hover: #1a1a1a;
+  --color-primary-dark: #1a252f;
+  --color-bg-section-alt: #f8fafc;
+
+  /* Typography */
+  --font-size-section-title: 2.75rem;
+
+  /* Animations */
+  --animate-fade-in-up: fade-in-up 0.6s ease forwards;
+  --animate-fade-in: fade-in 0.3s ease forwards;
+  --animate-slide-down: slide-down 0.3s ease forwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
+}
+
+.dark body {
+  color: var(--color-text-light);
+  background-color: var(--color-bg-dark);
+}
+
+/* Light mode text consistency — ensure readable contrast */
+body p,
+body li,
+body span {
+  color: inherit;
+}
+
+.text-gray-600 {
+  color: #475569;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db;
+}
+
+/* Section Title Underline */
+.section-title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  border-radius: 2px;
+}
+
+/* Print */
+@media print {
+
+  header,
+  .lang-btn,
+  .home-icon,
+  .recommendation-form {
+    display: none;
+  }
+}
+
+/* Focus Visible */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Background gradient utility */
+.bg-gradient-subtle {
+  background: radial-gradient(circle at top right, rgba(67, 56, 202, 0.05), transparent 50%),
+    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 50%);
+}
+
+/* Performance Optimizations */
+.content-vis-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
