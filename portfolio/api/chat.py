@@ -4,7 +4,7 @@ from pydantic import BaseModel, validator, Field
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-import requests
+import httpx
 import os
 from dotenv import load_dotenv
 from typing import List
@@ -27,11 +27,10 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # ── CORS ───────────────────────────────────────────────────────────────────────
 # Allow localhost for dev and the Vercel production domain.
 # Set ALLOWED_ORIGIN env var in your Vercel project settings
-# e.g. https://your-portfolio.vercel.app
 ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "http://localhost:5173")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[ALLOWED_ORIGIN, "http://localhost:5173"],
+    allow_origins=[ALLOWED_ORIGIN] if ALLOWED_ORIGIN == "http://localhost:5173" else [ALLOWED_ORIGIN, "http://localhost:5173"],
     allow_credentials=False,
     allow_methods=["POST"],
     allow_headers=["Content-Type"],
@@ -110,30 +109,31 @@ async def chat(request: Request, body: ChatRequest):
     ]
 
     try:
-        response = requests.post(
-            "https://api.deepseek.com/chat/completions",
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
-            },
-            json={
-                "model": "deepseek-chat",
-                "messages": formatted_messages,
-                "max_tokens": 300,
-                "temperature": 0.3
-            },
-            timeout=30
-        )
-        response.raise_for_status()
-        result = response.json()
-        reply = result.get("choices", [{}])[0].get("message", {}).get("content", "")
-        if not reply:
-            raise ValueError("Empty reply from upstream API")
-        return {"reply": reply}
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://api.deepseek.com/chat/completions",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
+                },
+                json={
+                    "model": "deepseek-chat",
+                    "messages": formatted_messages,
+                    "max_tokens": 300,
+                    "temperature": 0.3
+                },
+                timeout=30.0
+            )
+            response.raise_for_status()
+            result = response.json()
+            reply = result.get("choices", [{}])[0].get("message", {}).get("content", "")
+            if not reply:
+                raise ValueError("Empty reply from upstream API")
+            return {"reply": reply}
 
-    except requests.exceptions.Timeout:
+    except httpx.TimeoutException:
         raise HTTPException(status_code=504, detail="Request to AI service timed out. Please try again.")
-    except requests.exceptions.HTTPError as e:
+    except httpx.HTTPStatusError as e:
         status = e.response.status_code if e.response else 502
         # Never expose upstream error details (may contain auth info)
         raise HTTPException(status_code=502, detail="AI service returned an error. Please try again later.")

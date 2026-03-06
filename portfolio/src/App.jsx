@@ -57,22 +57,24 @@ function Home() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        {/* 
-          Navbar and Footer are outside the Routes, 
-          so they remain consistently visible across pages. 
-        */}
-        <Navbar />
+    <ErrorBoundary>
+      <ThemeProvider>
+        <LanguageProvider>
+          {/* 
+            Navbar and Footer are outside the Routes, 
+            so they remain consistently visible across pages. 
+          */}
+          <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+          </Routes>
 
-        <Footer />
-      </LanguageProvider>
-    </ThemeProvider>
+          <Footer />
+        </LanguageProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 

@@ -16,7 +16,16 @@ export default function Navbar() {
     const nav = content.nav
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > NAVBAR_SCROLL_THRESHOLD)
+        let ticking = false;
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setScrolled(window.scrollY > NAVBAR_SCROLL_THRESHOLD);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])

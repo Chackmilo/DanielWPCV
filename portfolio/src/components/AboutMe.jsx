@@ -41,6 +41,7 @@ export default function AboutMe() {
                     className="flex flex-col md:flex-row items-center gap-8 mb-10"
                 >
                     <picture>
+                        <source srcSet="/profile.webp" type="image/webp" />
                         <img
                             src="/profile.jpg"
                             alt="Daniel Pardo Profile Picture"
