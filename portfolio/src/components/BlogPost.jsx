@@ -78,10 +78,10 @@ export default function BlogPost() {
                 <title>{title} - Daniel Pardo</title>
                 <meta name="description" content={summary} />
                 <html lang={lang} />
-                <link rel="canonical" href={`https://danielpardo.dev/blog/${id}`} />
-                <link rel="alternate" hreflang="en" href={`https://danielpardo.dev/blog/${id}`} />
-                <link rel="alternate" hreflang="es" href={`https://danielpardo.dev/blog/${id}`} />
-                <link rel="alternate" hreflang="x-default" href={`https://danielpardo.dev/blog/${id}`} />
+                <link rel="canonical" href={`https://danielwpcv.vercel.app/blog/${id}`} />
+                <link rel="alternate" hreflang="en" href={`https://danielwpcv.vercel.app/blog/${id}`} />
+                <link rel="alternate" hreflang="es" href={`https://danielwpcv.vercel.app/blog/${id}`} />
+                <link rel="alternate" hreflang="x-default" href={`https://danielwpcv.vercel.app/blog/${id}`} />
                 {/* Add Open Graph tags for better social sharing */}
                 <meta property="og:title" content={`${title} - Daniel Pardo`} />
                 <meta property="og:description" content={summary} />

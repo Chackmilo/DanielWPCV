@@ -34,9 +34,9 @@ function Home() {
         <title>{pageTitle}</title>
         <meta name="description" content={pageDesc} />
         <html lang={lang} />
-        <link rel="alternate" hreflang="en" href="https://danielpardo.dev/" />
-        <link rel="alternate" hreflang="es" href="https://danielpardo.dev/" />
-        <link rel="alternate" hreflang="x-default" href="https://danielpardo.dev/" />
+        <link rel="alternate" hreflang="en" href="https://danielwpcv.vercel.app/" />
+        <link rel="alternate" hreflang="es" href="https://danielwpcv.vercel.app/" />
+        <link rel="alternate" hreflang="x-default" href="https://danielwpcv.vercel.app/" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDesc} />
         <meta property="og:type" content="website" />
