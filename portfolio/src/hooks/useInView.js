@@ -20,7 +20,9 @@ export function useInView(options = {}) {
 
         observer.observe(element)
         return () => observer.disconnect()
-    }, [options])
+        // Observe once on mount; the only call site passes no options.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return [ref, isInView]
 }

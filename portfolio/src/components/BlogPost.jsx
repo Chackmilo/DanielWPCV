@@ -56,9 +56,9 @@ export default function BlogPost() {
                     <title>404 - Post Not Found | Daniel Pardo</title>
                 </Helmet>
                 <h1 className="text-4xl font-heading font-bold text-primary dark:text-white mb-4">404</h1>
-                <p className="text-text-dark dark:text-gray-300 mb-8">The article you are looking for does not exist.</p>
+                <p className="text-text-dark dark:text-gray-300 mb-8">{t("The article you are looking for does not exist.", "El artículo que buscas no existe.")}</p>
                 <Link to="/#blog" className="px-6 py-3 bg-secondary text-white font-semibold rounded-lg hover:bg-accent transition-colors shadow-md">
-                    Return to Home
+                    {t("Return to Home", "Volver al inicio")}
                 </Link>
             </div>
         )
@@ -86,6 +86,9 @@ export default function BlogPost() {
                 <meta property="og:title" content={`${title} - Daniel Pardo`} />
                 <meta property="og:description" content={summary} />
                 <meta property="og:type" content="article" />
+                <meta property="og:url" content={`https://danielwpcv.vercel.app/blog/${id}`} />
+                <meta property="og:image" content="https://danielwpcv.vercel.app/profile.jpg" />
+                <meta property="og:image:alt" content={`${title} — Daniel Pardo`} />
                 <meta property="article:published_time" content={post.date} />
                 {post.tags.map(tag => (
                     <meta property="article:tag" content={tag} key={tag} />

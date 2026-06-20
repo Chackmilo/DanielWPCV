@@ -39,7 +39,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-center pt-8 border-t border-white/10 dark:border-white/5 text-sm">
-                    <p className="my-1">&copy; 2026 Daniel Camilo Pardo Figueroa. {t(footer.copyright.en, footer.copyright.es)}</p>
+                    <p className="my-1">&copy; {new Date().getFullYear()} Daniel Camilo Pardo Figueroa. {t(footer.copyright.en, footer.copyright.es)}</p>
                 </div>
             </div>
         </footer>

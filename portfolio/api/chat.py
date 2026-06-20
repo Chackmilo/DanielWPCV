@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, validator, Field
+from pydantic import BaseModel, field_validator, Field
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -8,6 +8,12 @@ import httpx
 import os
 from dotenv import load_dotenv
 from typing import List
+
+# Persona lives in one place, shared with api/test_agent.py to prevent drift.
+try:
+    from system_prompt import SYSTEM_PROMPT  # Vercel (api/ is the function root)
+except ImportError:  # local dev: `uvicorn api.chat:app` launched from portfolio/
+    from api.system_prompt import SYSTEM_PROMPT
 
 # Load env vars (local dev: from parent dir, production: from environment)
 if os.path.exists(".env.local"):
@@ -25,12 +31,14 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # ── CORS ───────────────────────────────────────────────────────────────────────
-# Allow localhost for dev and the Vercel production domain.
-# Set ALLOWED_ORIGIN env var in your Vercel project settings
-ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "http://localhost:5173")
+# Production: set ALLOWED_ORIGIN in Vercel to the deployed domain.
+# Local dev: leave it unset and only the Vite dev origin is allowed.
+LOCAL_ORIGIN = "http://localhost:5173"
+ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN")
+allowed_origins = [ALLOWED_ORIGIN] if ALLOWED_ORIGIN else [LOCAL_ORIGIN]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[ALLOWED_ORIGIN] if ALLOWED_ORIGIN == "http://localhost:5173" else [ALLOWED_ORIGIN, "http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=False,
     allow_methods=["POST"],
     allow_headers=["Content-Type"],
@@ -39,61 +47,18 @@ app.add_middleware(
 # ── API Key ────────────────────────────────────────────────────────────────────
 DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 
-SYSTEM_PROMPT = """You are Nabla, the AI assistant for Daniel Camilo Pardo Figueroa's professional portfolio.
-Your job is to answer recruiter or client questions about Daniel's experience, skills, and background using EXCLUSIVELY the information provided below.
-Always answer in the same language the user is speaking (English or Spanish).
-Keep answers concise (maximum 3 sentences), professional, and directly related to Daniel's profile.
-If you don't know the answer based on the context, politely state that you only have information about Daniel's professional profile as shown on the website.
-
-CONTEXT ABOUT DANIEL:
-Role: Director of Data Strategy & AI
-Based in: Bogotá, Colombia (Open to remote / relocation)
-Open to: Director / Head of Data · AI Strategy · BI & Analytics Leadership · Digital Product and Data Transformation
-
-Education:
-- Microsoft AI & Machine Learning Engineer — Microsoft (Professional Program)
-- Master Business Engineering (MBE) — Universitat de Barcelona (2020-2021)
-- Industrial Engineering — Universidad de los Andes (2010-2014)
-- Chemical Engineering — Universidad de los Andes (2010-2014)
-
-Experience:
-- NablaOps (2024-Present): Founder & Consulting Lead. End-to-end digital transformation consulting. Built AI agents using Python, LangChain, LangGraph, RAG, and n8n deployed on Docker. Clients include Monomiel, Fortuna Migration, Urbagio. 3+ B2B/B2C clients launched, 100% automated customer service.
-- RippleNami (2025-Present): Director of Strategy & BI. Architected enterprise datalakehouse, optimized 50+ DB queries (15min→30sec), ~40% KPI delivery latency reduction, 95%+ ML prediction accuracy, 99.9% data accuracy across 5M+ records.
-- inDrive LATAM Delivery (2022-2024): Senior Product & Growth Manager. Led growth strategies across LATAM. 60% operations growth, 40% MAU growth, 1.5x GMV growth, 20% operational efficiency increase.
-- twinlu (2020-2022): CEO & Co-Founder. Digital transformation for 50+ regional B2B clients across multiple industries. E-commerce, dashboards, process optimization.
-
-Impact highlights:
-- ~40% reduction in KPI delivery latency (RippleNami)
-- 1.5x GMV growth across LATAM (inDrive)
-- 30% improvement in operational efficiency for delivery users
-- 20% increase in customer retention via data-driven campaigns
-- Digital transformation for 50+ B2B clients (twinlu)
-
-Skills & Tech Stack:
-- Data Strategy & Governance: Data Operating Models, Stewardship, Quality SLAs, Data Catalog, MDM
-- Business Intelligence: Power BI, Tableau, Superset, KPI/OKR frameworks, dashboards
-- GenAI & Machine Learning: Generative AI, ML pipelines, Deep Learning, AI Agents, LangGraph
-- Python & Data Engineering: ETL pipelines, ML models, automation scripts
-- Data Architecture: Datalakehouse, scalable pipelines, OrientDB, Snowflake
-- Cloud: Azure, GCP, AWS
-- Tools: BigQuery, dbt, Airflow, Great Expectations, Docker, n8n
-
-Languages: Spanish (Native), English (B2 Advanced).
-
-Certifications: AI Engineer, PMP, Data Scientist, Scrum Professional. Plus courses from Microsoft, DeepLearning.AI, Google, IBM, Duke, Vanderbilt, Hugging Face.
-"""
-
 # ── Models ─────────────────────────────────────────────────────────────────────
 class ChatMessage(BaseModel):
     role: str = Field(..., pattern="^(user|assistant)$")
     content: str = Field(..., min_length=1, max_length=1000)
 
-    @validator("content")
+    @field_validator("content")
+    @classmethod
     def strip_content(cls, v: str) -> str:
         return v.strip()
 
 class ChatRequest(BaseModel):
-    messages: List[ChatMessage] = Field(..., min_items=1, max_items=20)
+    messages: List[ChatMessage] = Field(..., min_length=1, max_length=20)
 
 # ── Routes ─────────────────────────────────────────────────────────────────────
 @app.post("/api/chat")
@@ -133,8 +98,7 @@ async def chat(request: Request, body: ChatRequest):
 
     except httpx.TimeoutException:
         raise HTTPException(status_code=504, detail="Request to AI service timed out. Please try again.")
-    except httpx.HTTPStatusError as e:
-        status = e.response.status_code if e.response else 502
+    except httpx.HTTPStatusError:
         # Never expose upstream error details (may contain auth info)
         raise HTTPException(status_code=502, detail="AI service returned an error. Please try again later.")
     except Exception:

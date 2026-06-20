@@ -49,6 +49,7 @@ const ChatInterface = () => {
     const [isLoading, setIsLoading] = useState(false)
     const scrollContainerRef = useRef(null)
     const messagesEndRef = useRef(null)
+    const abortRef = useRef(null)
 
     const scrollToBottom = () => {
         if (scrollContainerRef.current) {
@@ -64,6 +65,9 @@ const ChatInterface = () => {
         scrollToBottom()
     }, [messages])
 
+    // Abort any in-flight request if the chat unmounts (e.g. navigating to a blog post)
+    useEffect(() => () => abortRef.current?.abort(), [])
+
     const handleSend = async (e) => {
         if (e) e.preventDefault()
         if (!input.trim() || isLoading) return
@@ -75,6 +79,9 @@ const ChatInterface = () => {
         setInput('')
         setIsLoading(true)
 
+        const controller = new AbortController()
+        abortRef.current = controller
+
         try {
             // Send maximum 10 last messages as context to prevent huge payloads
             const contextMessages = newMessages.slice(-10)
@@ -82,7 +89,8 @@ const ChatInterface = () => {
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: contextMessages })
+                body: JSON.stringify({ messages: contextMessages }),
+                signal: controller.signal
             })
 
             if (!response.ok) {
@@ -93,14 +101,13 @@ const ChatInterface = () => {
 
             if (data.reply) {
                 setMessages([...newMessages, { role: 'assistant', content: data.reply }])
-            } else if (data.error) {
-                setMessages([...newMessages, { role: 'assistant', content: "Error: " + data.error }])
             }
         } catch (error) {
+            if (controller.signal.aborted) return
             console.error('Error in chat:', error)
             setMessages([...newMessages, { role: 'assistant', content: t("Sorry, I'm having trouble connecting to the network.", "Lo siento, tengo problemas para conectarme a la red.") }])
         } finally {
-            setIsLoading(false)
+            if (!controller.signal.aborted) setIsLoading(false)
         }
     }
 
@@ -119,6 +126,8 @@ const ChatInterface = () => {
 
             <div
                 ref={scrollContainerRef}
+                aria-live="polite"
+                aria-atomic="false"
                 className="flex-grow p-6 bg-slate-50 dark:bg-slate-800/50 flex flex-col gap-4 overflow-y-auto scroll-smooth"
             >
                 {messages.map((msg, idx) => (
@@ -155,14 +164,16 @@ const ChatInterface = () => {
                     maxLength={1000}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={t("Ask me about Daniel...", "Pregúntame sobre Daniel...")}
+                    aria-label={t("Ask me about Daniel", "Pregúntame sobre Daniel")}
                     className="flex-grow bg-slate-100 dark:bg-slate-700 rounded-full py-2.5 px-5 text-sm text-text-dark dark:text-white outline-none border border-transparent focus:border-secondary transition-colors focus-visible:ring-2 focus-visible:ring-accent"
                 />
                 <button
                     type="submit"
                     disabled={!input.trim() || isLoading}
+                    aria-label={t("Send message", "Enviar mensaje")}
                     className="bg-secondary text-white w-10 h-10 rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent dark:focus-visible:ring-offset-slate-800"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 ml-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 ml-0.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                     </svg>
                 </button>
