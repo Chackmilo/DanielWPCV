@@ -17,7 +17,7 @@ npm test             # vitest run (JS unit tests)
 npm run preview      # serve the production build locally
 ```
 
-Run a single JS test: `npx vitest run src/context/ThemeContext.test.jsx` or filter by name with `npx vitest run -t "<name>"`. There is currently one vitest file (`ThemeContext.test.jsx`).
+Run a single JS test: `npx vitest run src/context/ThemeContext.test.jsx` or filter by name with `npx vitest run -t "<name>"`. Current vitest files: `src/context/ThemeContext.test.jsx` and `src/utils/constants.test.js`.
 
 ### Backend (Python / FastAPI chatbot)
 
@@ -45,13 +45,13 @@ Single-page React 19 portfolio (Vite 7, Tailwind v4, Framer Motion) with a Pytho
 
 **The Nabla chatbot UI is embedded inside `src/components/Recommendations.jsx`** (not a standalone component). It POSTs the last 10 messages to `/api/chat`.
 
-**Backend (`api/chat.py`):** FastAPI `POST /api/chat` → DeepSeek (`deepseek-chat`) via async `httpx`. The recruiter-facing persona and all of Daniel's profile facts live in the `SYSTEM_PROMPT` string here. Hardening: `slowapi` rate limit (10/min/IP), Pydantic validation (message ≤1000 chars, ≤20 messages), CORS locked to `ALLOWED_ORIGIN`, and sanitized 5xx errors that never leak upstream details. Swagger/ReDoc are disabled.
+**Backend (`api/chat.py`):** FastAPI `POST /api/chat` → DeepSeek (`deepseek-chat`) via async `httpx`. The recruiter-facing persona and all of Daniel's profile facts live in the `SYSTEM_PROMPT` string in `api/system_prompt.py`. Hardening: `slowapi` rate limit (10/min/IP), Pydantic validation (message ≤1000 chars, ≤20 messages), CORS locked to `ALLOWED_ORIGIN`, and sanitized 5xx errors that never leak upstream details. Swagger/ReDoc are disabled.
 
-> Note: `SYSTEM_PROMPT` is **duplicated** in `api/chat.py` and `api/test_agent.py`, and the two copies have drifted (different bio facts). `api/chat.py` is the one that runs in production — edit the profile there.
+> Note: `SYSTEM_PROMPT` lives in a single shared module `api/system_prompt.py`, imported by both `api/chat.py` (production) and `api/test_agent.py`. Edit the profile there — there is no longer a duplicated copy to keep in sync.
 
 **Misc conventions:**
 - STAR-method project descriptions are split/styled via the shared regexes in `src/utils/constants.js` (`STAR_SPLIT_RE`, `STAR_TEST_RE`) — bilingual (English + Spanish labels).
-- `generate-sitemap.js` runs post-build, scraping blog IDs out of `blog.js` by regex. Its `DOMAIN` constant is hardcoded and currently differs from the live Vercel domain.
+- `generate-sitemap.js` runs post-build, scraping blog IDs out of `blog.js` by regex. Its `DOMAIN` constant (`https://danielwpcv.vercel.app`) is hardcoded; it now matches the live Vercel domain and the SEO/OG/canonical URLs across the source — keep all of them in sync if the domain ever changes.
 - ESLint allows unused vars matching `^[A-Z_]` or named `motion` (Framer Motion import convention).
 
 ## Environment / secrets
