@@ -1,79 +1,114 @@
 # Daniel Pardo - Professional Portfolio
 
-## 🌐 Overview
-A modern, responsive single-page portfolio website showcasing professional experience, skills, projects, and certifications in the field of Data Strategy, Business Intelligence, and Generative AI.
+**Live:** [danielwpcv.vercel.app](https://danielwpcv.vercel.app)
 
-**⚠️ IMPORTANT NOTE:** The project has been migrated from vanilla HTML/CSS to a modern **React + Vite** architecture with a **Python (FastAPI) Backend** for AI features.
+## Overview
 
-**All active development and the current version of the portfolio are located in the `portfolio/` directory.**
+A modern, responsive single-page portfolio showcasing professional experience, skills, projects, and certifications in Data Strategy, Business Intelligence, and Generative AI.
 
-## 🛠️ Inicialización del Proyecto
+Built with **React 19 + Vite** (frontend) and **Python / FastAPI** (serverless AI backend), deployed on **Vercel**.
 
-Sigue estos pasos para configurar el proyecto por primera vez en tu entorno local:
+> All active code lives in the `portfolio/` directory. The root-level `src/` folder contains the deprecated vanilla HTML/CSS version.
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone <url-del-repositorio>
-    cd DanielWPCV
-    ```
-2.  **Configurar Variables de Entorno:**
-    - Crea un archivo `.env.local` dentro de la carpeta `portfolio/`.
-    - Agrega tu clave: `DEEPSEEK_API_KEY=tu_clave_aqui`.
-3.  **Instalar Dependencias (Frontend):**
-    ```bash
-    cd portfolio
-    npm install
-    ```
-4.  **Instalar Dependencias (Backend):**
-    - Se recomienda usar un entorno virtual:
-    ```bash
-    cd api
-    python -m venv venv
-    # Activa en Windows: .\venv\Scripts\Activate.ps1
-    # Activa en Unix/macOS: source venv/bin/activate
-    pip install -r requirements.txt
-    ```
+## Quick Start (Local Development)
 
-## 🚀 Inicio Rápido (Desarrollo Local)
+### 1. Clone & Install
 
-The application uses a Dual-Server Architecture for the AI Chatbot. 
+```bash
+git clone https://github.com/Chackmilo/DanielWPCV.git
+cd DanielWPCV/portfolio
+npm install
+```
 
-1. **Environment Setup:** Add `.env.local` to the `portfolio/` folder with `DEEPSEEK_API_KEY=sk-...`
-2. **Start Backend:** Run `./start-backend.ps1` from the `portfolio/` directory. This script handles port 8000 cleanup and uses the correct Python interpreter.
-3. **Start Frontend:** In a new terminal, run `npm run dev` in the `portfolio/` directory.
-4. **Access:** Open [http://localhost:5173](http://localhost:5173) in your browser.
+### 2. Environment Variables
 
-## 🎯 Features
-- ✅ **Built with React + Vite** and TailwindCSS for styling.
-- ✅ **Serverless AI Backend**: Python/FastAPI integration responding dynamically using the DeepSeek LLM.
-- ✅ **Bilingual support** (English/Spanish toggled via Context API).
-- ✅ **Dynamic Content Strategy**: Driven by structured data files for easy updates (`content.js`, `blog.js`).
-- ✅ **Professional sections**: About, Skills, Projects (STAR format), Education, Recommendations, Certifications.
-- ✅ **Blog Section**: Expandable storytelling articles with dedicated URL routing.
-- ✅ **Visual Polish**: Framer Motion scroll reveals and global Dark Mode.
-- ✅ **Security Hardened**: Rate limiting, strict CSP headers, input validation, and sanitized API responses.
-- ✅ **WCAG 2.1 AA accessibility**: Complete `focus-visible` outlines, ARIA labels, and contrast improvements.
-- ✅ **Optimized WebP images** with `<picture>` fallback for performance.
-- ✅ **Rich SEO & Identity**: Fully integrated Open Graph tags, Twitter Cards, and `Person` JSON-LD Schema.
+Create `portfolio/.env.local`:
 
-## 📁 Project Structure
+```env
+DEEPSEEK_API_KEY=sk-your-key-here
+```
+
+### 3. Backend (Python / FastAPI)
+
+```bash
+cd portfolio/api
+python -m venv venv
+# Windows: .\venv\Scripts\Activate.ps1
+# Unix/macOS: source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Start the backend:
+
+```powershell
+# From portfolio/
+.\start-backend.ps1
+```
+
+Or manually: `python -m uvicorn api.chat:app --port 8000`
+
+### 4. Frontend (React + Vite)
+
+In a second terminal:
+
+```bash
+cd portfolio
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173). Vite proxies `/api` requests to the Python server on port 8000.
+
+## Features
+
+- **React 19 + Vite** with TailwindCSS v4 and Framer Motion animations
+- **AI Chatbot (Nabla):** FastAPI serverless function powered by DeepSeek LLM
+- **Bilingual:** English/Spanish toggle via React Context
+- **Dark Mode:** System-aware with manual toggle
+- **Content-driven:** Structured data files (`content.js`, `blog.js`) for easy updates
+- **Blog:** Expandable articles with dedicated URL routing and meta tags
+- **Security hardened:** Rate limiting, CSP headers, input validation, sanitized responses
+- **WCAG 2.1 AA accessible:** `focus-visible` outlines, ARIA labels, contrast compliance
+- **Optimized images:** WebP with `<picture>` fallback
+- **SEO:** Open Graph, Twitter Cards, JSON-LD Person schema, sitemap
+
+## Production Deployment (Vercel)
+
+The project is deployed on Vercel with the following configuration:
+
+| Setting | Value |
+|---|---|
+| **Framework** | Vite |
+| **Root Directory** | `portfolio` |
+| **Build Command** | `npm run build` |
+| **Output Directory** | `dist` |
+| **Serverless Functions** | `api/chat.py` (Python 3.12) |
+
+Environment variables configured in Vercel:
+
+- `DEEPSEEK_API_KEY` — DeepSeek API key for the chatbot
+- `ALLOWED_ORIGIN` — `https://danielwpcv.vercel.app` (CORS whitelist)
+
+Every push to `main` triggers an automatic production deployment.
+
+## Project Structure
 
 ```
-E:\Backup\DanielWPCV\
+DanielWPCV/
+├── portfolio/              # Main project folder (React/Vite app)
+│   ├── src/                # Components, context, data, hooks, utils
+│   ├── public/             # Static assets (CV, images)
+│   ├── api/                # Python backend (FastAPI serverless functions)
+│   ├── vercel.json         # Vercel rewrites, headers, and security config
+│   ├── package.json        # Dependencies and scripts
+│   └── README.md           # Detailed app documentation
 │
-├── portfolio/              # ⬅️ MAIN PROJECT FOLDER (React/Vite app)
-│   ├── src/                # React source code (components, context, data, hooks, utils)
-│   ├── public/             # Static assets like CV and images
-│   ├── api/                # Python backend for the AI Chatbot
-│   ├── package.json        # Dependencies
-│   └── README.md           # React app documentation
-│
-├── src/                    # Legacy vanilla HTML/CSS/JS (Deprecated)
-├── assets/                 # Shared static assets
-├── .agents/                # Agent configuration files
+├── src/                    # Legacy vanilla HTML/CSS/JS (deprecated)
+├── .agents/                # Agent skills and configuration
 └── README.md               # This file
 ```
 
-## 📞 Contact
-- 📧 Email: chackmilo@gmail.com
-- 💼 LinkedIn: [Daniel Pardo](https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/)
+## Contact
+
+- Email: chackmilo@gmail.com
+- LinkedIn: [Daniel Pardo](https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/)
+- GitHub: [Chackmilo](https://github.com/Chackmilo)
