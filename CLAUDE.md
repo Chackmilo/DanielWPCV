@@ -47,7 +47,7 @@ Routes: `/` (Home), `/blog/:id` (BlogPost), `*` (NotFound 404). Sticky `Navbar` 
 - Components retrieve text via `const { t } = useLanguage()` -> `t(obj.en, obj.es)`. Do not hardcode strings inside component JSX.
 
 **Blog System:**
-- 2 published articles in `src/data/blog.js`: `from-pmo-to-ai-leadership` and `my-path-to-ai`.
+- 3 published articles in `src/data/blog.js`: `from-pmo-to-ai-leadership`, `my-path-to-ai`, and `the-ui-ux-dilemma-and-ai`.
 - `BlogPost.jsx` parses Markdown headers, bold, italics, numbered lists, and bullet points.
 - `generate-sitemap.js` dynamically extracts all post IDs and dates post-build into `dist/sitemap.xml`.
 

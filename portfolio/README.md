@@ -22,7 +22,7 @@ The core codebase for Daniel Pardo's professional executive portfolio, featuring
    - Real-time Server-Sent Events (SSE) streaming from `/api/chat` to `ChatInterface.jsx` with progressive token rendering.
    - Bilingual `QuickChips.jsx` suggestions for immediate 1-click recruiter interaction.
 2. **Executive Thought Leadership Blog:**
-   - 2 published full-length articles (*From Government PMO to Leading Global AI Strategies* & *My Story with Artificial Intelligence*).
+   - 3 published full-length articles (*From Government PMO to Leading Global AI Strategies*, *My Story with Artificial Intelligence*, and *The UI/UX Maze: From Window Sales and Levantine Kitchens to the Lifesaver of AI*).
    - Rich structured Markdown rendering with support for numbered points, bullets, bold, and italic highlights.
    - Reading progress bar and full SEO/JSON-LD schemas for articles and breadcrumbs.
 3. **Conversion & User Experience:**
@@ -35,7 +35,7 @@ The core codebase for Daniel Pardo's professional executive portfolio, featuring
    - Singleton HTTP client connection pooling in `api/chat.py`.
 5. **SEO, a11y & Web Standards:**
    - Normalized semantic heading hierarchy (`h1` -> `h2` -> `h3`).
-   - Automated post-build sitemap generation indexing 3 dynamic URLs (`/`, `/blog/from-pmo-to-ai-leadership`, `/blog/my-path-to-ai`).
+   - Automated post-build sitemap generation indexing 4 dynamic URLs (`/`, `/blog/from-pmo-to-ai-leadership`, `/blog/my-path-to-ai`, `/blog/the-ui-ux-dilemma-and-ai`).
 6. **Quality & CI/CD:**
    - 19 Unit tests in Vitest and 8 Playwright E2E tests integrated into `.github/workflows/ci.yml`.
 
