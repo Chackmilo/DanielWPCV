@@ -16,14 +16,14 @@ export const content = {
             es: "Director de Estrategia de Datos e IA | Productos Digitales | BI · ML · GenAI",
         },
         whoIAm: {
-            title: { en: "🔹 WHO I AM", es: "🔹 QUIÉN SOY" },
+            title: { en: "⚡ WHO I AM", es: "⚡ QUIÉN SOY" },
             text: {
                 en: "Industrial and Chemical Engineer with over 12 years of experience leading Data & AI, digital products, and digital transformation across Europe, the US, and Africa. I help organizations drive revenue growth and improve operational performance by connecting data strategy, advanced analytics, and AI execution with measurable business outcomes (P&L, efficiency, retention, and customer experience).",
                 es: "Ingeniero Industrial y Químico con más de 12 años liderando Data & AI, productos digitales y transformación digital en Europa, EE. UU. y África. Ayudo a las organizaciones a crecer en ingresos y mejorar su desempeño operativo conectando estrategia de datos, analítica avanzada y ejecución de IA con resultados medibles para el negocio (P&L, eficiencia, retención y experiencia de cliente).",
             },
         },
         whatIDo: {
-            title: { en: "🔹 WHAT I DO", es: "🔹 LO QUE HAGO" },
+            title: { en: "🚀 WHAT I DO", es: "🚀 LO QUE HAGO" },
             items: [
                 {
                     en: "Build and lead high-performing Data & AI teams (Data Science, MLOps, BI, Analytics Engineering)",
@@ -44,31 +44,31 @@ export const content = {
             ],
         },
         impact: {
-            title: { en: "🔹 IMPACT DELIVERED", es: "🔹 IMPACTO LOGRADO" },
+            title: { en: "🎯 IMPACT DELIVERED", es: "🎯 IMPACTO LOGRADO" },
             items: [
                 { en: "~40% reduction in KPI delivery latency through data pipeline enhancements and reporting reliability (RippleNami)", es: "~40% de reducción en la latencia de entrega de KPIs mediante mejoras en pipelines de datos y confiabilidad de reportes (RippleNami)" },
                 { en: "1.5x GMV growth across LATAM markets by leading growth and execution programs (inDrive)", es: "Crecimiento de 1.5x en GMV en mercados LATAM liderando programas de growth y ejecución (inDrive)" },
                 { en: "30% improvement in operational efficiency for delivery users (documents/food) and 20% for couriers via digital transformation initiatives", es: "30% de mejora en eficiencia operativa para usuarios de delivery (documentos/comida) y 20% para couriers a través de iniciativas de transformación digital" },
-                { en: "20% increase in customer retention through designing and executing 'do X, get Y' campaigns", es: "20% de aumento en retención de clientes diseñando y ejecutando campañas tipo “haz X y recibe Y”" },
+                { en: "20% increase in customer retention through designing and executing 'do X, get Y' campaigns", es: "20% de aumento en retención de clientes diseñando y ejecutando campañas tipo 'haz X y recibe Y'" },
                 { en: "Digital transformation and automation for 50+ regional B2B clients across multiple industries (twinlu)", es: "Transformación digital y automatización para más de 50 clientes B2B regionales en múltiples industrias (twinlu)" },
             ],
         },
         techStack: {
-            title: { en: "🔹 TECH & TOOLSET", es: "🔹 TECH & TOOLSET" },
+            title: { en: "🛠️ TECH & TOOLSET", es: "🛠️ TECH & TOOLSET" },
             text: {
                 en: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & AI Agents · dbt · BigQuery · Power BI · Apache Superset · Modern Lakehouse Architectures · NoSQL · MLOps · Docker · n8n Automation",
                 es: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & Agentes IA · dbt · BigQuery · Power BI · Apache Superset · Arquitecturas Modernas Lakehouse · NoSQL · MLOps · Docker · Automatización n8n",
             },
         },
         certificationsSummary: {
-            title: { en: "🔹 CERTIFICATIONS & LANGUAGES", es: "🔹 CERTIFICACIONES E IDIOMAS" },
+            title: { en: "📜 CERTIFICATIONS & LANGUAGES", es: "📜 CERTIFICACIONES E IDIOMAS" },
             text: {
                 en: "AI Engineer · PMP · Data Scientist · Scrum Professional | English (B2) and Spanish (native)",
                 es: "AI Engineer · PMP · Data Scientist · Scrum Professional | Inglés (B2) y español (nativo)",
             },
         },
         openTo: {
-            title: { en: "🔥 OPEN TO", es: "🔥 ABIERTO A" },
+            title: { en: "💼 OPEN TO", es: "💼 ABIERTO A" },
             text: {
                 en: "Director / Head of Data · AI Strategy · BI & Analytics Leadership · Digital Product and Data Transformation",
                 es: "Director / Head of Data · Estrategia de IA · Liderazgo BI & Analytics · Producto Digital y Transformación con Datos",
@@ -143,54 +143,44 @@ export const content = {
             metrics: [
                 { value: "40%", label: { en: "faster KPI delivery", es: "entrega de KPIs más rápida" } },
                 { value: "95%+", label: { en: "ML prediction accuracy", es: "precisión de predicción ML" } },
-                { value: "99.9%", label: { en: "data accuracy (5M+ records)", es: "precisión de datos (5M+ registros)" } },
-                { value: "30x", label: { en: "faster query time", es: "consultas más rápidas" } },
+                { value: "99.9%", label: { en: "data quality across 5M+ records", es: "calidad de datos en 5M+ registros" } },
             ],
-            tech: ["BigQuery", "dbt", "Python", "Airflow", "Great Expectations"],
+            tech: ["BigQuery", "dbt", "Airflow", "Python", "SQL", "Looker", "Great Expectations"],
         },
         {
-            title: "Senior Product & Growth Manager",
-            company: "inDrive (LATAM Delivery, 2022 - 2024)",
+            title: "Operations & Business Strategy Lead",
+            company: "inDrive (2022 - 2024)",
             description: {
-                en: "Situation: Required optimization of regional delivery operations across LATAM to boost engagement and growth. Task: Implement product-led growth initiatives and refine performance tracking. Action: Led growth strategies, managed cross-functional projects with product/marketing/engineering, and developed robust KPI/OKR frameworks using advanced SQL analytics. Result: Achieved over 60% growth in increments, 40% MAU growth, a 20% increase in operational efficiency, and 1.5x GMV growth.",
-                es: "Situación: Optimización requerida de operaciones de delivery en LATAM para impulsar crecimiento. Tarea: Implementar iniciativas de crecimiento lideradas por producto y refinar el seguimiento de rendimiento. Acción: Liderazgo de estrategias de crecimiento, gestión de proyectos multifuncionales e implementación de frameworks KPI/OKR usando analítica avanzada SQL. Resultado: Crecimiento de >60% en incrementos, 40% de crecimiento en MAU, aumento del 20% en eficiencia operativa y crecimiento 1.5x en GMV.",
+                en: "Situation: Aggressive expansion needed across LATAM markets. Task: Drive GMV growth and operational efficiency through data and digital transformation. Action: Led cross-functional teams, designed KPI dashboards, executed growth campaigns, and deployed dynamic pricing ML models and customer service GPT agents. Result: Achieved 1.5x GMV growth, +30% operational efficiency for delivery, +20% customer retention, and automated C-level reporting.",
+                es: "Situación: Expansión acelerada requerida en mercados LATAM. Tarea: Impulsar crecimiento de GMV y eficiencia operativa mediante datos y transformación digital. Acción: Liderazgo de equipos multifuncionales, diseño de dashboards de KPIs, ejecución de campañas de crecimiento y despliegue de modelos ML de precios dinámicos y agentes GPT de soporte. Resultado: Crecimiento de 1.5x en GMV, +30% en eficiencia operativa de delivery, +20% en retención de clientes y reportería C-level automatizada.",
             },
             metrics: [
-                { value: "60%", label: { en: "operations growth", es: "crecimiento operativo" } },
-                { value: "40%", label: { en: "MAU growth", es: "crecimiento de usuarios activos (MAU)" } },
-                { value: "1.5x", label: { en: "GMV growth", es: "crecimiento de GMV" } },
-                { value: "20%", label: { en: "operational efficiency increase", es: "aumento de eficiencia operativa" } },
+                { value: "1.5x", label: { en: "GMV growth across LATAM", es: "crecimiento de GMV en LATAM" } },
+                { value: "+30%", label: { en: "operational efficiency (delivery)", es: "eficiencia operativa (delivery)" } },
+                { value: "+20%", label: { en: "customer retention increase", es: "aumento en retención de clientes" } },
             ],
-            tech: ["SQL", "Python", "dbt", "Superset", "PostgreSQL"],
+            tech: ["Power BI", "SQL", "Python", "Google BigQuery", "Looker Studio", "Machine Learning", "GPT Agents"],
         },
         {
-            title: "CEO & Co-Founder",
+            title: "Co-Founder & Head of Operations",
             company: "twinlu (2020 - 2022)",
             description: {
-                en: "Situation: Regional B2B clients needed modernization in their digital and e-commerce strategies. Task: Define corporate strategy, build stakeholder relationships, and guide digital product goals. Action: Spearheaded digital transformation frameworks, managed operational budget forecasting, and implemented targeted automation. Conducted end-to-end process optimization consulting. Result: Massively enhanced operational efficiency and successfully transformed operations for over 50 regional clients.",
-                es: "Situación: Clientes B2B regionales requerían modernización digital y de e-commerce. Tarea: Definir estrategia corporativa, relaciones con stakeholders y metas digitales de producto. Acción: Liderazgo en marcos de transformación digital, previsión de presupuesto operativo e implementación de automatización. Consultoría en optimización integral de procesos. Resultado: Mejora masiva de eficiencia operativa y transformación exitosa para >50 clientes regionales.",
+                en: "Situation: Regional SMEs lacked access to bespoke software and analytics. Task: Build and scale a digital transformation agency from the ground up. Action: Directed 50+ custom software and analytics projects across LATAM, developed real-time BI dashboards, and implemented agile frameworks. Result: Delivered 50+ successful projects, established data-driven client operations, and built long-term enterprise partnerships.",
+                es: "Situación: Pymes regionales carecían de software y analítica a medida. Tarea: Construir y escalar una agencia de transformación digital desde cero. Acción: Dirección de más de 50 proyectos de software y analítica en LATAM, desarrollo de dashboards BI en tiempo real e implementación de metodologías ágiles. Resultado: Entrega exitosa de 50+ proyectos, establecimiento de operaciones basadas en datos para clientes y alianzas corporativas duraderas.",
             },
             metrics: [
-                { value: "50+", label: { en: "B2B clients transformed", es: "clientes B2B transformados" } },
-                { value: "100%", label: { en: "remote operations", es: "operación remota" } },
-                { value: "2+ yrs", label: { en: "executive leadership", es: "años de liderazgo ejecutivo" } },
+                { value: "50+", label: { en: "projects delivered", es: "proyectos entregados" } },
+                { value: "100%", label: { en: "on-time delivery rate", es: "tasa de entrega a tiempo" } },
+                { value: "3x", label: { en: "client revenue growth average", es: "crecimiento promedio de ingresos clientes" } },
             ],
-            tech: ["Business Strategy", "Digital Transformation", "E-commerce", "P&L Management"],
+            tech: ["React", "Node.js", "Python", "PostgreSQL", "Power BI", "Scrum", "Jira"],
         },
     ],
 
     education: [
         {
-            title: { en: "Microsoft AI & Machine Learning Engineer", es: "Microsoft AI & Machine Learning Engineer" },
-            institution: "Microsoft",
-            description: {
-                en: "Specialized professional program focused on building scalable AI/ML infrastructure, implementing core algorithms (deep learning, reinforcement learning), and deploying intelligent agents and machine learning solutions using Microsoft Azure.",
-                es: "Programa profesional especializado enfocado en la construcción de infraestructura escalable de IA/ML, implementación de algoritmos (deep learning, reinforcement learning) y despliegue de agentes inteligentes y soluciones de machine learning usando Microsoft Azure.",
-            },
-        },
-        {
-            title: { en: "Master Business Engineering (MBE)", es: "Máster en Ingeniería de Negocios (MBE)" },
-            institution: "Universitat de Barcelona (2020 - 2021)",
+            title: { en: "Master of Engineering (MEng) - Industrial Management", es: "Máster en Gestión Industrial" },
+            institution: "Universidad de los Andes & Politecnico di Milano (2014 - 2016)",
             description: {
                 en: "Specialized in bridging business strategy with technological innovation. International focus combining technical engineering with strategic corporate management.",
                 es: "Especialización en unir la estrategia de negocios con la innovación tecnológica. Enfoque internacional combinando ingeniería técnica con gestión corporativa estratégica.",
@@ -245,36 +235,36 @@ export const content = {
         {
             category: { en: "AI & Machine Learning", es: "IA y Aprendizaje Automático" },
             items: [
-                "Machine Learning in Production — DeepLearning.AI",
-                "Agentic AI and AI Agents for Leaders — Vanderbilt University",
-                "Claude Code: Software Engineering with GenAI Agents — Vanderbilt University",
-                "AI Product Management — Duke University",
-                "AI Agents Fundamentals — Hugging Face",
-                "Google AI (7 courses) — Google / Coursera",
-                "Generative AI for Executives — IBM",
-                "Introduction to Deep Learning & Neural Networks — IBM",
+                "Machine Learning in Production · DeepLearning.AI",
+                "Agentic AI and AI Agents for Leaders · Vanderbilt University",
+                "Claude Code: Software Engineering with GenAI Agents · Vanderbilt University",
+                "AI Product Management · Duke University",
+                "AI Agents Fundamentals · Hugging Face",
+                "Google AI (7 courses) · Google / Coursera",
+                "Generative AI for Executives · IBM",
+                "Introduction to Deep Learning & Neural Networks · IBM",
             ],
         },
         {
             category: { en: "Data Analytics & Engineering", es: "Análisis e Ingeniería de Datos" },
             items: [
-                "Google Advanced Data Analytics — Google",
-                "Generative AI for BI Analysts — IBM",
-                "Data Analysis with R Programming — Google",
-                "Business Analytics — Campus BBVA",
-                "Create Interactive Dashboards with Streamlit — Coursera",
-                "Introduction to Software Engineering — IBM",
-                "Key Technologies for Business — IBM",
+                "Google Advanced Data Analytics · Google",
+                "Generative AI for BI Analysts · IBM",
+                "Data Analysis with R Programming · Google",
+                "Business Analytics · Campus BBVA",
+                "Create Interactive Dashboards with Streamlit · Coursera",
+                "Introduction to Software Engineering · IBM",
+                "Key Technologies for Business · IBM",
             ],
         },
         {
             category: { en: "Project Management & Software Engineering", es: "Gestión de Proyectos e Ingeniería de Software" },
             items: [
-                "Google Project Management (6 courses) — Google / Coursera",
-                "Generative AI PM — IBM",
-                "Applied Scrum for Agile Project Management — University of Maryland",
-                "Gestión de proyectos con Jira — Coursera",
-                "PMP Certification — PMI",
+                "Google Project Management (6 courses) · Google / Coursera",
+                "Generative AI PM · IBM",
+                "Applied Scrum for Agile Project Management · University of Maryland",
+                "Gestión de proyectos con Jira · Coursera",
+                "PMP Certification · PMI",
             ],
         },
     ],
@@ -291,20 +281,20 @@ export const content = {
 
     chat: {
         greeting: {
-            en: "Hello! I am Nabla, Daniel's AI assistant. Would you like to leave a recommendation or learn more about my AI agent capabilities?",
-            es: "¡Hola! Soy Nabla, el asistente IA de Daniel. ¿Te gustaría dejar una recomendación o conocer más sobre mis capacidades como agente?",
+            en: "Hello! I am Nabla, Daniel's AI assistant. Would you like to ask about his experience, technical stack, or strategic impact?",
+            es: "¡Hola! Soy Nabla, el asistente IA de Daniel. ¿Te gustaría consultar sobre su experiencia, stack técnico o impacto estratégico?",
         },
         userReply: {
-            en: "I want to leave a recommendation!",
-            es: "¡Quiero dejar una recomendación!",
+            en: "I want to ask about Daniel's leadership experience!",
+            es: "¡Quiero consultar sobre la experiencia de liderazgo de Daniel!",
         },
         botReply: {
-            en: "Form integration coming soon...",
-            es: "Integración de formulario próximamente...",
+            en: "Here are details about Daniel's executive track record...",
+            es: "Aquí tienes detalles sobre la trayectoria ejecutiva de Daniel...",
         },
         placeholder: {
-            en: "Type a message...",
-            es: "Escribe un mensaje...",
+            en: "Ask Nabla anything about Daniel's experience...",
+            es: "Pregúntale a Nabla sobre la experiencia de Daniel...",
         },
     },
 
@@ -341,4 +331,4 @@ export const content = {
             es: "Portafolio profesional de Daniel Camilo Pardo Figueroa, experto en Estrategia de Datos, IA y Transformación Digital.",
         },
     },
-}
+};
