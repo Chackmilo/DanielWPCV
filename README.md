@@ -4,13 +4,15 @@
 
 ## Overview
 
-A modern, responsive single-page portfolio showcasing professional experience, skills, projects, and certifications in Data Strategy, Business Intelligence, and Generative AI.
+Executive portfolio showcasing leadership experience, strategic metrics, projects, and certifications in **Data Strategy, Business Intelligence, and Generative AI**.
 
-Built with **React 19 + Vite** (frontend) and **Python / FastAPI** (serverless AI backend), deployed on **Vercel**.
+Built with **React 19 + Vite** (frontend) and **Python / FastAPI** (serverless AI backend), deployed on **Vercel** with automated CI/CD.
 
 > All active code lives in the `portfolio/` directory.
 
-## Quick Start (Local Development)
+---
+
+## ⚡ Quick Start (Local Development)
 
 ### 1. Clone & Install
 
@@ -28,99 +30,101 @@ Create `portfolio/.env.local`:
 DEEPSEEK_API_KEY=sk-your-key-here
 ```
 
-### 3. Backend (Python / FastAPI)
+### 3. Start Backend & Frontend
 
-```bash
-cd portfolio/api
-python -m venv venv
-# Windows: .\venv\Scripts\Activate.ps1
-# Unix/macOS: source venv/bin/activate
-pip install -r requirements.txt
-```
+We provide automated helper scripts that handle port cleanup, Python environment resolution, and local hosting:
 
-Start the backend:
-
+**Terminal 1 (Backend - FastAPI):**
 ```powershell
 # From portfolio/
 .\start-backend.ps1
 ```
+*Backend runs on [http://localhost:8000](http://localhost:8000).*
 
-Or manually: `python -m uvicorn api.chat:app --port 8000`
+**Terminal 2 (Frontend - React + Vite):**
+```powershell
+# From portfolio/
+.\start-frontend.ps1
+# or: npm run dev
+```
+*Frontend runs on [http://localhost:5173](http://localhost:5173).*
 
-### 4. Frontend (React + Vite)
+Vite automatically proxies `/api` requests to the Python server on port 8000.
 
-In a second terminal:
+---
+
+## ✨ Key Features & Architecture
+
+- **Visual Design ("Obsidian Command"):** Sleek dark aesthetics (`#0B0F17`), Outfit display typography, Electric Emerald & Cobalt Indigo accents, and `.glass-card` styling.
+- **Executive Telemetry Strip:** Real-time impact indicators (`~40% KPI Latency Reduction`, `1.5x LATAM GMV`, `30x Query Optimization`, `99.9% Data Accuracy`).
+- **AI Agent (Nabla):** FastAPI serverless backend powered by DeepSeek with persistent connection pooling (`httpx`), rate limiting (`slowapi`), automatic retries, and interactive prompt suggestions.
+- **Integrated CV:** Direct download button and PDF asset hosted at `/CV_Daniel_Pardo.pdf`.
+- **Bilingual Context:** Seamless English/Spanish switching with reactive context (`useLanguage`).
+- **SEO & Web Standards:** Semantic HTML (single `<h1>` per view), dynamic route-specific canonical links via `react-helmet-async`, automated `sitemap.xml`, and JSON-LD schema markup.
+- **Accessibility (WCAG 2.1 AA):** High contrast ratios, descriptive ARIA attributes, and visible focus rings.
+
+---
+
+## 🧪 Testing & Quality Assurance
 
 ```bash
-cd portfolio
-npm run dev
+# From portfolio/
+npm run lint           # ESLint (0 errors / warnings)
+npm test               # Unit tests (Vitest + Testing Library)
+npm run build          # Production build + sitemap generator
+npm run test:e2e       # E2E tests (Playwright with mocked /api/chat)
+npm run test:e2e:live  # Live smoke test (hits active backend + DeepSeek)
 ```
 
-Open [http://localhost:5173](http://localhost:5173). Vite proxies `/api` requests to the Python server on port 8000.
+Playwright browser installation (first run only): `npx playwright install chromium`.
 
-## Features
+---
 
-- **React 19 + Vite** with TailwindCSS v4 and Framer Motion animations
-- **AI Chatbot (Nabla):** FastAPI serverless function powered by DeepSeek LLM
-- **Bilingual:** English/Spanish toggle via React Context
-- **Dark Mode:** System-aware with manual toggle
-- **Content-driven:** Structured data files (`content.js`, `blog.js`) for easy updates
-- **Blog:** Expandable articles with dedicated URL routing and meta tags
-- **Security hardened:** Rate limiting, CSP headers, input validation, sanitized responses
-- **WCAG 2.1 AA accessible:** `focus-visible` outlines, ARIA labels, contrast compliance
-- **Optimized images:** WebP with `<picture>` fallback
-- **SEO:** Open Graph, Twitter Cards, JSON-LD Person schema, sitemap
+## 🚀 CI/CD & Deployment (Vercel)
 
-## Testing
-
-```bash
-# from portfolio/
-npm test               # Unit tests (Vitest)
-npm run test:e2e       # End-to-end tests (Playwright, mocked chatbot API)
-npm run test:e2e:live  # Opt-in live smoke test (needs the backend + DEEPSEEK_API_KEY)
-```
-
-The first e2e run downloads the browser: `npx playwright install chromium`.
-
-## Production Deployment (Vercel)
-
-The project is deployed on Vercel with the following configuration:
+- **Continuous Integration:** GitHub Actions (`.github/workflows/ci.yml`) runs ESLint, Vitest, and Playwright on every push and pull request.
+- **Vercel Serverless:** Automatic deployment upon merge to `main`.
 
 | Setting | Value |
 |---|---|
-| **Framework** | Vite |
+| **Framework Preset** | Vite |
 | **Root Directory** | `portfolio` |
 | **Build Command** | `npm run build` |
 | **Output Directory** | `dist` |
 | **Serverless Functions** | `api/chat.py` (Python 3.12) |
 
-Environment variables configured in Vercel:
+---
 
-- `DEEPSEEK_API_KEY` — DeepSeek API key for the chatbot
-- `ALLOWED_ORIGIN` — `https://danielwpcv.vercel.app` (CORS whitelist)
-
-Every push to `main` triggers an automatic production deployment.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 DanielWPCV/
-├── portfolio/              # Main project folder (React/Vite app + API)
-│   ├── src/                # Components, context, data, hooks, utils, unit tests
+├── .github/workflows/      # GitHub Actions CI workflow (lint + test + e2e)
+├── portfolio/              # Main application directory
+│   ├── api/                # FastAPI backend & system prompts
+│   │   ├── chat.py         # Chat endpoint (httpx pool, retries, rate limits)
+│   │   ├── system_prompt.py# Single source of truth for Nabla AI facts
+│   │   └── test_agent.py   # AI security and prompt injection test script
+│   ├── src/                # React source code
+│   │   ├── components/     # UI sections (Navbar, AboutMe, Skills, Projects, etc.)
+│   │   ├── context/        # Language and Theme state providers
+│   │   ├── data/           # Structured data (content.js, blog.js)
+│   │   └── utils/          # Constants, regex patterns, and helpers
 │   ├── e2e/                # Playwright end-to-end tests
-│   ├── public/             # Static assets (images, robots.txt)
-│   ├── api/                # Python backend (FastAPI serverless functions)
-│   ├── vercel.json         # Vercel rewrites, headers, and security config
-│   ├── package.json        # Dependencies and scripts
-│   └── README.md           # Detailed app documentation
-│
-├── assets/                 # CV PDF and source images
-├── CLAUDE.md               # Guidance for Claude Code
-└── README.md               # This file
+│   ├── public/             # Static assets (CV PDF, profile images, robots.txt)
+│   ├── start-backend.ps1   # Helper script to launch Python backend
+│   ├── start-frontend.ps1  # Helper script to launch Vite dev server
+│   ├── vercel.json         # Vercel security headers and rewrites
+│   └── vite.config.js      # Vite build and proxy configuration
+├── CLAUDE.md               # Developer and AI agent reference
+└── README.md               # Root repository documentation
 ```
 
-## Contact
+---
 
-- Email: chackmilo@gmail.com
-- LinkedIn: [Daniel Pardo](https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/)
-- GitHub: [Chackmilo](https://github.com/Chackmilo)
+## 📬 Contact
+
+- **Email:** [chackmilo@gmail.com](mailto:chackmilo@gmail.com)
+- **LinkedIn:** [Daniel Pardo](https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/)
+- **GitHub:** [Chackmilo](https://github.com/Chackmilo)
+- **WhatsApp:** [+57 310 323 5141](https://wa.me/573103235141)

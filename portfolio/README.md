@@ -1,156 +1,82 @@
-# Daniel Pardo - React Portfolio
+﻿# Daniel Pardo — React Portfolio & AI Backend
 
-**Live:** [danielwpcv.vercel.app](https://danielwpcv.vercel.app)
+**Live Site:** [danielwpcv.vercel.app](https://danielwpcv.vercel.app)
 
-This is the main codebase for Daniel Pardo's professional portfolio, built with a modern React stack. It showcases experience in Data Strategy, Business Intelligence, and AI consulting (NablaOps).
+The core codebase for Daniel Pardo's professional executive portfolio, featuring a modern React frontend and a Python serverless AI assistant backend.
 
-## Tech Stack
+---
 
-- **Frontend:** React 19 + Vite 7, TailwindCSS v4, Framer Motion
-- **Backend:** Python (FastAPI/Uvicorn) — DeepSeek LLM integration, deployed as Vercel Serverless Functions
-- **Routing & SEO:** `react-router-dom`, `react-helmet-async`, JSON-LD Schema.org markup
-- **Styling:** Dark Mode via React Context, full `focus-visible` WCAG 2.1 AA accessibility
-- **Data:** Structured JS objects (`src/data/content.js`, `src/data/blog.js`)
-- **Hosting:** Vercel (automatic deployments from `main` branch)
+## 🌟 Tech Stack
 
-## Recent Optimizations
+- **Frontend:** React 19, Vite 7, Tailwind CSS v4, Framer Motion
+- **AI Backend:** Python 3.12 / FastAPI (Serverless Functions on Vercel) with DeepSeek LLM (`deepseek-chat`)
+- **State & Routing:** React Context (Theme & Bilingual Language), `react-router-dom` v7, `react-helmet-async`
+- **Testing:** Vitest (Unit testing with Testing Library), Playwright (E2E browser automation)
+- **CI/CD & Hosting:** GitHub Actions CI, Vercel Serverless Hosting
 
-- **Backend I/O:** Replaced synchronous `requests` with asynchronous `httpx` in the FastAPI chatbot endpoint to prevent Event Loop blocking during DeepSeek API calls.
-- **Frontend Scroll Performance:** Added requestAnimationFrame throttling to the Navbar scroll listener to maintain 60FPS.
-- **Image Optimization:** Converted heavy profile images to `.webp` format for improved First Contentful Paint.
-- **Resilience:** Implemented a top-level React `<ErrorBoundary>` wrapper to elegantly catch rendering errors across the application.
+---
 
-## Architecture
+## ⚡ Recent Implementations & Upgrades
 
-```
-portfolio/
-├── api/                    # Serverless backend
-│   ├── chat.py             # FastAPI app — Nabla chatbot (DeepSeek API)
-│   ├── requirements.txt    # Python dependencies
-│   └── test_agent.py       # Security and usefulness tests
-├── src/
-│   ├── components/         # Section components (Navbar, AboutMe, ChatInterface, etc.)
-│   ├── context/            # LanguageContext (En/Es), ThemeContext (Light/Dark)
-│   ├── data/               # Content files — edit to update text, projects, skills, blog
-│   ├── hooks/              # Custom hooks (viewport monitoring)
-│   └── utils/              # Constants, regex patterns, thresholds
-├── e2e/                    # Playwright end-to-end tests
-├── public/                 # Static assets (CV, images, sitemap)
-├── vercel.json             # Rewrites, security headers, cache rules
-└── package.json            # Dependencies and scripts
-```
+1. **Nabla AI 2.0 Streaming & Quick Chips:**
+   - Real-time Server-Sent Events (SSE) streaming from `/api/chat` to `ChatInterface.jsx` with progressive token rendering.
+   - Bilingual `QuickChips.jsx` suggestions for immediate 1-click recruiter interaction.
+2. **Conversion & User Experience:**
+   - Direct PDF Download CV action and 1:1 Strategy Call scheduling CTA in `AboutMe.jsx`.
+   - Animated clipboard copy feedback via `Toast.jsx`.
+   - Fixed top reading progress indicator in `BlogPost.jsx`.
+3. **SEO & Metadata Hardening:**
+   - Route-level dynamic canonical tags via `react-helmet-async`.
+   - Structured JSON-LD metadata for `BlogPosting` and `BreadcrumbList`.
+4. **Performance & Architecture:**
+   - Clean manual chunking in `vite.config.js` and elimination of redundant scroll observers.
+   - Singleton HTTP client connection pooling in `api/chat.py`.
+5. **Quality & CI/CD:**
+   - 19 Unit tests in Vitest and 8 Playwright E2E tests integrated into `.github/workflows/ci.yml`.
 
-## Setup / Configuración
+---
 
-### English
+## 🚀 Local Development
 
-1. **Install dependencies:** `npm install`
-2. **Python environment:**
+### 1. Environment Setup
 
-   ```bash
-   python -m venv .venv
-   # Windows: .\.venv\Scripts\Activate.ps1
-   # Unix/macOS: source .venv/bin/activate
-   pip install -r api/requirements.txt
-   ```
-
-3. **Environment variables:** Create `.env.local` with `DEEPSEEK_API_KEY=sk-...`
-
-### Español
-
-1. **Instalar dependencias:** `npm install`
-2. **Entorno Python:**
-
-   ```bash
-   python -m venv .venv
-   # Windows: .\.venv\Scripts\Activate.ps1
-   # Unix/macOS: source .venv/bin/activate
-   pip install -r api/requirements.txt
-   ```
-
-3. **Variables de entorno:** Crea `.env.local` con tu `DEEPSEEK_API_KEY`
-
-## Local Development (Dual-Server)
-
-The AI chatbot requires two servers running simultaneously.
-
-### 1. Environment
-
-Create `.env.local` in this folder:
+Create `portfolio/.env.local`:
 
 ```env
-DEEPSEEK_API_KEY=sk-your-secret-key-here
+DEEPSEEK_API_KEY=sk-your-deepseek-api-key
 ```
 
-### 2. Backend (Python)
+### 2. Start Servers
 
+**Terminal 1 — Backend (FastAPI):**
 ```powershell
-# From portfolio/
 .\start-backend.ps1
 ```
 
-Or manually: `python -m uvicorn api.chat:app --port 8000`
-
-### 3. Frontend (React + Vite)
-
-In a second terminal:
-
+**Terminal 2 — Frontend (Vite):**
 ```bash
 npm run dev
 ```
 
-Vite proxies `/api` requests to the Python backend on port 8000 (configured in `vite.config.js`).
-
 Open [http://localhost:5173](http://localhost:5173).
 
-## Testing
+---
+
+## 🧪 Testing
 
 ```bash
-npm test               # Unit tests (Vitest + Testing Library) — contexts & utils
-npm run test:e2e       # End-to-end tests (Playwright) against the production build
-npm run test:e2e:live  # Opt-in live smoke test (real backend + DeepSeek)
+npm run lint          # Run ESLint validation
+npm test              # Run Vitest unit tests (19/19 passing)
+npm run build         # Build production assets + generate sitemap.xml
+npm run test:e2e      # Run Playwright E2E tests (8/8 passing)
+npm run test:e2e:live # Run live smoke test against active backend
 ```
 
-First-time e2e setup: `npx playwright install chromium`.
+---
 
-- **Unit** (`src/**/*.test.{js,jsx}`): `ThemeContext`, `LanguageContext`, STAR regexes.
-- **E2E** (`e2e/`): home page (theme + language toggles), blog routing + canonical tag,
-  and the Nabla chatbot with a **mocked** `/api/chat` — deterministic and key-free, so it
-  runs in CI. The live smoke test (title-tagged `@live`, run via `test:e2e:live`) hits the
-  real chain and needs the dev server on :5173, the backend on :8000, and `DEEPSEEK_API_KEY`.
+## 🔒 Security & Hardening
 
-## Production (Vercel)
-
-Deployed at **<https://danielwpcv.vercel.app>** with automatic deployments on push to `main`.
-
-| Setting | Value |
-|---|---|
-| Root Directory | `portfolio` |
-| Framework Preset | Vite |
-| Build Command | `npm run build` |
-| Output Directory | `dist` |
-| Python Runtime | 3.12 |
-
-**Environment variables** (configured in Vercel dashboard):
-
-- `DEEPSEEK_API_KEY` — DeepSeek API key
-- `ALLOWED_ORIGIN` — `https://danielwpcv.vercel.app`
-
-## Security
-
-- **Rate Limiting:** `slowapi` — 10 requests/min per IP on the chatbot endpoint
-- **Input Validation:** Pydantic enforcement on message length and history depth
-- **Error Sanitization:** Generic 500/502/504 responses prevent internal data exposure
-- **Headers:** CSP, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff` (via `vercel.json`)
-- **CORS:** Restricted to authorized origins via `ALLOWED_ORIGIN`
-- **AI Security:** Automated prompt injection and usefulness tests (`api/test_agent.py`)
-
-## Sections
-
-- **About Me** — Executive experience, tech stack, location
-- **Skills** — Grid layout: Data Strategy, BI, GenAI domains
-- **Projects** — STAR method descriptions with metrics and tech tags
-- **Education** — Academic background and certifications
-- **Recommendations** — Professional endorsements
-- **Blog** — Articles with dedicated URLs and meta tags
-- **Chatbot (Nabla)** — AI assistant answering recruiter questions based on portfolio context
+- **Rate Limiting:** `slowapi` restricts chatbot requests to 15 req/min per IP.
+- **Payload Validation:** Pydantic models enforce strict length boundaries (`min_length=1, max_length=1000`) and message history caps.
+- **Security Headers:** Strict CSP, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, and `no-store` caching on API routes configured in `vercel.json`.
+- **Error Sanitization:** 5xx errors return sanitized client messages, avoiding any credential or upstream leakage.
