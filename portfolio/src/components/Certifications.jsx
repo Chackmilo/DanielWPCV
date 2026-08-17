@@ -40,14 +40,14 @@ export default function Certifications() {
                 >
                     {content.certifications.map((cat) => (
                         <motion.div key={cat.category.en} variants={cardVariants} className="h-full">
-                            <Card className="p-8 h-full flex flex-col bg-white dark:bg-slate-800 border-transparent dark:border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                                <h4 className="text-primary dark:text-white text-xl mb-8 pb-2 border-b-2 border-secondary dark:border-slate-600 font-bold">
+                            <Card className="glass-card p-8 h-full flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl border-t-2 border-accent/40">
+                                <h4 className="text-primary dark:text-white text-xl mb-6 pb-2 border-b-2 border-secondary font-heading font-bold">
                                     {t(cat.category.en, cat.category.es)}
                                 </h4>
                                 <ul className="list-none p-0 flex-grow">
-                                    {cat.items.map((item, j) => (
-                                        <li key={j} className="py-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed border-b border-bg-section dark:border-slate-700 last:border-b-0">
-                                            <span aria-hidden="true">✅</span> {item}
+                                    {cat.items.map((item) => (
+                                        <li key={item} className="py-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed border-b border-border dark:border-white/5 last:border-b-0 flex items-start gap-2">
+                                            <span aria-hidden="true" className="text-accent text-sm mt-0.5">✦</span> <span>{item}</span>
                                         </li>
                                     ))}
                                 </ul>

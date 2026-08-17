@@ -1,16 +1,14 @@
+﻿import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { useLanguage } from '../context/LanguageContext'
 import { blogPosts } from '../data/blog'
 import { motion } from 'framer-motion'
 
-
 // Parse inline **bold** and *italic* markers into React elements
 function parseInlineFormatting(text) {
-    // Process **bold** first, then *italic* in remaining segments
     const parts = text.split(/\*\*([^*]+)\*\*/g)
     if (parts.length === 1) {
-        // No bold — try italic only
         const italicParts = text.split(/\*([^*]+)\*/g)
         if (italicParts.length === 1) return text
         return italicParts.map((part, i) =>
@@ -19,7 +17,6 @@ function parseInlineFormatting(text) {
     }
     return parts.map((part, i) => {
         if (i % 2 === 1) return <strong key={`b${i}`}>{part}</strong>
-        // Within non-bold segments, check for italic
         if (!part) return null
         const italicParts = part.split(/\*([^*]+)\*/g)
         if (italicParts.length === 1) return part
@@ -29,7 +26,7 @@ function parseInlineFormatting(text) {
     })
 }
 
-// Pure function — no dependency on component state
+// Pure function for rendering structured markdown lines
 function renderContent(text) {
     return text.split('\n').map((line, idx) => {
         if (line.trim().startsWith('###')) {
@@ -38,7 +35,7 @@ function renderContent(text) {
         if (line.trim().startsWith('*') && line.trim().endsWith('*') && !line.trim().slice(1, -1).includes('*')) {
             return <p key={idx} className="italic text-gray-600 dark:text-gray-400 mb-6 text-lg">{line.replace(/\*/g, '')}</p>
         }
-        if (line.trim() === '') return null;
+        if (line.trim() === '') return null
         return <p key={idx} className="mb-6 text-text-dark dark:text-gray-300 leading-relaxed text-lg">{parseInlineFormatting(line)}</p>
     })
 }
@@ -46,6 +43,19 @@ function renderContent(text) {
 export default function BlogPost() {
     const { id } = useParams()
     const { lang, t } = useLanguage()
+    const [scrollProgress, setScrollProgress] = useState(0)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const totalScroll = document.documentElement.scrollTop || document.body.scrollTop
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            if (windowHeight > 0) {
+                setScrollProgress((totalScroll / windowHeight) * 100)
+            }
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const post = blogPosts.find(p => p.id === id)
 
@@ -67,13 +77,71 @@ export default function BlogPost() {
     const title = t(post.title.en, post.title.es)
     const summary = t(post.summary.en, post.summary.es)
 
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "headline": title,
+                "description": summary,
+                "author": {
+                    "@type": "Person",
+                    "name": "Daniel Camilo Pardo Figueroa",
+                    "url": "https://danielwpcv.vercel.app"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Daniel Camilo Pardo Figueroa"
+                },
+                "datePublished": post.date,
+                "mainEntityOfPage": `https://danielwpcv.vercel.app/blog/${id}`,
+                "image": "https://danielwpcv.vercel.app/profile.jpg",
+                "keywords": post.tags.join(", ")
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://danielwpcv.vercel.app/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": "https://danielwpcv.vercel.app/#blog"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": title,
+                        "item": `https://danielwpcv.vercel.app/blog/${id}`
+                    }
+                ]
+            }
+        ]
+    }
+
     return (
         <motion.article
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="min-h-screen bg-bg-light dark:bg-slate-900 pt-32 pb-16 px-8"
+            className="min-h-screen bg-bg-light dark:bg-slate-900 pt-32 pb-16 px-8 relative"
         >
+            {/* Reading Progress Bar */}
+            <div
+                className="fixed top-0 left-0 h-1 bg-emerald-500 z-50 transition-all duration-75 ease-out"
+                style={{ width: `${scrollProgress}%` }}
+                role="progressbar"
+                aria-valuenow={Math.round(scrollProgress)}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label="Reading progress"
+            />
+
             <Helmet>
                 <title>{title} - Daniel Pardo</title>
                 <meta name="description" content={summary} />
@@ -82,7 +150,6 @@ export default function BlogPost() {
                 <link rel="alternate" hreflang="en" href={`https://danielwpcv.vercel.app/blog/${id}`} />
                 <link rel="alternate" hreflang="es" href={`https://danielwpcv.vercel.app/blog/${id}`} />
                 <link rel="alternate" hreflang="x-default" href={`https://danielwpcv.vercel.app/blog/${id}`} />
-                {/* Add Open Graph tags for better social sharing */}
                 <meta property="og:title" content={`${title} - Daniel Pardo`} />
                 <meta property="og:description" content={summary} />
                 <meta property="og:type" content="article" />
@@ -93,6 +160,9 @@ export default function BlogPost() {
                 {post.tags.map(tag => (
                     <meta property="article:tag" content={tag} key={tag} />
                 ))}
+                <script type="application/ld+json">
+                    {JSON.stringify(schemaData)}
+                </script>
             </Helmet>
 
             <div className="max-w-[800px] mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-border dark:border-slate-700">

@@ -41,26 +41,26 @@ const ProjectCard = memo(function ProjectCard({ project }) {
 
     return (
         <motion.div variants={cardVariants} className="h-full">
-            <Card className="h-full overflow-hidden border border-border dark:border-slate-700 hover:border-secondary dark:hover:border-secondary flex flex-col bg-white dark:bg-slate-800 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                <div className="bg-primary dark:bg-slate-900 text-white p-6 border-b-[3px] border-secondary flex flex-col gap-1">
+            <Card className="glass-card h-full overflow-hidden border border-border dark:border-white/10 hover:border-secondary dark:hover:border-secondary flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="bg-primary dark:bg-slate-950 text-white p-6 border-b-2 border-secondary flex flex-col gap-1">
                     <h3 className="font-heading text-xl font-bold">{project.company.split(' (')[0]}</h3>
                     <span className="text-base font-medium text-accent">{project.title}</span>
                     <span className="text-[0.85rem] opacity-75">{project.company.includes('(') ? '(' + project.company.split('(')[1] : ''}</span>
                 </div>
                 <div className="p-8 flex-grow flex flex-col">
-                    <p className="leading-relaxed mb-8 flex-grow">
+                    <p className="leading-relaxed mb-8 flex-grow text-gray-700 dark:text-gray-300">
                         {formatDescription(t(project.description.en, project.description.es))}
                     </p>
-                    <div className="flex flex-wrap gap-3 mb-6">
+                    <div className="flex flex-wrap gap-2.5 mb-6">
                         {project.metrics.map((m, i) => (
-                            <span key={i} className="bg-accent/10 py-1 px-3 rounded-md text-[1.05rem] font-bold text-accent border border-accent/20">
-                                {m.value && <strong className="text-[1.2rem]">{m.value}</strong>} {t(m.label.en, m.label.es)}
+                            <span key={i} className="bg-emerald-500/10 dark:bg-emerald-400/10 py-1.5 px-3 rounded-lg text-sm font-bold text-accent border border-accent/20">
+                                {m.value && <strong className="text-base mr-1">{m.value}</strong>} {t(m.label.en, m.label.es)}
                             </span>
                         ))}
                     </div>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 pt-2 border-t border-border dark:border-white/5">
                         {project.tech.map((tag) => (
-                            <span key={tag} className="text-primary dark:text-gray-400 font-semibold text-[0.85rem]">{tag}</span>
+                            <span key={tag} className="bg-slate-100 dark:bg-slate-800/80 text-gray-700 dark:text-gray-300 font-medium text-xs px-2.5 py-1 rounded-full border border-border dark:border-white/5">{tag}</span>
                         ))}
                     </div>
                 </div>

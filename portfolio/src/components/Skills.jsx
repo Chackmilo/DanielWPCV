@@ -40,9 +40,9 @@ const SkillCard = memo(function SkillCard({ skill }) {
 
     return (
         <motion.div variants={cardVariants} className="h-full">
-            <Card className="h-full p-8 text-center border-t-4 border-transparent hover:border-secondary transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 dark:hover:border-secondary">
+            <Card className="glass-card h-full p-8 text-center rounded-2xl border-t-2 border-accent/40 hover:border-accent transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                 <div className="text-secondary dark:text-accent mb-4 flex justify-center">{Icon && <Icon />}</div>
-                <h3 className="font-heading text-primary dark:text-white text-xl font-bold mb-4">{t(skill.title.en, skill.title.es)}</h3>
+                <h3 className="font-heading text-primary dark:text-white text-xl font-bold mb-3">{t(skill.title.en, skill.title.es)}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{t(skill.description.en, skill.description.es)}</p>
             </Card>
         </motion.div>

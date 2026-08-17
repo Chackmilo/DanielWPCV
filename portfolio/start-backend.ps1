@@ -14,6 +14,13 @@ if ($existing) {
     Write-Host "Proceso previo en puerto 8000 detenido." -ForegroundColor Yellow
 }
 
-# Arrancar con el Python del sistema (3.14) que tiene FastAPI 0.114 limpio
-& "C:\Users\Daniel Camilo Pardo\AppData\Local\Python\pythoncore-3.14-64\python.exe" `
-    -m uvicorn api.chat:app --port 8000
+# Resolver ejecutable de Python
+$pythonExe = "python"
+if (Test-Path "C:\Users\Daniel Camilo Pardo\AppData\Local\Python\pythoncore-3.14-64\python.exe") {
+    $pythonExe = "C:\Users\Daniel Camilo Pardo\AppData\Local\Python\pythoncore-3.14-64\python.exe"
+} elseif (Test-Path ".\api\venv\Scripts\python.exe") {
+    $pythonExe = ".\api\venv\Scripts\python.exe"
+}
+
+Write-Host "Usando intérprete Python: $pythonExe" -ForegroundColor Gray
+& $pythonExe -m uvicorn api.chat:app --port 8000

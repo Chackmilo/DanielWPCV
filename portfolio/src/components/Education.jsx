@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
 import Card from './Card'
@@ -23,15 +24,15 @@ const cardVariants = {
     }
 }
 
-function EducationCard({ edu }) {
+const EducationCard = memo(function EducationCard({ edu }) {
     const { t } = useLanguage()
 
     return (
         <motion.div variants={cardVariants} className="h-full">
-            <Card className="h-full overflow-hidden border border-border dark:border-slate-700 hover:border-secondary dark:hover:border-secondary flex flex-col bg-white dark:bg-slate-800 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                <div className="bg-primary dark:bg-slate-900 text-white p-8 border-b-[3px] border-secondary">
+            <Card className="glass-card h-full overflow-hidden border border-border dark:border-white/10 hover:border-secondary dark:hover:border-secondary flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="bg-primary dark:bg-slate-950 text-white p-8 border-b-2 border-secondary">
                     <h3 className="font-heading text-2xl font-bold mb-1">{t(edu.title.en, edu.title.es)}</h3>
-                    <span className="text-[0.9rem] opacity-90 italic">{edu.institution}</span>
+                    <span className="text-sm text-accent opacity-90 font-medium">{edu.institution}</span>
                 </div>
                 <div className="p-8 flex-grow">
                     <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">{t(edu.description.en, edu.description.es)}</p>
@@ -39,7 +40,7 @@ function EducationCard({ edu }) {
             </Card>
         </motion.div>
     )
-}
+})
 
 export default function Education() {
     const { t } = useLanguage()

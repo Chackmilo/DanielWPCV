@@ -9,6 +9,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/test/setup.js',
+    // Vitest owns unit tests under src/; e2e/*.spec.js belongs to Playwright.
+    include: ['src/**/*.{test,spec}.{js,jsx}'],
   },
   server: {
     proxy: {
@@ -23,7 +25,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
           'router': ['react-router-dom'],
           'motion': ['framer-motion'],
         },

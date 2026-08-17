@@ -1,6 +1,6 @@
 import os
 import json
-import requests
+import httpx
 from dotenv import load_dotenv
 
 # Load env variables directly from api context
@@ -30,7 +30,7 @@ def test_chat(message: str, test_name: str):
     ]
 
     try:
-        response = requests.post(
+        response = httpx.post(
             "https://api.deepseek.com/chat/completions",
             headers={
                 "Content-Type": "application/json",

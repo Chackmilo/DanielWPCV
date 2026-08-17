@@ -29,11 +29,12 @@ portfolio/
 │   ├── requirements.txt    # Python dependencies
 │   └── test_agent.py       # Security and usefulness tests
 ├── src/
-│   ├── components/         # Section components (Navbar, AboutMe, Skills, Projects, etc.)
+│   ├── components/         # Section components (Navbar, AboutMe, ChatInterface, etc.)
 │   ├── context/            # LanguageContext (En/Es), ThemeContext (Light/Dark)
 │   ├── data/               # Content files — edit to update text, projects, skills, blog
 │   ├── hooks/              # Custom hooks (viewport monitoring)
 │   └── utils/              # Constants, regex patterns, thresholds
+├── e2e/                    # Playwright end-to-end tests
 ├── public/                 # Static assets (CV, images, sitemap)
 ├── vercel.json             # Rewrites, security headers, cache rules
 └── package.json            # Dependencies and scripts
@@ -101,6 +102,22 @@ npm run dev
 Vite proxies `/api` requests to the Python backend on port 8000 (configured in `vite.config.js`).
 
 Open [http://localhost:5173](http://localhost:5173).
+
+## Testing
+
+```bash
+npm test               # Unit tests (Vitest + Testing Library) — contexts & utils
+npm run test:e2e       # End-to-end tests (Playwright) against the production build
+npm run test:e2e:live  # Opt-in live smoke test (real backend + DeepSeek)
+```
+
+First-time e2e setup: `npx playwright install chromium`.
+
+- **Unit** (`src/**/*.test.{js,jsx}`): `ThemeContext`, `LanguageContext`, STAR regexes.
+- **E2E** (`e2e/`): home page (theme + language toggles), blog routing + canonical tag,
+  and the Nabla chatbot with a **mocked** `/api/chat` — deterministic and key-free, so it
+  runs in CI. The live smoke test (title-tagged `@live`, run via `test:e2e:live`) hits the
+  real chain and needs the dev server on :5173, the backend on :8000, and `DEEPSEEK_API_KEY`.
 
 ## Production (Vercel)
 

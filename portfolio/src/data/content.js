@@ -56,8 +56,8 @@ export const content = {
         techStack: {
             title: { en: "🔹 TECH & TOOLSET", es: "🔹 TECH & TOOLSET" },
             text: {
-                en: "Azure · GCP · AWS · Python · SQL · Power BI · Apache Superset · Lakehouse/Datalakehouse Architectures · NoSQL · Machine Learning · MLOps · LLMs · GenAI · Automation",
-                es: "Azure · GCP · AWS · Python · SQL · Power BI · Apache Superset · Arquitecturas Lakehouse/Datalakehouse · NoSQL · Machine Learning · MLOps · LLMs · GenAI · Automatización",
+                en: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & AI Agents · dbt · BigQuery · Power BI · Apache Superset · Modern Lakehouse Architectures · NoSQL · MLOps · Docker · n8n Automation",
+                es: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & Agentes IA · dbt · BigQuery · Power BI · Apache Superset · Arquitecturas Modernas Lakehouse · NoSQL · MLOps · Docker · Automatización n8n",
             },
         },
         certificationsSummary: {
@@ -81,6 +81,7 @@ export const content = {
             linkedin: "https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/",
             github: "https://github.com/Chackmilo",
             whatsapp: "https://wa.me/573103235141",
+            cv: "/CV_Daniel_Pardo.pdf",
         },
     },
 

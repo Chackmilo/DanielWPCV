@@ -13,7 +13,7 @@ export default function Footer() {
             {/* Back to top button */}
             <button
                 onClick={scrollToTop}
-                className="absolute -top-6 left-1/2 -translate-x-1/2 bg-accent text-white border-none w-12 h-12 rounded-full cursor-pointer shadow-card hover:bg-secondary dark:hover:bg-secondary-100 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
+                className="home-icon absolute -top-6 left-1/2 -translate-x-1/2 bg-accent text-white border-none w-12 h-12 rounded-full cursor-pointer shadow-card hover:bg-secondary dark:hover:bg-secondary-100 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
                 title="Back to Top"
                 aria-label={t("Back to top", "Volver arriba")}
             >

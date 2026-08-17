@@ -57,22 +57,25 @@ export default function Navbar() {
 
     return (
         <header
-            className={`bg-primary sticky top-0 z-50 border-b border-white/5 transition-shadow duration-300 ${scrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_20px_rgba(255,255,255,0.05)]' : 'shadow-[0_2px_10px_rgba(0,0,0,0.1)]'}`}
+            className={`bg-primary/95 backdrop-blur-md sticky top-0 z-50 border-b border-white/10 transition-shadow duration-300 ${scrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.3)]' : 'shadow-[0_2px_10px_rgba(0,0,0,0.1)]'}`}
         >
-            <nav className="flex justify-between items-center py-4 px-8 max-w-[1200px] mx-auto flex-wrap gap-4">
-                <div>
-                    <h1 className="font-heading text-2xl font-extrabold text-text-light tracking-tight">
-                        <Link to="/" onClick={() => isHomePage && window.scrollTo(0, 0)}>
+            <nav className="flex justify-between items-center py-3.5 px-6 max-w-[1300px] mx-auto flex-wrap gap-4">
+                <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-white font-heading font-black text-sm shadow-sm">
+                        DP
+                    </div>
+                    <span className="font-heading text-lg md:text-xl font-extrabold text-text-light tracking-tight">
+                        <Link to="/" onClick={() => isHomePage && window.scrollTo(0, 0)} className="hover:text-accent transition-colors">
                             DANIEL CAMILO PARDO FIGUEROA
                         </Link>
-                    </h1>
+                    </span>
                 </div>
 
                 {/* Mobile hamburger */}
                 <button
                     className="md:hidden text-text-light text-2xl outline-none focus-visible:ring-2 focus-visible:ring-accent rounded transition-shadow"
                     onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle menu"
+                    aria-label={t('Toggle menu', 'Alternar menú')}
                     aria-expanded={menuOpen}
                 >
                     {menuOpen ? '✕' : '☰'}
@@ -81,7 +84,6 @@ export default function Navbar() {
                 <ul
                     className={`${menuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row list-none gap-2 md:gap-8 w-full md:w-auto items-center`}
                     role="menu"
-                    aria-hidden={!menuOpen}
                 >
                     {links.map(link => (
                         <li key={link.id} role="none">
@@ -110,14 +112,14 @@ export default function Navbar() {
                     <button
                         onClick={toggleTheme}
                         className="text-text-light hover:text-accent dark:hover:text-secondary transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-full p-1"
-                        aria-label={isDarkMode ? 'Switch to Light Mode' : 'Toggle Dark Mode'}
+                        aria-label={isDarkMode ? t('Switch to light mode', 'Cambiar a modo claro') : t('Switch to dark mode', 'Cambiar a modo oscuro')}
                     >
                         {isDarkMode ? <SunIcon /> : <MoonIcon />}
                     </button>
 
                     <button
                         onClick={toggleLanguage}
-                        className="bg-white/10 text-text-light border border-white/20 py-1.5 px-4 rounded-full cursor-pointer font-bold text-sm flex items-center gap-1.5 hover:bg-white hover:text-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                        className="lang-btn bg-white/10 text-text-light border border-white/20 py-1.5 px-4 rounded-full cursor-pointer font-bold text-sm flex items-center gap-1.5 hover:bg-white hover:text-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         aria-label={lang === 'en' ? 'Switch to Spanish' : 'Cambiar a inglés'}
                     >
                         <span aria-hidden="true">🌐</span> {lang === 'en' ? 'ES' : 'EN'}

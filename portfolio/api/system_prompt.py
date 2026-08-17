@@ -46,4 +46,6 @@ Skills & Tech Stack:
 Languages: Spanish (Native), English (B2 Advanced).
 
 Certifications: AI Engineer, PMP, Data Scientist, Scrum Professional. Plus courses from Microsoft, DeepLearning.AI, Google, IBM, Duke, Vanderbilt, Hugging Face.
+
+CV Availability: Daniel's full executive CV is available for direct download on the website at /CV_Daniel_Pardo.pdf or via the 'Download CV' button on the hero section.
 """

@@ -14,10 +14,12 @@ npm run dev          # Vite dev server on :5173 (proxies /api → :8000)
 npm run build        # vite build → dist/, then runs generate-sitemap.js
 npm run lint         # eslint
 npm test             # vitest run (JS unit tests)
+npm run test:e2e     # playwright e2e (mocked /api/chat) vs the prod build; excludes @live
+npm run test:e2e:live # opt-in live smoke test (@live): needs dev server :5173 + backend :8000
 npm run preview      # serve the production build locally
 ```
 
-Run a single JS test: `npx vitest run src/context/ThemeContext.test.jsx` or filter by name with `npx vitest run -t "<name>"`. Current vitest files: `src/context/ThemeContext.test.jsx` and `src/utils/constants.test.js`.
+Run a single JS test: `npx vitest run src/context/ThemeContext.test.jsx` or filter by name with `npx vitest run -t "<name>"`. Current vitest files: `ThemeContext.test.jsx` + `LanguageContext.test.jsx` (in `src/context/`) and `src/utils/constants.test.js`. End-to-end tests live in `portfolio/e2e/` (Playwright); the first run needs `npx playwright install chromium`. The chatbot e2e mocks `/api/chat`, so no backend/key is required except for the opt-in `@live` smoke test.
 
 ### Backend (Python / FastAPI chatbot)
 
@@ -43,7 +45,7 @@ Single-page React 19 portfolio (Vite 7, Tailwind v4, Framer Motion) with a Pytho
 
 **Theme:** `ThemeContext` handles light/dark; Tailwind dark-mode classes throughout.
 
-**The Nabla chatbot UI is embedded inside `src/components/Recommendations.jsx`** (not a standalone component). It POSTs the last 10 messages to `/api/chat`.
+**The Nabla chatbot UI is `src/components/ChatInterface.jsx`**, rendered by `src/components/Recommendations.jsx`. It POSTs the last 10 messages to `/api/chat`.
 
 **Backend (`api/chat.py`):** FastAPI `POST /api/chat` → DeepSeek (`deepseek-chat`) via async `httpx`. The recruiter-facing persona and all of Daniel's profile facts live in the `SYSTEM_PROMPT` string in `api/system_prompt.py`. Hardening: `slowapi` rate limit (10/min/IP), Pydantic validation (message ≤1000 chars, ≤20 messages), CORS locked to `ALLOWED_ORIGIN`, and sanitized 5xx errors that never leak upstream details. Swagger/ReDoc are disabled.
 
@@ -57,3 +59,12 @@ Single-page React 19 portfolio (Vite 7, Tailwind v4, Framer Motion) with a Pytho
 ## Environment / secrets
 
 `portfolio/.env.local` needs `DEEPSEEK_API_KEY`. On Vercel, set both `DEEPSEEK_API_KEY` and `ALLOWED_ORIGIN`. Vercel config (rewrites, CSP and security headers, `no-store` on `/api`) is in `portfolio/vercel.json`.
+
+## Known follow-ups (deferred from the 2026-06-20 audit)
+
+Surfaced during a full review; intentionally left as proposals, not yet implemented:
+- **Duplicate canonical on blog routes:** `index.html` ships a static `<link rel="canonical" href="https://danielwpcv.vercel.app/">` that persists on every route, while `BlogPost` adds a page-specific canonical via Helmet — so `/blog/:id` carries two canonicals (one pointing at the home URL). Consider dropping the static tag and letting Helmet own the canonical per route.
+- **Empty `react-vendor` chunk:** the `manualChunks` split in `vite.config.js` emits a 0 kB `react-vendor` chunk (React lands in the main bundle anyway). Harmless; worth revisiting.
+- **Backend resilience:** module-level singleton `httpx.AsyncClient`, one retry on transient 502/504, `logging` to stderr (Vercel captures it), and startup validation of `DEEPSEEK_API_KEY`.
+- **`start-backend.ps1`** hardcodes a Python 3.14 path; production pins 3.12. Consider PATH/venv discovery and a Unix `start-backend.sh`.
+- **No CI:** deployment is Vercel-on-push only. A GitHub Actions workflow running `lint` + `vitest` + mocked `test:e2e` on PRs would catch regressions pre-deploy.

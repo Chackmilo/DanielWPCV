@@ -8,7 +8,7 @@ A modern, responsive single-page portfolio showcasing professional experience, s
 
 Built with **React 19 + Vite** (frontend) and **Python / FastAPI** (serverless AI backend), deployed on **Vercel**.
 
-> All active code lives in the `portfolio/` directory. The root-level `src/` folder contains the deprecated vanilla HTML/CSS version.
+> All active code lives in the `portfolio/` directory.
 
 ## Quick Start (Local Development)
 
@@ -71,6 +71,17 @@ Open [http://localhost:5173](http://localhost:5173). Vite proxies `/api` request
 - **Optimized images:** WebP with `<picture>` fallback
 - **SEO:** Open Graph, Twitter Cards, JSON-LD Person schema, sitemap
 
+## Testing
+
+```bash
+# from portfolio/
+npm test               # Unit tests (Vitest)
+npm run test:e2e       # End-to-end tests (Playwright, mocked chatbot API)
+npm run test:e2e:live  # Opt-in live smoke test (needs the backend + DEEPSEEK_API_KEY)
+```
+
+The first e2e run downloads the browser: `npx playwright install chromium`.
+
 ## Production Deployment (Vercel)
 
 The project is deployed on Vercel with the following configuration:
@@ -94,16 +105,17 @@ Every push to `main` triggers an automatic production deployment.
 
 ```
 DanielWPCV/
-├── portfolio/              # Main project folder (React/Vite app)
-│   ├── src/                # Components, context, data, hooks, utils
-│   ├── public/             # Static assets (CV, images)
+├── portfolio/              # Main project folder (React/Vite app + API)
+│   ├── src/                # Components, context, data, hooks, utils, unit tests
+│   ├── e2e/                # Playwright end-to-end tests
+│   ├── public/             # Static assets (images, robots.txt)
 │   ├── api/                # Python backend (FastAPI serverless functions)
 │   ├── vercel.json         # Vercel rewrites, headers, and security config
 │   ├── package.json        # Dependencies and scripts
 │   └── README.md           # Detailed app documentation
 │
-├── src/                    # Legacy vanilla HTML/CSS/JS (deprecated)
-├── .agents/                # Agent skills and configuration
+├── assets/                 # CV PDF and source images
+├── CLAUDE.md               # Guidance for Claude Code
 └── README.md               # This file
 ```
 
