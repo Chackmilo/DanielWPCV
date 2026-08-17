@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { useLanguage } from '../context/LanguageContext'
@@ -29,13 +29,42 @@ function parseInlineFormatting(text) {
 // Pure function for rendering structured markdown lines
 function renderContent(text) {
     return text.split('\n').map((line, idx) => {
-        if (line.trim().startsWith('###')) {
-            return <h3 key={idx} className="text-2xl font-bold font-heading text-primary dark:text-white mb-4 mt-8">{line.replace('### ', '')}</h3>
+        const trimmed = line.trim()
+        if (trimmed.startsWith('###')) {
+            return <h3 key={idx} className="text-2xl font-bold font-heading text-primary dark:text-white mb-4 mt-8">{trimmed.replace(/^###\s*/, '')}</h3>
         }
-        if (line.trim().startsWith('*') && line.trim().endsWith('*') && !line.trim().slice(1, -1).includes('*')) {
-            return <p key={idx} className="italic text-gray-600 dark:text-gray-400 mb-6 text-lg">{line.replace(/\*/g, '')}</p>
+        if (trimmed.startsWith('*') && trimmed.endsWith('*') && !trimmed.slice(1, -1).includes('*')) {
+            return <p key={idx} className="italic text-gray-600 dark:text-gray-400 mb-6 text-lg">{trimmed.replace(/\*/g, '')}</p>
         }
-        if (line.trim() === '') return null
+        // Numbered list item: e.g. "1. **Technology is the easy part.**"
+        const listMatch = trimmed.match(/^(\d+)\.\s+(.*)/)
+        if (listMatch) {
+            const [, num, body] = listMatch
+            return (
+                <div key={idx} className="flex items-start gap-3.5 mb-4 pl-2">
+                    <span className="font-heading font-bold text-accent bg-accent/10 dark:bg-accent/20 px-2.5 py-0.5 rounded text-sm shrink-0 mt-1 shadow-xs">
+                        {num}
+                    </span>
+                    <div className="text-text-dark dark:text-gray-300 leading-relaxed text-lg flex-grow">
+                        {parseInlineFormatting(body)}
+                    </div>
+                </div>
+            )
+        }
+        // Bullet list item: e.g. "- item" or "• item"
+        const bulletMatch = trimmed.match(/^[-•]\s+(.*)/)
+        if (bulletMatch) {
+            const [, body] = bulletMatch
+            return (
+                <div key={idx} className="flex items-start gap-3 mb-3 pl-4">
+                    <span className="text-accent shrink-0 mt-1 font-bold">▹</span>
+                    <div className="text-text-dark dark:text-gray-300 leading-relaxed text-lg flex-grow">
+                        {parseInlineFormatting(body)}
+                    </div>
+                </div>
+            )
+        }
+        if (trimmed === '') return null
         return <p key={idx} className="mb-6 text-text-dark dark:text-gray-300 leading-relaxed text-lg">{parseInlineFormatting(line)}</p>
     })
 }

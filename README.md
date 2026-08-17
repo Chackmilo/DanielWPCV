@@ -57,10 +57,14 @@ Vite automatically proxies `/api` requests to the Python server on port 8000.
 
 - **Visual Design ("Obsidian Command"):** Sleek dark aesthetics (`#0B0F17`), Outfit display typography, Electric Emerald & Cobalt Indigo accents, and `.glass-card` styling.
 - **Executive Telemetry Strip:** Real-time impact indicators (`~40% KPI Latency Reduction`, `1.5x LATAM GMV`, `30x Query Optimization`, `99.9% Data Accuracy`).
+- **Long-Form Executive Blog:** 2 in-depth articles published with rich markdown parsing, reading progress bar, and schema markup:
+  1. *From Government PMO to Leading Global AI Strategies* (`from-pmo-to-ai-leadership`)
+  2. *My Story with Artificial Intelligence* (`my-path-to-ai`)
 - **AI Agent (Nabla):** FastAPI serverless backend powered by DeepSeek with persistent connection pooling (`httpx`), rate limiting (`slowapi`), automatic retries, and interactive prompt suggestions.
 - **Integrated CV:** Direct download button and PDF asset hosted at `/CV_Daniel_Pardo.pdf`.
-- **Bilingual Context:** Seamless English/Spanish switching with reactive context (`useLanguage`).
-- **SEO & Web Standards:** Semantic HTML (single `<h1>` per view), dynamic route-specific canonical links via `react-helmet-async`, automated `sitemap.xml`, and JSON-LD schema markup.
+- **Bilingual Context with Persistence:** Reactive English/Spanish switching with `localStorage` persistence and automatic browser language detection (`useLanguage`).
+- **High-Performance Assets:** Modern `<picture>` element with WebP compression (35 KB, ~97% size reduction), eager priority loading, and self-hosted fonts.
+- **SEO & Web Standards:** Semantic HTML (single `<h1>` per view, normalized `h1` → `h2` → `h3` hierarchy), dynamic route-specific canonical links via `react-helmet-async`, automated `sitemap.xml` with 3 indexed URLs, and JSON-LD schema markup.
 - **Accessibility (WCAG 2.1 AA):** High contrast ratios, descriptive ARIA attributes, and visible focus rings.
 
 ---

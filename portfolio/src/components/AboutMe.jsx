@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
 import { LinkedInIcon, WhatsAppIcon, GitHubIcon, DocumentTextIcon, CalendarIcon, CopyIcon } from './Icons'
@@ -53,13 +53,18 @@ export default function AboutMe() {
                     className="flex flex-col md:flex-row items-center gap-8 mb-10 text-center md:text-left"
                 >
                     <div className="relative group">
-                        <img
-                            src="/profile.jpg"
-                            alt="Daniel Camilo Pardo Figueroa"
-                            width="140"
-                            height="140"
-                            className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover shadow-lg border-4 border-white dark:border-slate-800 transition-transform duration-300 group-hover:scale-105"
-                        />
+                        <picture>
+                            <source srcSet="/profile.webp" type="image/webp" />
+                            <img
+                                src="/profile.jpg"
+                                alt="Daniel Camilo Pardo Figueroa"
+                                width="140"
+                                height="140"
+                                loading="eager"
+                                fetchPriority="high"
+                                className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover shadow-lg border-4 border-white dark:border-slate-800 transition-transform duration-300 group-hover:scale-105"
+                            />
+                        </picture>
                         <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-slate-800 rounded-full animate-pulse" title="Available for roles"></span>
                     </div>
 
@@ -109,13 +114,13 @@ export default function AboutMe() {
                 >
                     {/* WHO I AM */}
                     <motion.div variants={itemVariants}>
-                        <h4 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whoIAm.title.en, about.whoIAm.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whoIAm.title.en, about.whoIAm.title.es)}</h2>
                         <p className="leading-relaxed">{t(about.whoIAm.text.en, about.whoIAm.text.es)}</p>
                     </motion.div>
 
                     {/* WHAT I DO */}
                     <motion.div variants={itemVariants}>
-                        <h4 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whatIDo.title.en, about.whatIDo.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whatIDo.title.en, about.whatIDo.title.es)}</h2>
                         <ul className="list-none flex flex-col gap-1">
                             {about.whatIDo.items.map((item) => (
                                 <li key={item.en}>
@@ -127,7 +132,7 @@ export default function AboutMe() {
 
                     {/* IMPACT DELIVERED */}
                     <motion.div variants={itemVariants}>
-                        <h4 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.impact.title.en, about.impact.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.impact.title.en, about.impact.title.es)}</h2>
                         <ul className="list-none flex flex-col gap-1">
                             {about.impact.items.map((item) => (
                                 <li key={item.en}><span aria-hidden="true">✔</span> {t(item.en, item.es)}</li>
@@ -137,19 +142,19 @@ export default function AboutMe() {
 
                     {/* TECH STACK */}
                     <motion.div variants={itemVariants}>
-                        <h4 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.techStack.title.en, about.techStack.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.techStack.title.en, about.techStack.title.es)}</h2>
                         <p className="leading-relaxed">{t(about.techStack.text.en, about.techStack.text.es)}</p>
                     </motion.div>
 
                     {/* CERTIFICATIONS & LANGUAGES */}
                     <motion.div variants={itemVariants}>
-                        <h4 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.certificationsSummary.title.en, about.certificationsSummary.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.certificationsSummary.title.en, about.certificationsSummary.title.es)}</h2>
                         <p className="leading-relaxed">{t(about.certificationsSummary.text.en, about.certificationsSummary.text.es)}</p>
                     </motion.div>
 
                     {/* OPEN TO & CTAS */}
                     <motion.div variants={itemVariants} className="bg-primary/5 dark:bg-white/5 p-5 rounded-lg border-l-4 border-accent mt-2">
-                        <h4 className="text-primary dark:text-white text-base font-semibold mb-2">{t(about.openTo.title.en, about.openTo.title.es)}</h4>
+                        <h2 className="text-primary dark:text-white text-base font-semibold mb-2">{t(about.openTo.title.en, about.openTo.title.es)}</h2>
                         <p className="font-medium mb-3">{t(about.openTo.text.en, about.openTo.text.es)}</p>
                         <div className="flex gap-2.5 flex-wrap">
                             {about.contact.cv && (

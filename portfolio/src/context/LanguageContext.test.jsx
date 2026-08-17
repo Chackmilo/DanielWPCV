@@ -1,10 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { LanguageProvider, useLanguage } from './LanguageContext'
 
 const wrapper = ({ children }) => <LanguageProvider>{children}</LanguageProvider>
 
 describe('LanguageContext', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
   it('defaults to English — t() returns the en argument', () => {
     const { result } = renderHook(() => useLanguage(), { wrapper })
     expect(result.current.lang).toBe('en')

@@ -20,7 +20,8 @@ test.describe('Home page', () => {
 
     test('language toggle flips the EN/ES button label', async ({ page }) => {
         await page.goto('/')
-        const langBtn = page.getByRole('button', { name: /Switch to Spanish|Cambiar a inglés/i })
+        const langBtn = page.locator('.lang-btn')
+        await expect(langBtn).toBeVisible()
         const before = (await langBtn.textContent())?.trim()
         await langBtn.click()
         await expect(async () => {

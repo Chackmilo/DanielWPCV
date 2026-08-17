@@ -37,19 +37,27 @@ Routes: `/` (Home), `/blog/:id` (BlogPost), `*` (NotFound 404). Sticky `Navbar` 
 
 **Semantic SEO & Headings:**
 - Each page must have strictly **one `<h1>` element** (Hero on Home, Post title on BlogPost).
+- Sub-sections follow strict heading hierarchy (`h1` → `h2` → `h3`).
 - The Navbar brand logo uses a `<span>` element to preserve the heading hierarchy.
 - Route-specific canonical links are managed dynamically via `<Helmet>` in `Home`, `BlogPost`, and `NotFound`.
 
-**Bilingual Data Structure:**
-All user-facing content is structured in `{ en, es }` dictionaries in `src/data/content.js` and `src/data/blog.js`.
-Components retrieve text via `const { t } = useLanguage()` -> `t(obj.en, obj.es)`. Do not hardcode strings inside component JSX.
+**Bilingual Data Structure & Persistence:**
+- All user-facing content is structured in `{ en, es }` dictionaries in `src/data/content.js` and `src/data/blog.js`.
+- `LanguageProvider` persists preferences in `localStorage` and falls back to `navigator.language`.
+- Components retrieve text via `const { t } = useLanguage()` -> `t(obj.en, obj.es)`. Do not hardcode strings inside component JSX.
 
-**Performance Pattern:**
-Below-the-fold sections (`Projects`, `Education`, `Recommendations`, `Blog`, `Certifications`) are loaded lazily via `React.lazy` and wrapped in their own `<ErrorBoundary>` with `<Suspense>` fallbacks.
+**Blog System:**
+- 2 published articles in `src/data/blog.js`: `from-pmo-to-ai-leadership` and `my-path-to-ai`.
+- `BlogPost.jsx` parses Markdown headers, bold, italics, numbered lists, and bullet points.
+- `generate-sitemap.js` dynamically extracts all post IDs and dates post-build into `dist/sitemap.xml`.
+
+**Performance & Asset Patterns:**
+- Profile image uses `<picture>` serving `profile.webp` (35 KB) with fallback to `profile.jpg`.
+- Below-the-fold sections (`Projects`, `Education`, `Recommendations`, `Blog`, `Certifications`) are loaded lazily via `React.lazy` and wrapped in their own `<ErrorBoundary>` with `<Suspense>` fallbacks.
 
 **Nabla Chatbot Architecture:**
 - Frontend: `src/components/ChatInterface.jsx` with interactive prompt chips and auto-scrolling message stream.
-- Backend: `api/chat.py` with singleton `httpx.AsyncClient` pool, 1 automatic retry on 502/503/504 errors, `slowapi` rate limiting (10 req/min/IP with `X-Forwarded-For` support), and sanitized JSON errors.
+- Backend: `api/chat.py` with singleton `httpx.AsyncClient` pool, 1 automatic retry on 502/503/504 errors, `slowapi` rate limiting (15 req/min/IP with `X-Forwarded-For` support), and sanitized JSON errors.
 - Persona & Bio: `api/system_prompt.py` is the single source of truth for Daniel's career facts, CV location (`/CV_Daniel_Pardo.pdf`), and metrics.
 
 ## Continuous Integration & Quality Checks

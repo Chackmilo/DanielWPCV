@@ -32,7 +32,7 @@ const RecCard = memo(function RecCard({ rec }) {
         <motion.div variants={cardVariants} className="h-full">
             <Card className="glass-card p-8 border-t-2 border-secondary hover:border-accent transition-all duration-300 hover:shadow-xl hover:-translate-y-2 rounded-2xl">
                 <div className="mb-4">
-                    <h4 className="text-primary dark:text-white text-xl font-bold mb-1 font-heading">{rec.name}</h4>
+                    <h3 className="text-primary dark:text-white text-xl font-bold mb-1 font-heading">{rec.name}</h3>
                     <span className="text-secondary dark:text-accent text-sm font-semibold">{rec.role}</span>
                 </div>
                 <p className="text-base leading-relaxed italic text-gray-600 dark:text-gray-300">&ldquo;{t(rec.text.en, rec.text.es)}&rdquo;</p>

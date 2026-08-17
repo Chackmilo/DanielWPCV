@@ -1,4 +1,4 @@
-﻿# Daniel Pardo — React Portfolio & AI Backend
+# Daniel Pardo — React Portfolio & AI Backend
 
 **Live Site:** [danielwpcv.vercel.app](https://danielwpcv.vercel.app)
 
@@ -17,21 +17,26 @@ The core codebase for Daniel Pardo's professional executive portfolio, featuring
 ---
 
 ## ⚡ Recent Implementations & Upgrades
-
+ 
 1. **Nabla AI 2.0 Streaming & Quick Chips:**
    - Real-time Server-Sent Events (SSE) streaming from `/api/chat` to `ChatInterface.jsx` with progressive token rendering.
    - Bilingual `QuickChips.jsx` suggestions for immediate 1-click recruiter interaction.
-2. **Conversion & User Experience:**
+2. **Executive Thought Leadership Blog:**
+   - 2 published full-length articles (*From Government PMO to Leading Global AI Strategies* & *My Story with Artificial Intelligence*).
+   - Rich structured Markdown rendering with support for numbered points, bullets, bold, and italic highlights.
+   - Reading progress bar and full SEO/JSON-LD schemas for articles and breadcrumbs.
+3. **Conversion & User Experience:**
    - Direct PDF Download CV action and 1:1 Strategy Call scheduling CTA in `AboutMe.jsx`.
    - Animated clipboard copy feedback via `Toast.jsx`.
-   - Fixed top reading progress indicator in `BlogPost.jsx`.
-3. **SEO & Metadata Hardening:**
-   - Route-level dynamic canonical tags via `react-helmet-async`.
-   - Structured JSON-LD metadata for `BlogPosting` and `BreadcrumbList`.
-4. **Performance & Architecture:**
+   - Bilingual language preference persistence via `localStorage` with automatic browser language fallback.
+4. **Performance & Asset Optimization:**
+   - Image optimization using WebP (`profile.webp` at 35 KB, saving ~1.18 MB over raw JPG).
    - Clean manual chunking in `vite.config.js` and elimination of redundant scroll observers.
    - Singleton HTTP client connection pooling in `api/chat.py`.
-5. **Quality & CI/CD:**
+5. **SEO, a11y & Web Standards:**
+   - Normalized semantic heading hierarchy (`h1` -> `h2` -> `h3`).
+   - Automated post-build sitemap generation indexing 3 dynamic URLs (`/`, `/blog/from-pmo-to-ai-leadership`, `/blog/my-path-to-ai`).
+6. **Quality & CI/CD:**
    - 19 Unit tests in Vitest and 8 Playwright E2E tests integrated into `.github/workflows/ci.yml`.
 
 ---
