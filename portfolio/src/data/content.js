@@ -1,7 +1,8 @@
 export const content = {
     nav: {
-        about: { en: "About Me", es: "Sobre Mí" },
+        about: { en: "About", es: "Sobre Mí" },
         skills: { en: "Skills", es: "Habilidades" },
+        timeline: { en: "Trajectory", es: "Trayectoria" },
         projects: { en: "Projects", es: "Proyectos" },
         education: { en: "Education", es: "Educación" },
         recommendations: { en: "Recommendations", es: "Recomendaciones" },
@@ -11,71 +12,98 @@ export const content = {
 
     about: {
         title: { en: "About Me", es: "Sobre Mí" },
+        headline: "Daniel Camilo Pardo Figueroa",
         subtitle: {
-            en: "Director of Data Strategy & AI | Digital Products | BI · ML · GenAI",
-            es: "Director de Estrategia de Datos e IA | Productos Digitales | BI · ML · GenAI",
+            en: "Director of Data Strategy & AI | Senior Data Engineer | Digital Products & MLOps",
+            es: "Director de Estrategia de Datos e IA | Senior Data Engineer | Productos Digitales & MLOps",
+        },
+        statusBadge: {
+            en: "Available for Strategic Roles",
+            es: "Disponible para Roles Estratégicos",
         },
         whoIAm: {
-            title: { en: "⚡ WHO I AM", es: "⚡ QUIÉN SOY" },
+            title: { en: "Executive Profile & Value Proposition", es: "Perfil Ejecutivo y Propuesta de Valor" },
             text: {
-                en: "Industrial and Chemical Engineer with over 12 years of experience leading Data & AI, digital products, and digital transformation across Europe, the US, and Africa. I help organizations drive revenue growth and improve operational performance by connecting data strategy, advanced analytics, and AI execution with measurable business outcomes (P&L, efficiency, retention, and customer experience).",
-                es: "Ingeniero Industrial y Químico con más de 12 años liderando Data & AI, productos digitales y transformación digital en Europa, EE. UU. y África. Ayudo a las organizaciones a crecer en ingresos y mejorar su desempeño operativo conectando estrategia de datos, analítica avanzada y ejecución de IA con resultados medibles para el negocio (P&L, eficiencia, retención y experiencia de cliente).",
+                en: "Industrial and Chemical Engineer with over 12 years of executive experience bridging enterprise data architecture, machine learning engineering, and product strategy across the US, Europe, and LATAM. I specialize in designing modern BigQuery & dbt datalakehouses, deploying production Agentic AI (LangGraph/RAG), and leading high-velocity cross-functional engineering teams to drive multi-million dollar P&L growth, operational efficiency, and scalable data-driven automation.",
+                es: "Ingeniero Industrial y Químico con más de 12 años de experiencia ejecutiva articulando arquitectura de datos empresarial, ingeniería de machine learning y estrategia de producto en EE. UU., Europa y LATAM. Especialista en diseño de datalakehouses modernos en BigQuery & dbt, despliegue de IA Agéntica en producción (LangGraph/RAG) y liderazgo de equipos de ingeniería de alto rendimiento para maximizar impacto en P&L, eficiencia operativa y automatización escalable.",
             },
         },
-        whatIDo: {
-            title: { en: "🚀 WHAT I DO", es: "🚀 LO QUE HAGO" },
-            items: [
-                {
-                    en: "Build and lead high-performing Data & AI teams (Data Science, MLOps, BI, Analytics Engineering)",
-                    es: "Construyo y lidero equipos de alto desempeño en Data & AI (Data Science, MLOps, BI, Analytics Engineering)",
+        executiveCards: [
+            {
+                icon: "database",
+                title: { en: "Enterprise Data Strategy & Lakehouse", es: "Estrategia de Datos y Lakehouse" },
+                text: {
+                    en: "Architecting modern data stacks (BigQuery, dbt, Airflow, Great Expectations) scaling daily ingestion from 50M to 500M+ records with 99.9% data quality SLAs and ~40% KPI latency reduction.",
+                    es: "Arquitectura de stacks modernos de datos (BigQuery, dbt, Airflow, Great Expectations) escalando ingestas de 50M a 500M+ registros diarios con 99.9% de calidad y ~40% de reducción en latencia de KPIs.",
                 },
-                {
-                    en: "Design end-to-end data strategies (governance, pipelines, lakehouse, metrics layer) aligned with business priorities and P&L impact",
-                    es: "Diseño estrategias de datos end-to-end (gobierno, pipelines, lakehouse, capa de métricas) alineadas a prioridades de negocio e impacto en P&L",
-                },
-                {
-                    en: "Implement ML, GenAI/LLM, automation, and BI solutions that enable faster, higher-quality decisions at scale",
-                    es: "Implemento soluciones de ML, GenAI/LLM, automatización y BI que habilitan decisiones más rápidas y de mejor calidad a escala",
-                },
-                {
-                    en: "Lead cross-functional deliveries focused on product, operations, and stakeholder management",
-                    es: "Lidero entregas cross-functional con enfoque en producto, operaciones y gestión de stakeholders",
-                },
-            ],
-        },
-        impact: {
-            title: { en: "🎯 IMPACT DELIVERED", es: "🎯 IMPACTO LOGRADO" },
-            items: [
-                { en: "~40% reduction in KPI delivery latency through data pipeline enhancements and reporting reliability (RippleNami)", es: "~40% de reducción en la latencia de entrega de KPIs mediante mejoras en pipelines de datos y confiabilidad de reportes (RippleNami)" },
-                { en: "1.5x GMV growth across LATAM markets by leading growth and execution programs (inDrive)", es: "Crecimiento de 1.5x en GMV en mercados LATAM liderando programas de growth y ejecución (inDrive)" },
-                { en: "30% improvement in operational efficiency for delivery users (documents/food) and 20% for couriers via digital transformation initiatives", es: "30% de mejora en eficiencia operativa para usuarios de delivery (documentos/comida) y 20% para couriers a través de iniciativas de transformación digital" },
-                { en: "20% increase in customer retention through designing and executing 'do X, get Y' campaigns", es: "20% de aumento en retención de clientes diseñando y ejecutando campañas tipo 'haz X y recibe Y'" },
-                { en: "Digital transformation and automation for 50+ regional B2B clients across multiple industries (twinlu)", es: "Transformación digital y automatización para más de 50 clientes B2B regionales en múltiples industrias (twinlu)" },
-            ],
-        },
-        techStack: {
-            title: { en: "🛠️ TECH & TOOLSET", es: "🛠️ TECH & TOOLSET" },
-            text: {
-                en: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & AI Agents · dbt · BigQuery · Power BI · Apache Superset · Modern Lakehouse Architectures · NoSQL · MLOps · Docker · n8n Automation",
-                es: "Azure · GCP · AWS · Python · SQL · LangGraph · LangChain · RAG & Agentes IA · dbt · BigQuery · Power BI · Apache Superset · Arquitecturas Modernas Lakehouse · NoSQL · MLOps · Docker · Automatización n8n",
+                accent: "emerald",
             },
-        },
-        certificationsSummary: {
-            title: { en: "📜 CERTIFICATIONS & LANGUAGES", es: "📜 CERTIFICACIONES E IDIOMAS" },
-            text: {
-                en: "AI Engineer · PMP · Data Scientist · Scrum Professional | English (B2) and Spanish (native)",
-                es: "AI Engineer · PMP · Data Scientist · Scrum Professional | Inglés (B2) y español (nativo)",
+            {
+                icon: "cpu",
+                title: { en: "Production Agentic AI & MLOps", es: "IA Agéntica en Producción y MLOps" },
+                text: {
+                    en: "Building multi-channel RAG & LangGraph AI agents, automated workflow orchestration with n8n/Docker, dynamic pricing ML models, and containerized LLM services driving 100% customer support automation.",
+                    es: "Construcción de agentes IA multicanal con RAG y LangGraph, orquestación de flujos con n8n/Docker, modelos ML de pricing dinámico y servicios LLM logrando 100% de automatización en soporte al cliente.",
+                },
+                accent: "indigo",
             },
-        },
+            {
+                icon: "trending-up",
+                title: { en: "Growth, Product & Engineering Leadership", es: "Growth, Producto y Liderazgo de Equipos" },
+                text: {
+                    en: "Delivering 1.5x LATAM GMV growth, +30% courier/delivery operational efficiency, directing 50+ B2B software and analytics client solutions, and mentoring top-tier cross-functional engineering talent.",
+                    es: "Logro de 1.5x crecimiento en GMV en LATAM, +30% en eficiencia operativa de delivery, dirección de 50+ soluciones de analítica y software B2B, y mentoría de talento técnico de alto nivel.",
+                },
+                accent: "cyan",
+            },
+        ],
+        metrics: [
+            {
+                value: "~40%",
+                label: { en: "KPI Latency Reduction", es: "Reducción Latencia KPIs" },
+                detail: { en: "BigQuery + dbt Lakehouse (RippleNami)", es: "Lakehouse BigQuery + dbt (RippleNami)" },
+                glow: "emerald",
+            },
+            {
+                value: "1.5x",
+                label: { en: "LATAM GMV Growth", es: "Crecimiento GMV LATAM" },
+                detail: { en: "Pricing ML & Analytics (inDrive)", es: "Pricing ML & Analítica (inDrive)" },
+                glow: "cyan",
+            },
+            {
+                value: "500M+",
+                label: { en: "Daily Ingestion Scaling", es: "Escalabilidad Diaria" },
+                detail: { en: "Scaled from 50M/day with 0 degradation", es: "Escalado desde 50M/día sin degradación" },
+                glow: "indigo",
+            },
+            {
+                value: "99.9%",
+                label: { en: "Data Quality Precision", es: "Precisión Calidad de Datos" },
+                detail: { en: "5M+ records daily via Great Expectations", es: "5M+ registros diarios con Great Expectations" },
+                glow: "amber",
+            },
+            {
+                value: "30x",
+                label: { en: "SQL Query Speedup", es: "Optimización Consultas SQL" },
+                detail: { en: "15 min → 30 sec execution avg", es: "Promedio de 15 min → 30 seg" },
+                glow: "emerald",
+            },
+            {
+                value: "100%",
+                label: { en: "AI Support Automation", es: "Automatización Soporte IA" },
+                detail: { en: "LangGraph/RAG Multi-Agent (NablaOps)", es: "Multi-Agentes LangGraph/RAG (NablaOps)" },
+                glow: "indigo",
+            },
+        ],
         openTo: {
-            title: { en: "💼 OPEN TO", es: "💼 ABIERTO A" },
+            title: { en: "Target Roles & Engagement", es: "Roles Objetivo & Modalidad" },
             text: {
-                en: "Director / Head of Data · AI Strategy · BI & Analytics Leadership · Digital Product and Data Transformation",
-                es: "Director / Head of Data · Estrategia de IA · Liderazgo BI & Analytics · Producto Digital y Transformación con Datos",
+                en: "Director / Head of Data · AI Strategy & Engineering · Lead Data Architect · Digital Product Leadership · Senior Consulting Advisor",
+                es: "Director / Head of Data · Estrategia de IA & Ingeniería · Lead Data Architect · Liderazgo de Producto Digital · Asesor Senior de Consultoría",
             },
         },
         contact: {
-            location: "Bogotá, Colombia",
+            location: "Bogotá, Colombia (Open to Global Remote / Relocation)",
             email: "chackmilo@gmail.com",
             phone: "+57 3103235141",
             linkedin: "https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/",
@@ -85,93 +113,268 @@ export const content = {
         },
     },
 
-    skills: [
+    timeline: [
         {
-            icon: "trending-up",
-            title: { en: "Data Strategy & Governance", es: "Estrategia y Gobierno de Datos" },
-            description: { en: "Data Operating Models, Stewardship, Quality SLAs, Data Catalog, MDM", es: "Modelos Operativos de Datos, Data Stewardship, Quality SLAs, Data Catalog, MDM" },
+            id: "ripplenami",
+            period: "2025 - Present",
+            role: { en: "Director of Strategy & BI / Lakehouse Architect", es: "Director de Estrategia & BI / Arquitecto Lakehouse" },
+            company: "RippleNami",
+            location: "USA / Global Remote",
+            isCurrent: true,
+            achievements: [
+                {
+                    en: "Architected scalable enterprise datalakehouse on BigQuery + dbt, expanding ingestion from 50M to 500M+ records/day with zero performance degradation.",
+                    es: "Diseñó datalakehouse corporativo en BigQuery + dbt, escalando la ingesta de 50M a más de 500M+ registros diarios sin degradación de rendimiento.",
+                },
+                {
+                    en: "Cut KPI delivery latency by ~40% and optimized 50+ mission-critical queries by 30x (from 15 min down to 30 sec average).",
+                    es: "Redujo la latencia de entrega de KPIs en ~40% y optimizó 50+ consultas críticas 30x (de 15 min a 30 seg promedio).",
+                },
+                {
+                    en: "Implemented Great Expectations data quality framework maintaining 99.9% precision over 5M+ daily records and 95%+ ML predictive accuracy.",
+                    es: "Implementó framework de calidad con Great Expectations logrando 99.9% de precisión sobre 5M+ registros diarios y 95%+ de precisión predictiva ML.",
+                },
+            ],
+            tech: ["BigQuery", "dbt", "Airflow", "Python", "SQL", "Looker", "Great Expectations", "Data Governance"],
         },
         {
-            icon: "pie-chart",
-            title: { en: "Business Intelligence", es: "Inteligencia de Negocios" },
-            description: { en: "Power BI, Tableau, Superset, KPI/OKR frameworks, dashboards", es: "Power BI, Tableau, Superset, frameworks KPI/OKR, dashboards" },
+            id: "nablaops",
+            period: "2024 - Present",
+            role: { en: "Founder & Consulting Lead", es: "Fundador & Líder de Consultoría" },
+            company: "NablaOps",
+            location: "Bogotá / Remote",
+            isCurrent: true,
+            achievements: [
+                {
+                    en: "Engineered and deployed multi-channel autonomous AI agents using Python, LangChain, LangGraph, RAG, and n8n containerized on Docker.",
+                    es: "Construyó y desplegó agentes autónomos de IA multicanal usando Python, LangChain, LangGraph, RAG y n8n containerizados en Docker.",
+                },
+                {
+                    en: "Achieved 100% automated customer service and lead qualification for high-growth ventures (Monomiel, Fortuna Migration, Urbagio).",
+                    es: "Logró 100% de automatización en atención al cliente y calificación de leads para empresas en crecimiento (Monomiel, Fortuna Migration, Urbagio).",
+                },
+                {
+                    en: "Designed real-time executive ROI tracking dashboards and agile marketing automation ecosystems driving direct client revenue growth.",
+                    es: "Diseñó tableros de control de ROI y ecosistemas ágiles de automatización de marketing impulsando crecimiento de ingresos.",
+                },
+            ],
+            tech: ["Python", "LangChain", "LangGraph", "RAG", "n8n", "Docker", "FastAPI", "PostgreSQL"],
+        },
+        {
+            id: "indrive",
+            period: "2022 - 2024",
+            role: { en: "Operations & Business Strategy Lead (Senior Product & Growth Manager)", es: "Líder de Operaciones & Estrategia (Senior Product & Growth Manager)" },
+            company: "inDrive LATAM Delivery",
+            location: "LATAM / Regional",
+            isCurrent: false,
+            achievements: [
+                {
+                    en: "Spearheaded growth, operations, and analytics across LATAM markets, delivering 1.5x GMV growth through data-driven strategies.",
+                    es: "Lideró operaciones de growth y analítica en mercados LATAM, logrando 1.5x de crecimiento en GMV mediante estrategias de datos.",
+                },
+                {
+                    en: "Deployed dynamic pricing ML algorithms and customer support GPT agents, driving +30% operational efficiency for delivery and +20% for couriers.",
+                    es: "Desplegó algoritmos de pricing dinámico ML y agentes GPT, logrando +30% en eficiencia operativa para delivery y +20% para couriers.",
+                },
+                {
+                    en: "Boosted customer retention by +20% via targeted lifecycle campaigns and automated executive reporting across regional leadership.",
+                    es: "Incrementó la retención de clientes en +20% mediante campañas de ciclo de vida y reportería ejecutiva C-level automatizada.",
+                },
+            ],
+            tech: ["Power BI", "SQL", "Python", "Google BigQuery", "Looker Studio", "Machine Learning", "Pricing Models"],
+        },
+        {
+            id: "twinlu",
+            period: "2020 - 2022",
+            role: { en: "Co-Founder & Head of Operations", es: "Co-Fundador & Director de Operaciones" },
+            company: "twinlu",
+            location: "Colombia / Spain",
+            isCurrent: false,
+            achievements: [
+                {
+                    en: "Directed 50+ bespoke software development, digital transformation, and analytics projects for regional B2B enterprise clients.",
+                    es: "Dirigió más de 50 proyectos de desarrollo de software, transformación digital y analítica para clientes B2B regionales.",
+                },
+                {
+                    en: "Maintained a 100% on-time delivery rate under agile frameworks, generating 3x average revenue growth for top clients.",
+                    es: "Mantuvo una tasa de entrega a tiempo del 100% bajo metodologías ágiles, generando 3x de crecimiento promedio en ingresos de clientes.",
+                },
+                {
+                    en: "Architected centralized business intelligence pipelines and custom operational portals.",
+                    es: "Diseñó pipelines centralizados de inteligencia de negocios y portales operativos a medida.",
+                },
+            ],
+            tech: ["React", "Node.js", "Python", "PostgreSQL", "Power BI", "Scrum", "Jira"],
+        },
+        {
+            id: "mintic",
+            period: "2019 - 2021",
+            role: { en: "Digital Transformation & Analytics Advisor / Project Lead", es: "Asesor de Transformación Digital & Analítica / Líder de Proyecto" },
+            company: "MinTIC (Ministerio de Tecnologías de la Información y las Comunicaciones)",
+            location: "Bogotá, Colombia",
+            isCurrent: false,
+            achievements: [
+                {
+                    en: "Advised national public programs on digital transformation, technology adoption, and data-driven citizen service ecosystems.",
+                    es: "Asesoró programas públicos nacionales en transformación digital, adopción tecnológica y servicios ciudadanos basados en datos.",
+                },
+                {
+                    en: "Led cross-functional agile teams and established performance monitoring frameworks for nationwide technology investment initiatives.",
+                    es: "Lideró equipos ágiles multidisciplinarios y estructuró marcos de monitoreo para iniciativas nacionales de inversión en TI.",
+                },
+            ],
+            tech: ["Data Governance", "SQL", "Power BI", "Agile Management", "Public Sector Analytics"],
+        },
+        {
+            id: "dnp",
+            period: "2014 - 2018",
+            role: { en: "Strategic Planning & Data Analyst / Senior Advisor", es: "Analista de Planeación Estratégica & Datos / Asesor Senior" },
+            company: "DNP (Departamento Nacional de Planeación)",
+            location: "Bogotá, Colombia",
+            isCurrent: false,
+            achievements: [
+                {
+                    en: "Formulated, modeled, and evaluated national investment projects using quantitative modeling and socioeconomic data analytics.",
+                    es: "Formuló, modeló y evaluó proyectos de inversión nacional aplicando modelado cuantitativo y analítica de datos socioeconómicos.",
+                },
+                {
+                    en: "Engineered systemic performance indicators and automated tracking dashboards for national infrastructure and economic development programs.",
+                    es: "Diseñó indicadores de desempeño sistémico y tableros automatizados para programas de infraestructura y desarrollo económico.",
+                },
+            ],
+            tech: ["Quantitative Modeling", "Econometrics", "Advanced SQL", "Tableau", "Process Optimization"],
+        },
+    ],
+
+    skills: [
+        {
+            icon: "database",
+            categoryKey: "lakehouse",
+            title: { en: "Data Strategy & Modern Lakehouse", es: "Estrategia de Datos y Lakehouse" },
+            description: {
+                en: "Enterprise Lakehouse architectures, Operating Models, Data Stewardship, Quality SLAs, and Governance.",
+                es: "Arquitecturas Lakehouse corporativas, Modelos Operativos, Data Stewardship, SLAs de Calidad y Gobierno.",
+            },
+            tools: ["BigQuery", "dbt", "Airflow", "Snowflake", "Great Expectations", "Data Catalog", "MDM"],
         },
         {
             icon: "cpu",
-            title: { en: "GenAI & Machine Learning", es: "IA Generativa y Machine Learning" },
-            description: { en: "Generative AI, ML pipelines, Deep Learning, AI Agents, LangGraph", es: "IA Generativa, pipelines ML, Deep Learning, Agentes IA, LangGraph" },
+            categoryKey: "ai",
+            title: { en: "GenAI, LLMs & Agentic Systems", es: "IA Generativa, LLMs y Agentes IA" },
+            description: {
+                en: "Multi-agent autonomous systems, RAG pipelines, prompt engineering, fine-tuning, and LLMOps orchestration.",
+                es: "Sistemas autónomos multi-agente, pipelines RAG, ingeniería de prompts, fine-tuning y orquestación LLMOps.",
+            },
+            tools: ["LangGraph", "LangChain", "RAG", "Claude Code", "OpenAI / DeepSeek", "n8n", "Hugging Face"],
         },
         {
             icon: "terminal",
-            title: { en: "Python & Data Engineering", es: "Python y Data Engineering" },
-            description: { en: "Advanced ETL pipelines, ML models, automation scripts", es: "Pipelines ETL avanzados, modelos ML, scripts de automatización" },
+            categoryKey: "engineering",
+            title: { en: "Data Engineering & Python Ecosystem", es: "Ingeniería de Datos y Ecosistema Python" },
+            description: {
+                en: "Scalable ETL/ELT pipelines, distributed computing, API development, query optimization, and automation.",
+                es: "Pipelines ETL/ELT escalables, cómputo distribuido, desarrollo de APIs, optimización de queries y automatización.",
+            },
+            tools: ["Python", "Advanced SQL", "FastAPI", "PostgreSQL", "Docker", "Git / CI-CD", "Bash"],
+        },
+        {
+            icon: "pie-chart",
+            categoryKey: "bi",
+            title: { en: "Business Intelligence & Executive Analytics", es: "Inteligencia de Negocios y Analítica Ejecutiva" },
+            description: {
+                en: "Real-time decision intelligence, metric layers, executive dashboards, OKR/KPI frameworks, and semantic modeling.",
+                es: "Inteligencia para decisiones en tiempo real, capa semántica de métricas, tableros C-level y frameworks OKR/KPI.",
+            },
+            tools: ["Power BI", "Looker", "Apache Superset", "Tableau", "DAX", "Data Modeling"],
+        },
+        {
+            icon: "trending-up",
+            categoryKey: "product",
+            title: { en: "Digital Product Strategy & Growth", es: "Estrategia de Producto Digital y Growth" },
+            description: {
+                en: "Product lifecycle management, dynamic pricing models, unit economics optimization, and agile delivery.",
+                es: "Gestión de ciclo de vida de producto, pricing dinámico, optimización de unit economics y entrega ágil.",
+            },
+            tools: ["PMP", "Scrum", "Dynamic Pricing", "A/B Testing", "Jira", "Growth Modeling"],
         },
         {
             icon: "users",
-            title: { en: "Team Leadership", es: "Liderazgo de Equipos" },
-            description: { en: "Cross-functional teams, mentoring, data strategy, project delivery", es: "Equipos multifuncionales, mentoría, estrategia de datos, entrega de proyectos" },
+            categoryKey: "leadership",
+            title: { en: "Engineering & Executive Leadership", es: "Liderazgo de Ingeniería y Ejecutivo" },
+            description: {
+                en: "Leading high-velocity data & AI teams, mentoring engineers, C-suite stakeholder alignment, and P&L accountability.",
+                es: "Liderazgo de equipos de datos e IA, mentoría técnica, alineación con directivos C-Level y gestión de P&L.",
+            },
+            tools: ["Team Mentorship", "Stakeholder Mgmt", "P&L Management", "Cross-functional Delivery"],
         },
-        {
-            icon: "database",
-            title: { en: "Data Architecture", es: "Arquitectura de Datos" },
-            description: { en: "Modern Datalakehouse, scalable pipelines, OrientDB, Snowflake", es: "Arquitecturas Datalakehouse modernas, pipelines escalables, OrientDB, Snowflake" },
-        },
+    ],
+
+    projectCategories: [
+        { id: "all", label: { en: "All Projects", es: "Todos los Proyectos" } },
+        { id: "data-strategy", label: { en: "Data Strategy & Lakehouse", es: "Estrategia de Datos & Lakehouse" } },
+        { id: "ai-agents", label: { en: "AI Agents & GenAI", es: "Agentes IA & GenAI" } },
+        { id: "product-growth", label: { en: "Product & Growth", es: "Producto & Crecimiento" } },
     ],
 
     projects: [
         {
-            title: "Founder & Consulting Lead",
-            company: "NablaOps (2024 - Present)",
-            description: {
-                en: "Situation: Businesses need end-to-end digital transformation. Task: Provide comprehensive consulting, implementing marketing campaigns and multi-channel AI agents. Action: Developed digital ecosystems for clients like Monomiel (honey sales), Fortuna Migration (immigration law), and Urbagio (home goods e-commerce). Built AI agents using Python, LangChain, LangGraph, RAG, and n8n, deployed on Docker. Result: Rapidly iterated marketing campaigns, optimized customer acquisition and automated customer service, tracked via executive dashboards, and drove direct revenue growth.",
-                es: "Situación: Negocios requieren transformación digital integral. Tarea: Proveer consultoría integral implementando campañas de marketing y agentes de IA multicanal. Acción: Desarrollo de ecosistemas digitales para clientes como Monomiel, Fortuna Migration y Urbagio. Creación de agentes IA con Python, LangChain, LangGraph, RAG y n8n, desplegados en Docker. Resultado: Iteración rápida de marketing, optimización de adquisición de clientes y atención automatizada, medido con dashboards ejecutivos generando crecimiento de ingresos directos.",
-            },
-            metrics: [
-                { value: "3+", label: { en: "B2B / B2C clients launched", es: "clientes B2B/B2C lanzados" } },
-                { value: "100%", label: { en: "automated customer service", es: "atención al cliente automatizada" } },
-                { value: "ROI", label: { en: "driven marketing campaigns", es: "campañas de marketing medidas por ROI" } },
-            ],
-            tech: ["Python", "LangChain", "LangGraph", "RAG", "n8n", "Docker", "Web Development", "Dashboards"],
-        },
-        {
-            title: "Director of Strategy & BI",
+            category: "data-strategy",
+            title: "Director of Strategy & BI / Lakehouse Architect",
             company: "RippleNami (2025 - Present)",
             description: {
-                en: "Situation: Needed to modernize analytics and AI capabilities globally. Task: Architect an enterprise datalakehouse and develop ML prediction models while leading a cross-functional team. Action: Deployed a scalable datalakehouse, optimized 50+ DB queries (15m to 30s), implemented quality frameworks (99.9% accuracy), and managed teams. Result: Reduced KPI delivery latency by ~40%, enabled real-time analytics for C-level executives, and achieved 95%+ ML prediction accuracy.",
-                es: "Situación: Necesidad de modernizar capacidades analíticas y de IA a nivel global. Tarea: Diseñar un datalakehouse corporativo y modelos de predicción ML liderando un equipo multifuncional. Acción: Implementación de datalakehouse escalable, optimización de 50+ queries (15m a 30s), implementación de frameworks de calidad (99.9% precisión) y gestión de equipos. Resultado: Reducción del ~40% en latencia de KPIs, analítica en tiempo real para ejecutivos C-level y precisión ML del 95%+.",
+                en: "Situation: Needed to modernize global analytics and AI capabilities across massive incoming data streams. Task: Architect an enterprise datalakehouse and implement automated data governance while leading cross-functional engineers. Action: Deployed a scalable BigQuery + dbt architecture, optimized 50+ SQL queries (from 15 min to 30 sec), implemented Great Expectations quality frameworks (99.9% precision), and scaled ingestion from 50M to 500M+ daily records. Result: Reduced KPI delivery latency by ~40%, enabled real-time executive decision-making, and achieved 95%+ ML prediction accuracy.",
+                es: "Situación: Necesidad de modernizar analítica global y capacidades de IA sobre flujos masivos de datos. Tarea: Diseñar un datalakehouse corporativo e implementar gobierno automatizado de datos liderando ingenieros. Acción: Despliegue de arquitectura BigQuery + dbt, optimización de 50+ queries (de 15 min a 30 seg), implementación de framework Great Expectations (99.9% precisión) y escalamiento de ingesta de 50M a 500M+ registros/día. Resultado: Reducción del ~40% en latencia de KPIs, analítica C-Level en tiempo real y precisión predictiva ML del 95%+.",
             },
             metrics: [
                 { value: "40%", label: { en: "faster KPI delivery", es: "entrega de KPIs más rápida" } },
-                { value: "95%+", label: { en: "ML prediction accuracy", es: "precisión de predicción ML" } },
-                { value: "99.9%", label: { en: "data quality across 5M+ records", es: "calidad de datos en 5M+ registros" } },
+                { value: "500M+", label: { en: "records/day ingested", es: "registros/día ingeridos" } },
+                { value: "99.9%", label: { en: "data quality accuracy", es: "precisión en calidad de datos" } },
+                { value: "30x", label: { en: "SQL query speedup", es: "aceleración de queries" } },
             ],
             tech: ["BigQuery", "dbt", "Airflow", "Python", "SQL", "Looker", "Great Expectations"],
         },
         {
-            title: "Operations & Business Strategy Lead",
-            company: "inDrive (2022 - 2024)",
+            category: "ai-agents",
+            title: "Founder & AI Engineering Lead",
+            company: "NablaOps (2024 - Present)",
             description: {
-                en: "Situation: Aggressive expansion needed across LATAM markets. Task: Drive GMV growth and operational efficiency through data and digital transformation. Action: Led cross-functional teams, designed KPI dashboards, executed growth campaigns, and deployed dynamic pricing ML models and customer service GPT agents. Result: Achieved 1.5x GMV growth, +30% operational efficiency for delivery, +20% customer retention, and automated C-level reporting.",
-                es: "Situación: Expansión acelerada requerida en mercados LATAM. Tarea: Impulsar crecimiento de GMV y eficiencia operativa mediante datos y transformación digital. Acción: Liderazgo de equipos multifuncionales, diseño de dashboards de KPIs, ejecución de campañas de crecimiento y despliegue de modelos ML de precios dinámicos y agentes GPT de soporte. Resultado: Crecimiento de 1.5x en GMV, +30% en eficiencia operativa de delivery, +20% en retención de clientes y reportería C-level automatizada.",
+                en: "Situation: Modern businesses require autonomous, multi-channel AI agents integrated with business workflows to replace manual customer touchpoints. Task: Architect and deploy production Agentic AI ecosystems and marketing automation pipelines. Action: Built autonomous AI agents using Python, LangChain, LangGraph, RAG, and n8n, containerized on Docker for clients like Monomiel, Fortuna Migration, and Urbagio. Result: 100% automated customer service and lead capture, dynamic campaign optimization, and real-time revenue attribution dashboards.",
+                es: "Situación: Negocios requieren agentes IA autónomos y multicanal integrados con flujos operativos para automatizar interacciones con clientes. Tarea: Diseñar y desplegar ecosistemas de IA Agéntica en producción y pipelines de marketing. Acción: Construcción de agentes IA usando Python, LangChain, LangGraph, RAG y n8n en Docker para clientes como Monomiel, Fortuna Migration y Urbagio. Resultado: 100% de automatización en soporte y captura de leads, optimización de campañas y dashboards de atribución en tiempo real.",
+            },
+            metrics: [
+                { value: "100%", label: { en: "automated customer service", es: "atención al cliente automatizada" } },
+                { value: "3+", label: { en: "enterprise clients launched", es: "clientes corporativos lanzados" } },
+                { value: "RAG", label: { en: "multi-agent LangGraph flows", es: "flujos multi-agente LangGraph" } },
+            ],
+            tech: ["Python", "LangChain", "LangGraph", "RAG", "n8n", "Docker", "FastAPI", "PostgreSQL"],
+        },
+        {
+            category: "product-growth",
+            title: "Operations & Business Strategy Lead",
+            company: "inDrive LATAM Delivery (2022 - 2024)",
+            description: {
+                en: "Situation: Aggressive multi-country expansion required across LATAM delivery and courier markets. Task: Drive GMV acceleration, unit economics profitability, and operational efficiency through data and AI transformation. Action: Led cross-functional growth teams, deployed dynamic pricing ML algorithms, implemented customer service GPT agents, and designed centralized KPI executive dashboards. Result: Achieved 1.5x LATAM GMV growth, +30% operational efficiency for delivery, +20% customer retention, and automated C-level analytics.",
+                es: "Situación: Expansión acelerada requerida en mercados LATAM de delivery y mensajería. Tarea: Impulsar crecimiento de GMV, rentabilidad de unit economics y eficiencia operativa mediante datos e IA. Acción: Liderazgo de equipos multifuncionales de growth, despliegue de algoritmos ML de pricing dinámico, agentes GPT de soporte y diseño de dashboards ejecutivos centralizados. Resultado: Crecimiento de 1.5x en GMV, +30% en eficiencia operativa de delivery, +20% en retención y analítica C-level automatizada.",
             },
             metrics: [
                 { value: "1.5x", label: { en: "GMV growth across LATAM", es: "crecimiento de GMV en LATAM" } },
-                { value: "+30%", label: { en: "operational efficiency (delivery)", es: "eficiencia operativa (delivery)" } },
+                { value: "+30%", label: { en: "delivery operational efficiency", es: "eficiencia operativa delivery" } },
                 { value: "+20%", label: { en: "customer retention increase", es: "aumento en retención de clientes" } },
             ],
             tech: ["Power BI", "SQL", "Python", "Google BigQuery", "Looker Studio", "Machine Learning", "GPT Agents"],
         },
         {
+            category: "product-growth",
             title: "Co-Founder & Head of Operations",
             company: "twinlu (2020 - 2022)",
             description: {
-                en: "Situation: Regional SMEs lacked access to bespoke software and analytics. Task: Build and scale a digital transformation agency from the ground up. Action: Directed 50+ custom software and analytics projects across LATAM, developed real-time BI dashboards, and implemented agile frameworks. Result: Delivered 50+ successful projects, established data-driven client operations, and built long-term enterprise partnerships.",
-                es: "Situación: Pymes regionales carecían de software y analítica a medida. Tarea: Construir y escalar una agencia de transformación digital desde cero. Acción: Dirección de más de 50 proyectos de software y analítica en LATAM, desarrollo de dashboards BI en tiempo real e implementación de metodologías ágiles. Resultado: Entrega exitosa de 50+ proyectos, establecimiento de operaciones basadas en datos para clientes y alianzas corporativas duraderas.",
+                en: "Situation: Regional B2B enterprises lacked custom digital platforms, automated business intelligence, and agile software delivery. Task: Build and scale a digital product and analytics agency from the ground up. Action: Directed 50+ custom software and analytics client solutions across LATAM, developed real-time BI dashboards, and implemented agile sprint frameworks. Result: Delivered 50+ successful client deployments with 100% on-time delivery rate, enabling 3x average revenue growth for core clients.",
+                es: "Situación: Empresas B2B carecían de plataformas digitales a medida, BI automatizado y entrega ágil de software. Tarea: Construir y escalar una agencia de producto digital y analítica desde cero. Acción: Dirección de más de 50 soluciones de software y analítica en LATAM, desarrollo de dashboards BI en tiempo real e implementación de metodologías ágiles. Resultado: 50+ despliegues exitosos con 100% de cumplimiento a tiempo y 3x de crecimiento en ingresos para clientes clave.",
             },
             metrics: [
                 { value: "50+", label: { en: "projects delivered", es: "proyectos entregados" } },
                 { value: "100%", label: { en: "on-time delivery rate", es: "tasa de entrega a tiempo" } },
-                { value: "3x", label: { en: "client revenue growth average", es: "crecimiento promedio de ingresos clientes" } },
+                { value: "3x", label: { en: "client revenue growth average", es: "crecimiento promedio ingresos clientes" } },
             ],
             tech: ["React", "Node.js", "Python", "PostgreSQL", "Power BI", "Scrum", "Jira"],
         },
@@ -179,28 +382,40 @@ export const content = {
 
     education: [
         {
-            title: { en: "Master of Engineering (MEng) - Industrial Management", es: "Máster en Gestión Industrial" },
+            title: { en: "Master in Business Engineering & Supply Chain (MBE)", es: "Máster en Business Engineering & Supply Chain (MBE)" },
+            institution: "Universitat de Barcelona (2020 - 2022)",
+            description: {
+                en: "Advanced corporate strategy, digital supply chain optimization, and technological innovation management. Focused on driving operational excellence and enterprise business models.",
+                es: "Estrategia corporativa avanzada, optimización de cadenas de suministro digitales y gestión de la innovación tecnológica. Enfoque en excelencia operativa y modelos de negocio escalables.",
+            },
+            badge: "MBE",
+        },
+        {
+            title: { en: "Master of Engineering (MEng) - Industrial Management", es: "Máster en Ingeniería (MEng) - Gestión Industrial" },
             institution: "Universidad de los Andes & Politecnico di Milano (2014 - 2016)",
             description: {
-                en: "Specialized in bridging business strategy with technological innovation. International focus combining technical engineering with strategic corporate management.",
-                es: "Especialización en unir la estrategia de negocios con la innovación tecnológica. Enfoque internacional combinando ingeniería técnica con gestión corporativa estratégica.",
+                en: "Double master's degree program bridging technical engineering with international strategic corporate management, operations research, and technology strategy.",
+                es: "Programa de doble titulación que une la ingeniería técnica con la gestión corporativa estratégica internacional, investigación de operaciones y estrategia tecnológica.",
             },
+            badge: "MEng",
         },
         {
             title: { en: "Industrial Engineering", es: "Ingeniería Industrial" },
-            institution: "Universidad de los Andes (2010 - 2014)",
+            institution: "Universidad de los Andes (2009 - 2014)",
             description: {
-                en: "Graduated from one of LATAM's top universities. Built a strong quantitative foundation in process optimization, operations research, and systems engineering.",
-                es: "Formación de una sólida base cuantitativa en optimización de procesos, investigación de operaciones e ingeniería de sistemas en una de las mejores universidades de LATAM.",
+                en: "Rigorous quantitative foundation in systems engineering, stochastic modeling, operations research, and statistical process optimization at one of LATAM's top universities.",
+                es: "Sólida formación cuantitativa en ingeniería de sistemas, modelado estocástico, investigación de operaciones y optimización estadística en una de las mejores universidades de LATAM.",
             },
+            badge: "BSc",
         },
         {
             title: { en: "Chemical Engineering", es: "Ingeniería Química" },
-            institution: "Universidad de los Andes (2010 - 2014)",
+            institution: "Universidad de los Andes (2008 - 2013)",
             description: {
-                en: "Dual degree focused on chemical processes, thermodynamics, and analytical methods. Developed strong problem-solving and quantitative analysis skills applicable to data-driven decision-making.",
-                es: "Doble titulación enfocada en procesos químicos, termodinámica y métodos analíticos. Formación sólida en resolución de problemas y análisis cuantitativo aplicables a la toma de decisiones basada en datos.",
+                en: "Dual degree specializing in transport phenomena, thermodynamic modeling, and complex analytical systems, cultivating deep mathematical problem-solving capabilities.",
+                es: "Doble titulación especializada en fenómenos de transporte, modelado termodinámico y sistemas analíticos complejos, cultivando un riguroso análisis matemático.",
             },
+            badge: "BSc",
         },
     ],
 
@@ -233,22 +448,22 @@ export const content = {
 
     certifications: [
         {
-            category: { en: "AI & Machine Learning", es: "IA y Aprendizaje Automático" },
+            category: { en: "AI, Machine Learning & Agentic Systems", es: "IA, Machine Learning y Sistemas Agénticos" },
             items: [
                 "Machine Learning in Production · DeepLearning.AI",
                 "Agentic AI and AI Agents for Leaders · Vanderbilt University",
                 "Claude Code: Software Engineering with GenAI Agents · Vanderbilt University",
                 "AI Product Management · Duke University",
                 "AI Agents Fundamentals · Hugging Face",
-                "Google AI (7 courses) · Google / Coursera",
+                "Google Advanced Data Analytics & AI · Google / Coursera",
                 "Generative AI for Executives · IBM",
                 "Introduction to Deep Learning & Neural Networks · IBM",
             ],
         },
         {
-            category: { en: "Data Analytics & Engineering", es: "Análisis e Ingeniería de Datos" },
+            category: { en: "Data Analytics, Lakehouse & Engineering", es: "Analítica de Datos, Lakehouse e Ingeniería" },
             items: [
-                "Google Advanced Data Analytics · Google",
+                "Google Advanced Data Analytics (Professional Certificate) · Google",
                 "Generative AI for BI Analysts · IBM",
                 "Data Analysis with R Programming · Google",
                 "Business Analytics · Campus BBVA",
@@ -258,13 +473,13 @@ export const content = {
             ],
         },
         {
-            category: { en: "Project Management & Software Engineering", es: "Gestión de Proyectos e Ingeniería de Software" },
+            category: { en: "Project Management, Agile & Leadership", es: "Gestión de Proyectos, Ágil y Liderazgo" },
             items: [
-                "Google Project Management (6 courses) · Google / Coursera",
-                "Generative AI PM · IBM",
+                "PMP Certification (Project Management Professional) · PMI",
                 "Applied Scrum for Agile Project Management · University of Maryland",
-                "Gestión de proyectos con Jira · Coursera",
-                "PMP Certification · PMI",
+                "Google Project Management (6-Course Specialization) · Google",
+                "Generative AI PM · IBM",
+                "Gestión de Proyectos con Jira · Coursera",
             ],
         },
     ],
@@ -281,8 +496,8 @@ export const content = {
 
     chat: {
         greeting: {
-            en: "Hello! I am Nabla, Daniel's AI assistant. Would you like to ask about his experience, technical stack, or strategic impact?",
-            es: "¡Hola! Soy Nabla, el asistente IA de Daniel. ¿Te gustaría consultar sobre su experiencia, stack técnico o impacto estratégico?",
+            en: "Hello! I am Nabla, Daniel's AI assistant. Would you like to explore his executive experience in Data Strategy, AI Lakehouses, LangGraph Agents, or P&L impact?",
+            es: "¡Hola! Soy Nabla, el asistente de IA de Daniel. ¿Te gustaría consultar sobre su experiencia en Estrategia de Datos, Lakehouses, Agentes LangGraph o impacto en P&L?",
         },
         userReply: {
             en: "I want to ask about Daniel's leadership experience!",
@@ -305,7 +520,7 @@ export const content = {
 
     footer: {
         title: "DANIEL CAMILO PARDO FIGUEROA",
-        role: "Director of Data Strategy & AI",
+        role: "Director of Data Strategy & AI | Senior Data Engineer | Digital Products & MLOps",
         linkedinLabel: { en: "LinkedIn Profile", es: "Perfil de LinkedIn" },
         languages: {
             title: { en: "Languages", es: "Idiomas" },
@@ -327,8 +542,8 @@ export const content = {
             es: "Daniel Camilo Pardo | Director de Estrategia de Datos e IA",
         },
         description: {
-            en: "Professional portfolio of Daniel Camilo Pardo Figueroa, expert in Data Strategy, AI, and Digital Transformation.",
-            es: "Portafolio profesional de Daniel Camilo Pardo Figueroa, experto en Estrategia de Datos, IA y Transformación Digital.",
+            en: "Executive portfolio of Daniel Camilo Pardo Figueroa — Director of Data Strategy & AI, Senior Data Engineer, and MLOps expert delivering modern BigQuery lakehouses and agentic AI.",
+            es: "Portafolio ejecutivo de Daniel Camilo Pardo Figueroa — Director de Estrategia de Datos e IA, Senior Data Engineer y experto en MLOps, lakehouses BigQuery y agentes IA.",
         },
     },
 };

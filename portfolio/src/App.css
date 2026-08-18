@@ -2,18 +2,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Color Palette - Obsidian & Precision Accents */
-  --color-primary: #0b0f17;
-  --color-primary-dark: #070e1d;
+  /* Color Palette - Obsidian Command & Titanium Precision */
+  --color-primary: #060911;
+  --color-primary-dark: #030508;
   --color-secondary: #6366f1;
+  --color-secondary-hover: #4f46e5;
   --color-accent: #10b981;
+  --color-accent-cyan: #06b6d4;
   --color-accent-amber: #f59e0b;
   --color-text-dark: #0f172a;
   --color-text-light: #f8fafc;
-  --color-bg-light: #ffffff;
-  --color-bg-dark: #0b0f17;
-  --color-bg-section: #f8fafc;
-  --color-bg-section-dark: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-muted-dark: #94a3b8;
+  --color-bg-light: #f8fafc;
+  --color-bg-dark: #060911;
+  --color-bg-section: #f1f5f9;
+  --color-bg-section-dark: #0a0f1d;
+  --color-bg-card-dark: #0d1322;
   --color-border: #e2e8f0;
   --color-border-dark: rgba(255, 255, 255, 0.08);
 
@@ -21,11 +26,13 @@
   --font-sans: 'Plus Jakarta Sans Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Outfit', 'Plus Jakarta Sans Variable', var(--font-sans);
 
-  /* Shadows */
-  --shadow-card: 0 4px 6px -1px rgba(11, 15, 23, 0.08), 0 2px 4px -2px rgba(11, 15, 23, 0.08);
-  --shadow-card-hover: 0 20px 25px -5px rgba(11, 15, 23, 0.25);
-  --shadow-glow-emerald: 0 0 20px rgba(16, 185, 129, 0.25);
-  --shadow-glow-indigo: 0 0 20px rgba(99, 102, 241, 0.25);
+  /* Shadows & Glows */
+  --shadow-card: 0 4px 6px -1px rgba(6, 9, 17, 0.06), 0 2px 4px -2px rgba(6, 9, 17, 0.06);
+  --shadow-card-hover: 0 20px 25px -5px rgba(6, 9, 17, 0.25), 0 8px 10px -6px rgba(6, 9, 17, 0.2);
+  --shadow-glow-emerald: 0 0 25px rgba(16, 185, 129, 0.25);
+  --shadow-glow-cyan: 0 0 25px rgba(6, 182, 212, 0.25);
+  --shadow-glow-indigo: 0 0 25px rgba(99, 102, 241, 0.25);
+  --shadow-glow-amber: 0 0 25px rgba(245, 158, 11, 0.25);
 
   /* Brand Colors */
   --color-linkedin: #0A66C2;
@@ -34,21 +41,19 @@
   --color-whatsapp-hover: #1DA851;
   --color-github: #24292e;
   --color-github-hover: #1b1f23;
-  --color-bg-section-alt: #f1f5f9;
-
-  /* Typography */
-  --font-size-section-title: 2.75rem;
+  --color-bg-section-alt: #f8fafc;
 
   /* Animations */
-  --animate-fade-in-up: fade-in-up 0.6s ease forwards;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fade-in 0.3s ease forwards;
   --animate-slide-down: slide-down 0.3s ease forwards;
+  --animate-pulse-glow: pulse-glow 3s infinite ease-in-out;
 }
 
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -67,10 +72,19 @@
 
 @keyframes slide-down {
   from {
-    transform: translateY(-50px);
+    transform: translateY(-40px);
   }
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.45);
   }
 }
 
@@ -84,6 +98,8 @@ body {
   line-height: 1.6;
   color: var(--color-text-dark);
   background-color: var(--color-bg-light);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
@@ -98,12 +114,35 @@ body span {
   color: inherit;
 }
 
-.text-gray-600 {
-  color: #475569;
+/* Glassmorphism & Titanium Surfaces */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: var(--shadow-card);
 }
 
-.dark .text-gray-600 {
-  color: #cbd5e1;
+.dark .glass-card {
+  background: rgba(13, 19, 34, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-nav {
+  background: rgba(6, 9, 17, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Section Title Underline */
@@ -113,33 +152,23 @@ body span {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
-  border-radius: 2px;
+  width: 70px;
+  height: 3.5px;
+  background: linear-gradient(90deg, #6366f1, #10b981, #06b6d4);
+  border-radius: 9999px;
 }
 
-/* Glassmorphism helpers */
-.glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Background Gradients */
+.bg-gradient-subtle {
+  background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.07), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.07), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.04), transparent 55%);
 }
 
-.dark .glass-card {
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Print */
-@media print {
-  header,
-  .lang-btn,
-  .home-icon,
-  .recommendation-form {
-    display: none;
-  }
+.dark .bg-gradient-subtle {
+  background: radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.06), transparent 50%);
 }
 
 /* Focus Visible */
@@ -148,14 +177,19 @@ body span {
   outline-offset: 2px;
 }
 
-/* Background gradient utility */
-.bg-gradient-subtle {
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 50%),
-    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.08), transparent 50%);
-}
-
 /* Performance Optimizations */
 .content-vis-auto {
   content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
+  contain-intrinsic-size: auto 650px;
+}
+
+/* Print */
+@media print {
+  header,
+  .lang-btn,
+  .home-icon,
+  .recommendation-form,
+  .action-bar-btn {
+    display: none !important;
+  }
 }

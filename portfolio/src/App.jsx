@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
 import BlogPost from './components/BlogPost'
 
+const CareerTimeline = lazy(() => import('./components/CareerTimeline'))
 const Projects = lazy(() => import('./components/Projects'))
 const Education = lazy(() => import('./components/Education'))
 const Recommendations = lazy(() => import('./components/Recommendations'))
@@ -19,8 +20,8 @@ const Blog = lazy(() => import('./components/Blog'))
 const Certifications = lazy(() => import('./components/Certifications'))
 
 const SectionFallback = () => (
-  <div className="flex justify-center items-center py-32">
-    <div className="w-12 h-12 border-4 border-slate-200 border-t-accent rounded-full animate-spin"></div>
+  <div className="flex justify-center items-center py-24">
+    <div className="w-10 h-10 border-3 border-slate-200 border-t-accent rounded-full animate-spin"></div>
   </div>
 )
 
@@ -59,6 +60,7 @@ function Home() {
       <main id="main" role="main">
         <AboutMe />
         <Skills />
+        <ErrorBoundary><Suspense fallback={<SectionFallback />}><CareerTimeline /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Projects /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Education /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Recommendations /></Suspense></ErrorBoundary>
@@ -72,13 +74,13 @@ function Home() {
 function NotFound() {
   const { t } = useLanguage()
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-bg-light dark:bg-slate-900 px-8 py-20">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-bg-light dark:bg-bg-dark px-8 py-20">
       <Helmet>
         <title>404 - Page Not Found | Daniel Pardo</title>
       </Helmet>
       <h1 className="text-5xl font-heading font-extrabold text-primary dark:text-white mb-4">404</h1>
       <p className="text-text-dark dark:text-gray-300 mb-8 text-lg">{t("The page you are looking for does not exist.", "La página que buscas no existe.")}</p>
-      <Link to="/" className="px-6 py-3 bg-secondary text-white font-semibold rounded-lg hover:bg-accent transition-colors shadow-md">
+      <Link to="/" className="px-6 py-3 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors shadow-md">
         {t("Return to Home", "Volver al inicio")}
       </Link>
     </div>
@@ -90,10 +92,6 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <LanguageProvider>
-          {/* 
-            Navbar and Footer are outside the Routes, 
-            so they remain consistently visible across pages. 
-          */}
           <Navbar />
 
           <Routes>

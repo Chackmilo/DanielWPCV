@@ -1,7 +1,20 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
-import { LinkedInIcon, WhatsAppIcon, GitHubIcon, DocumentTextIcon, CalendarIcon, CopyIcon } from './Icons'
+import {
+    LinkedInIcon,
+    WhatsAppIcon,
+    GitHubIcon,
+    DocumentTextIcon,
+    CalendarIcon,
+    CopyIcon,
+    CheckIcon,
+    DatabaseIcon,
+    CpuIcon,
+    TrendingUpIcon,
+    SparklesIcon,
+    MapPinIcon
+} from './Icons'
 import Toast from './Toast'
 import { motion } from 'framer-motion'
 
@@ -10,18 +23,25 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.1,
+            staggerChildren: 0.08,
+            delayChildren: 0.05,
         }
     }
 }
 
 const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
-        opacity: 1, y: 0,
-        transition: { type: "spring", stiffness: 100, damping: 20 }
+        opacity: 1,
+        y: 0,
+        transition: { type: "spring", stiffness: 120, damping: 18 }
     }
+}
+
+const pillarIconMap = {
+    database: DatabaseIcon,
+    cpu: CpuIcon,
+    'trending-up': TrendingUpIcon,
 }
 
 export default function AboutMe() {
@@ -29,186 +49,242 @@ export default function AboutMe() {
     const about = content.about
     const [toastMessage, setToastMessage] = useState('')
     const [showToast, setShowToast] = useState(false)
+    const [copiedEmail, setCopiedEmail] = useState(false)
 
-    const copyToClipboard = (text, label) => {
+    const copyToClipboard = useCallback((text, label) => {
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(text)
-            setToastMessage(`${label} ${t('copied to clipboard!', '¡copiado al portapapeles!')}`)
-            setShowToast(true)
-            setTimeout(() => setShowToast(false), 3000)
+            navigator.clipboard.writeText(text).then(() => {
+                setCopiedEmail(true)
+                setToastMessage(`${label} ${t('copied to clipboard!', '¡copiado al portapapeles!')}`)
+                setShowToast(true)
+                setTimeout(() => {
+                    setShowToast(false)
+                    setCopiedEmail(false)
+                }, 3000)
+            }).catch(() => {
+                // Fallback if needed
+            })
         }
-    }
+    }, [t])
 
     return (
-        <section id="about" className="py-16 bg-bg-section-alt dark:bg-slate-900 relative overflow-hidden">
+        <section id="about" className="py-12 md:py-20 bg-bg-light dark:bg-bg-dark relative overflow-hidden">
+            {/* Ambient Background Aura Meshes */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-subtle" />
 
-            <div className="max-w-[1200px] mx-auto px-8 relative">
-                {/* Header: Image + Title side by side */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
-                    className="flex flex-col md:flex-row items-center gap-8 mb-10 text-center md:text-left"
-                >
-                    <div className="relative group">
-                        <picture>
-                            <source srcSet="/profile.webp" type="image/webp" />
-                            <img
-                                src="/profile.jpg"
-                                alt="Daniel Camilo Pardo Figueroa"
-                                width="140"
-                                height="140"
-                                loading="eager"
-                                fetchPriority="high"
-                                className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover shadow-lg border-4 border-white dark:border-slate-800 transition-transform duration-300 group-hover:scale-105"
-                            />
-                        </picture>
-                        <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-slate-800 rounded-full animate-pulse" title="Available for roles"></span>
-                    </div>
-
-                    <div>
-                        <h1 className="font-heading text-3xl md:text-5xl font-extrabold text-primary dark:text-white leading-tight">
-                            Daniel Camilo Pardo Figueroa
-                        </h1>
-                        <p className="text-secondary dark:text-accent font-semibold text-lg md:text-xl mt-1">
-                            {t(about.subtitle.en, about.subtitle.es)}
-                        </p>
-                    </div>
-                </motion.div>
-
-                {/* KPI Metrics Dashboard Bar */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5 }}
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
-                >
-                    <div className="glass-card rounded-xl p-4 text-center border-t-2 border-emerald-500 shadow-sm">
-                        <span className="block text-2xl md:text-3xl font-extrabold font-heading text-emerald-500">~40%</span>
-                        <span className="text-xs uppercase tracking-wider font-semibold text-gray-600 dark:text-gray-400">{t("KPI Latency Reduction", "Reducción Latencia KPIs")}</span>
-                    </div>
-                    <div className="glass-card rounded-xl p-4 text-center border-t-2 border-cyan-500 shadow-sm">
-                        <span className="block text-2xl md:text-3xl font-extrabold font-heading text-cyan-500">1.5x</span>
-                        <span className="text-xs uppercase tracking-wider font-semibold text-gray-600 dark:text-gray-400">{t("LATAM GMV Growth", "Crecimiento GMV LATAM")}</span>
-                    </div>
-                    <div className="glass-card rounded-xl p-4 text-center border-t-2 border-indigo-500 shadow-sm">
-                        <span className="block text-2xl md:text-3xl font-extrabold font-heading text-indigo-500">30x</span>
-                        <span className="text-xs uppercase tracking-wider font-semibold text-gray-600 dark:text-gray-400">{t("Query Optimization", "Optimización de Consultas")}</span>
-                    </div>
-                    <div className="glass-card rounded-xl p-4 text-center border-t-2 border-amber-500 shadow-sm">
-                        <span className="block text-2xl md:text-3xl font-extrabold font-heading text-amber-500">99.9%</span>
-                        <span className="text-xs uppercase tracking-wider font-semibold text-gray-600 dark:text-gray-400">{t("Data Accuracy (5M+)", "Precisión de Datos (5M+)")}</span>
-                    </div>
-                </motion.div>
-
-                {/* Content: staggered entrance */}
+            <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="flex flex-col gap-5"
+                    animate="visible"
+                    className="flex flex-col gap-6 md:gap-8"
                 >
-                    {/* WHO I AM */}
-                    <motion.div variants={itemVariants}>
-                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whoIAm.title.en, about.whoIAm.title.es)}</h2>
-                        <p className="leading-relaxed">{t(about.whoIAm.text.en, about.whoIAm.text.es)}</p>
-                    </motion.div>
+                    {/* Top Hero Bento Box: Profile + Executive Bio */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-border dark:border-white/10 relative overflow-hidden"
+                    >
+                        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-10">
+                            {/* Avatar with Luminous Status Halo */}
+                            <div className="relative shrink-0">
+                                <div className="relative group">
+                                    <div className="absolute -inset-1.5 bg-gradient-to-r from-secondary via-accent to-accent-cyan rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse-glow" />
+                                    <picture>
+                                        <source srcSet="/profile.webp" type="image/webp" />
+                                        <img
+                                            src="/profile.jpg"
+                                            alt="Daniel Camilo Pardo Figueroa"
+                                            width="160"
+                                            height="160"
+                                            loading="eager"
+                                            fetchPriority="high"
+                                            className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full object-cover shadow-2xl border-4 border-white dark:border-slate-900 transition-transform duration-300 group-hover:scale-[1.03]"
+                                        />
+                                    </picture>
+                                </div>
 
-                    {/* WHAT I DO */}
-                    <motion.div variants={itemVariants}>
-                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.whatIDo.title.en, about.whatIDo.title.es)}</h2>
-                        <ul className="list-none flex flex-col gap-1">
-                            {about.whatIDo.items.map((item) => (
-                                <li key={item.en}>
-                                    <span className="text-accent">▹</span> {t(item.en, item.es)}
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
+                                {/* Status Dot Badge */}
+                                <div className="mt-3.5 flex items-center justify-center gap-2 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 py-1 px-3 rounded-full shadow-xs">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span className="text-[11px] sm:text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wide uppercase">
+                                        {t(about.statusBadge.en, about.statusBadge.es)}
+                                    </span>
+                                </div>
+                            </div>
 
-                    {/* IMPACT DELIVERED */}
-                    <motion.div variants={itemVariants}>
-                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.impact.title.en, about.impact.title.es)}</h2>
-                        <ul className="list-none flex flex-col gap-1">
-                            {about.impact.items.map((item) => (
-                                <li key={item.en}><span aria-hidden="true">✔</span> {t(item.en, item.es)}</li>
-                            ))}
-                        </ul>
-                    </motion.div>
+                            {/* Hero Text & Value Proposition */}
+                            <div className="flex-grow text-center lg:text-left flex flex-col justify-center">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3 w-fit mx-auto lg:mx-0">
+                                    <SparklesIcon size={14} /> {t("Executive Portfolio", "Portafolio Ejecutivo")}
+                                </div>
 
-                    {/* TECH STACK */}
-                    <motion.div variants={itemVariants}>
-                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.techStack.title.en, about.techStack.title.es)}</h2>
-                        <p className="leading-relaxed">{t(about.techStack.text.en, about.techStack.text.es)}</p>
-                    </motion.div>
+                                <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-primary dark:text-white tracking-tight leading-tight mb-2">
+                                    Daniel Camilo Pardo Figueroa
+                                </h1>
 
-                    {/* CERTIFICATIONS & LANGUAGES */}
-                    <motion.div variants={itemVariants}>
-                        <h2 className="text-primary dark:text-white text-lg mb-1 font-semibold">{t(about.certificationsSummary.title.en, about.certificationsSummary.title.es)}</h2>
-                        <p className="leading-relaxed">{t(about.certificationsSummary.text.en, about.certificationsSummary.text.es)}</p>
-                    </motion.div>
+                                <p className="text-secondary dark:text-accent font-semibold text-lg sm:text-xl lg:text-2xl leading-snug mb-4">
+                                    {t(about.subtitle.en, about.subtitle.es)}
+                                </p>
 
-                    {/* OPEN TO & CTAS */}
-                    <motion.div variants={itemVariants} className="bg-primary/5 dark:bg-white/5 p-5 rounded-lg border-l-4 border-accent mt-2">
-                        <h2 className="text-primary dark:text-white text-base font-semibold mb-2">{t(about.openTo.title.en, about.openTo.title.es)}</h2>
-                        <p className="font-medium mb-3">{t(about.openTo.text.en, about.openTo.text.es)}</p>
-                        <div className="flex gap-2.5 flex-wrap">
-                            {about.contact.cv && (
-                                <a href={about.contact.cv} target="_blank" rel="noopener noreferrer"
-                                    download="CV_Daniel_Pardo.pdf"
-                                    aria-label={t("Download CV (PDF)", "Descargar CV (PDF)")}
-                                    className="inline-flex items-center gap-1.5 py-2 px-4 rounded-md text-sm font-semibold text-white bg-accent hover:bg-emerald-600 transition-colors no-underline outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent shadow-sm">
-                                    <DocumentTextIcon /> {t("Download CV", "Descargar CV")}
+                                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed max-w-4xl font-normal mb-4">
+                                    {t(about.whoIAm.text.en, about.whoIAm.text.es)}
+                                </p>
+
+                                <div className="flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                                    <MapPinIcon size={16} className="text-accent" />
+                                    <span>{about.contact.location}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Fast Action Bar */}
+                        <div className="mt-8 pt-6 border-t border-border dark:border-white/10 flex flex-wrap items-center justify-center lg:justify-between gap-3">
+                            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                                {about.contact.cv && (
+                                    <a
+                                        href={about.contact.cv}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        download="CV_Daniel_Pardo.pdf"
+                                        aria-label={t("Download CV (PDF)", "Descargar CV (PDF)")}
+                                        className="inline-flex items-center gap-2 py-2.5 px-4 sm:px-5 rounded-xl text-sm font-bold text-white bg-accent hover:bg-emerald-600 active:scale-95 transition-all shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30"
+                                    >
+                                        <DocumentTextIcon size={18} />
+                                        <span>{t("Download Executive CV", "Descargar CV Ejecutivo")}</span>
+                                    </a>
+                                )}
+
+                                <a
+                                    href={`mailto:${about.contact.email}?subject=Strategy%20%26%20Leadership%20Inquiry%20-%20Daniel%20Pardo`}
+                                    aria-label={t("Schedule 1:1 Strategy Call", "Agendar Consulta Estratégica")}
+                                    className="inline-flex items-center gap-2 py-2.5 px-4 sm:px-5 rounded-xl text-sm font-bold text-white bg-secondary hover:bg-secondary-hover active:scale-95 transition-all shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/30"
+                                >
+                                    <CalendarIcon size={18} />
+                                    <span>{t("Schedule 1:1 Call", "Agendar 1:1")}</span>
                                 </a>
-                            )}
-                            <a href={`mailto:${about.contact.email}?subject=Strategy%20%26%20Leadership%20Inquiry%20-%20Daniel%20Pardo`}
-                                aria-label={t("Schedule Strategy Call", "Agendar Consulta Estratégica")}
-                                className="inline-flex items-center gap-1.5 py-2 px-4 rounded-md text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors no-underline outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 shadow-sm">
-                                <CalendarIcon /> {t("Schedule 1:1 Call", "Agendar 1:1")}
-                            </a>
-                            <a href={about.contact.linkedin} target="_blank" rel="noopener noreferrer"
-                                aria-label="LinkedIn Profile"
-                                className="inline-flex items-center gap-1.5 py-2 px-4 rounded-md text-sm font-semibold text-white bg-linkedin hover:bg-linkedin-hover transition-colors no-underline outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-linkedin shadow-sm">
-                                <LinkedInIcon /> LinkedIn
-                            </a>
-                            <a href={about.contact.whatsapp} target="_blank" rel="noopener noreferrer"
-                                aria-label="WhatsApp Contact"
-                                className="inline-flex items-center gap-1.5 py-2 px-4 rounded-md text-sm font-semibold text-white bg-whatsapp hover:bg-whatsapp-hover transition-colors no-underline outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-whatsapp shadow-sm">
-                                <WhatsAppIcon /> WhatsApp
-                            </a>
-                            {about.contact.github && (
-                                <a href={about.contact.github} target="_blank" rel="noopener noreferrer"
-                                    aria-label="GitHub Profile"
-                                    className="inline-flex items-center gap-1.5 py-2 px-4 rounded-md text-sm font-semibold text-white bg-github hover:bg-github-hover transition-colors no-underline outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-github shadow-sm">
-                                    <GitHubIcon /> GitHub
+
+                                <button
+                                    onClick={() => copyToClipboard(about.contact.email, 'Email')}
+                                    aria-label={t("Copy email address", "Copiar correo electrónico")}
+                                    className="inline-flex items-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-800 dark:text-gray-200 border border-border dark:border-white/10 active:scale-95 transition-all cursor-pointer"
+                                >
+                                    {copiedEmail ? <CheckIcon size={16} className="text-emerald-500" /> : <CopyIcon size={16} />}
+                                    <span>{copiedEmail ? t("Copied!", "¡Copiado!") : t("Copy Email", "Copiar Email")}</span>
+                                </button>
+                            </div>
+
+                            {/* Social / Direct Connect Badges */}
+                            <div className="flex items-center gap-2">
+                                <a
+                                    href={about.contact.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn Profile"
+                                    className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl text-xs font-bold text-white bg-linkedin hover:bg-linkedin-hover transition-transform hover:-translate-y-0.5 shadow-sm"
+                                >
+                                    <LinkedInIcon size={14} />
+                                    <span>LinkedIn</span>
                                 </a>
-                            )}
+
+                                <a
+                                    href={about.contact.whatsapp}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="WhatsApp Contact"
+                                    className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl text-xs font-bold text-white bg-whatsapp hover:bg-whatsapp-hover transition-transform hover:-translate-y-0.5 shadow-sm"
+                                >
+                                    <WhatsAppIcon size={14} />
+                                    <span>WhatsApp</span>
+                                </a>
+
+                                {about.contact.github && (
+                                    <a
+                                        href={about.contact.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="GitHub Profile"
+                                        className="inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl text-xs font-bold text-white bg-github hover:bg-github-hover transition-transform hover:-translate-y-0.5 shadow-sm"
+                                    >
+                                        <GitHubIcon size={14} />
+                                        <span>GitHub</span>
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     </motion.div>
 
-                    {/* Contact Info Card */}
-                    <motion.div variants={itemVariants} className="p-6 bg-white dark:bg-slate-800 border-l-4 border-accent rounded shadow-sm">
-                        <p className="my-1"><strong>{t("Location:", "Ubicación:")}</strong> {about.contact.location}</p>
-                        <p className="my-1 flex items-center gap-2 flex-wrap">
-                            <strong>{t("Email:", "Email:")}</strong>
-                            <a href={`mailto:${about.contact.email}`} className="text-secondary font-semibold hover:text-accent hover:underline transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-1">{about.contact.email}</a>
-                            <button
-                                onClick={() => copyToClipboard(about.contact.email, 'Email')}
-                                aria-label={t("Copy email address", "Copiar correo electrónico")}
-                                className="inline-flex items-center gap-1 text-xs py-1 px-2.5 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
+                    {/* Bento Metrics Grid: 6 High-Impact Verified KPIs */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
+                    >
+                        {about.metrics.map((m, idx) => (
+                            <div
+                                key={idx}
+                                className="glass-card rounded-2xl p-4 text-center border-t-2 border-accent dark:border-accent flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
-                                <CopyIcon size={13} /> {t("Copy", "Copiar")}
-                            </button>
-                        </p>
-                        <p className="my-1"><strong>{t("Phone:", "Teléfono:")}</strong> {about.contact.phone}</p>
-                        <p className="my-1"><strong>LinkedIn:</strong> <a href={about.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-secondary dark:text-accent font-semibold hover:text-accent hover:underline transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-1">Daniel Pardo</a></p>
-                        {about.contact.github && (
-                            <p className="my-1"><strong>GitHub:</strong> <a href={about.contact.github} target="_blank" rel="noopener noreferrer" className="text-secondary dark:text-accent font-semibold hover:text-accent hover:underline transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-1">Chackmilo</a></p>
-                        )}
+                                <div>
+                                    <span className="block text-2xl sm:text-3xl font-black font-heading tracking-tight text-primary dark:text-white">
+                                        {m.value}
+                                    </span>
+                                    <span className="block text-xs uppercase tracking-wider font-bold text-secondary dark:text-accent mt-1">
+                                        {t(m.label.en, m.label.es)}
+                                    </span>
+                                </div>
+                                <span className="block text-[11px] text-gray-500 dark:text-gray-400 mt-2 font-medium leading-tight">
+                                    {t(m.detail.en, m.detail.es)}
+                                </span>
+                            </div>
+                        ))}
+                    </motion.div>
+
+                    {/* Executive Pillars: 3 Strategic Cards */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6"
+                    >
+                        {about.executiveCards.map((card, i) => {
+                            const IconComp = pillarIconMap[card.icon] || DatabaseIcon
+                            return (
+                                <div
+                                    key={i}
+                                    className="glass-card rounded-2xl p-6 sm:p-7 border border-border dark:border-white/10 flex flex-col justify-between transition-all duration-300 hover:border-secondary dark:hover:border-secondary hover:shadow-xl hover:-translate-y-1"
+                                >
+                                    <div>
+                                        <div className="w-12 h-12 rounded-xl bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-accent flex items-center justify-center mb-4">
+                                            <IconComp size={26} />
+                                        </div>
+                                        <h3 className="font-heading text-lg sm:text-xl font-bold text-primary dark:text-white mb-2">
+                                            {t(card.title.en, card.title.es)}
+                                        </h3>
+                                        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                                            {t(card.text.en, card.text.es)}
+                                        </p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </motion.div>
+
+                    {/* Target Roles & Engagement Callout */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="glass-card rounded-2xl p-5 sm:p-6 border-l-4 border-secondary dark:border-accent flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    >
+                        <div>
+                            <span className="text-xs font-bold uppercase tracking-widest text-secondary dark:text-accent block mb-1">
+                                {t(about.openTo.title.en, about.openTo.title.es)}
+                            </span>
+                            <p className="text-primary dark:text-white text-sm sm:text-base font-semibold">
+                                {t(about.openTo.text.en, about.openTo.text.es)}
+                            </p>
+                        </div>
+                        <a
+                            href={`mailto:${about.contact.email}?subject=Leadership%20Opportunity%20-%20Daniel%20Pardo`}
+                            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-secondary dark:text-accent hover:underline shrink-0"
+                        >
+                            <span>{t("Initiate Conversation", "Iniciar Conversación")}</span> →
+                        </a>
                     </motion.div>
                 </motion.div>
             </div>
