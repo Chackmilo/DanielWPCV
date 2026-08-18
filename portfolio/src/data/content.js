@@ -24,8 +24,8 @@ export const content = {
         whoIAm: {
             title: { en: "Executive Profile & Value Proposition", es: "Perfil Ejecutivo y Propuesta de Valor" },
             text: {
-                en: "Industrial and Chemical Engineer with over 12 years of executive experience bridging enterprise data architecture, machine learning engineering, and product strategy across the US, Europe, and LATAM. I specialize in designing modern BigQuery & dbt datalakehouses, deploying production Agentic AI (LangGraph/RAG), and leading high-velocity cross-functional engineering teams to drive multi-million dollar P&L growth, operational efficiency, and scalable data-driven automation.",
-                es: "Ingeniero Industrial y Químico con más de 12 años de experiencia ejecutiva articulando arquitectura de datos empresarial, ingeniería de machine learning y estrategia de producto en EE. UU., Europa y LATAM. Especialista en diseño de datalakehouses modernos en BigQuery & dbt, despliegue de IA Agéntica en producción (LangGraph/RAG) y liderazgo de equipos de ingeniería de alto rendimiento para maximizar impacto en P&L, eficiencia operativa y automatización escalable.",
+                en: "Industrial and Chemical Engineer with over 14 years of executive experience bridging enterprise data architecture, machine learning engineering, and product strategy across the US, Europe, and LATAM. I specialize in designing modern BigQuery & dbt datalakehouses, deploying production Agentic AI (LangGraph/RAG), and leading high-velocity cross-functional engineering teams to drive multi-million dollar P&L growth, operational efficiency, and scalable data-driven automation.",
+                es: "Ingeniero Industrial y Químico con más de 14 años de experiencia ejecutiva articulando arquitectura de datos empresarial, ingeniería de machine learning y estrategia de producto en EE. UU., Europa y LATAM. Especialista en diseño de datalakehouses modernos en BigQuery & dbt, despliegue de IA Agéntica en producción (LangGraph/RAG) y liderazgo de equipos de ingeniería de alto rendimiento para maximizar impacto en P&L, eficiencia operativa y automatización escalable.",
             },
         },
         executiveCards: [
@@ -319,7 +319,10 @@ export const content = {
     projects: [
         {
             category: "data-strategy",
-            title: "Director of Strategy & BI / Lakehouse Architect",
+            title: {
+                en: "Director of Strategy & BI / Lakehouse Architect",
+                es: "Director de Estrategia & BI / Arquitecto Lakehouse",
+            },
             company: "RippleNami (2025 - Present)",
             description: {
                 en: "Situation: Needed to modernize global analytics and AI capabilities across massive incoming data streams. Task: Architect an enterprise datalakehouse and implement automated data governance while leading cross-functional engineers. Action: Deployed a scalable BigQuery + dbt architecture, optimized 50+ SQL queries (from 15 min to 30 sec), implemented Great Expectations quality frameworks (99.9% precision), and scaled ingestion from 50M to 500M+ daily records. Result: Reduced KPI delivery latency by ~40%, enabled real-time executive decision-making, and achieved 95%+ ML prediction accuracy.",
@@ -329,13 +332,36 @@ export const content = {
                 { value: "40%", label: { en: "faster KPI delivery", es: "entrega de KPIs más rápida" } },
                 { value: "500M+", label: { en: "records/day ingested", es: "registros/día ingeridos" } },
                 { value: "99.9%", label: { en: "data quality accuracy", es: "precisión en calidad de datos" } },
-                { value: "30x", label: { en: "SQL query speedup", es: "aceleración de queries" } },
+                { value: "30x", label: { en: "SQL query speedup", es: "aceleración de consultas SQL" } },
             ],
             tech: ["BigQuery", "dbt", "Airflow", "Python", "SQL", "Looker", "Great Expectations"],
         },
         {
             category: "ai-agents",
-            title: "Founder & AI Engineering Lead",
+            title: {
+                en: "Production Multi-Tenant Agentic Architecture",
+                es: "Arquitectura Agéntica Multi-Inquilino en Producción",
+            },
+            company: "Agente Core Framework (2025 - Present)",
+            github: "https://github.com/Chackmilo/Agente",
+            description: {
+                en: "Situation: Enterprises require resilient, decoupled multi-agent architectures without cloning infrastructure per tenant. Task: Architect a hardened, asynchronous multi-tenant AI agent core supporting dynamic tool execution and multi-channel routing. Action: Engineered a production framework on LangGraph 1.x and FastAPI with PostgreSQL/SQLAlchemy, async checkpointer memory hardened against deserialization vulnerabilities, AST architectural regression guards, 256+ Playwright E2E tests, and live multi-channel connectors (Telegram, WhatsApp, Kommo CRM). Result: 100% tenant isolation, sub-second latency, zero regression downtime in CI/CD, and battle-tested operational stability.",
+                es: "Situación: Empresas requieren arquitecturas multi-agente desacopladas y resilientes sin clonar infraestructura por inquilino. Tarea: Diseñar un núcleo de agentes IA multi-tenant asíncrono con ejecución dinámica de herramientas y enrutamiento multicanal. Acción: Desarrollo de framework en producción sobre LangGraph 1.x y FastAPI con PostgreSQL/SQLAlchemy, memoria checkpointer asíncrona blindada contra vulnerabilidades, guards de regresión arquitectónica por AST, 256+ tests Playwright E2E e integraciones multicanal (Telegram, WhatsApp, CRM Kommo). Resultado: 100% de aislamiento entre inquilinos, latencia sub-segundo, cero caídas por regresión en CI/CD y estabilidad operativa comprobada.",
+            },
+            metrics: [
+                { value: "256+", label: { en: "Playwright E2E tests", es: "pruebas E2E Playwright" } },
+                { value: "LangGraph 1.x", label: { en: "hardened checkpointer", es: "checkpointer blindado" } },
+                { value: "100%", label: { en: "tenant isolation", es: "aislamiento multi-tenant" } },
+                { value: "Multi-Channel", label: { en: "Telegram, WhatsApp, Kommo", es: "Telegram, WhatsApp, Kommo" } },
+            ],
+            tech: ["Python", "LangGraph 1.x", "FastAPI", "PostgreSQL", "Docker", "TypeScript", "React", "Playwright"],
+        },
+        {
+            category: "ai-agents",
+            title: {
+                en: "Founder & AI Engineering Lead",
+                es: "Fundador y Líder de Ingeniería de IA",
+            },
             company: "NablaOps (2024 - Present)",
             description: {
                 en: "Situation: Modern businesses require autonomous, multi-channel AI agents integrated with business workflows to replace manual customer touchpoints. Task: Architect and deploy production Agentic AI ecosystems and marketing automation pipelines. Action: Built autonomous AI agents using Python, LangChain, LangGraph, RAG, and n8n, containerized on Docker for clients like Monomiel, Fortuna Migration, and Urbagio. Result: 100% automated customer service and lead capture, dynamic campaign optimization, and real-time revenue attribution dashboards.",
@@ -350,7 +376,69 @@ export const content = {
         },
         {
             category: "product-growth",
-            title: "Operations & Business Strategy Lead",
+            title: {
+                en: "Gastronomic Automation & Cryptographic POS",
+                es: "Automatización Gastronómica y POS Criptográfico",
+            },
+            company: "BLA BLA BLA Restaurant (2026)",
+            github: "https://github.com/Chackmilo/blablabla",
+            description: {
+                en: "Situation: High-volume Mediterranean restaurant required eliminating manual paper ticketing, billing latency, and kitchen communication friction. Task: Build an end-to-end bespoke POS and KDS platform with real-time sync, cryptographic audit trails, and ML forecasting. Action: Engineered a responsive PWA for waiters with 11-table live layout, real-time Kitchen Display System (KDS) via WebSockets (Socket.io), automated pre-bill calculation, immutable SHA-256 cryptographic Z-Close cash register sealing, and weekly recipe ingredient demand forecasting using BigQuery ML (ARIMA_PLUS). Result: 0% lost orders, under 100ms real-time kitchen sync, fraud-proof immutable accounting ledger, and optimized food prep inventory.",
+                es: "Situación: Restaurante mediterráneo de alta rotación requería erradicar comandas manuales en papel, demoras en facturación y fricciones salón-cocina. Tarea: Construir una plataforma POS y KDS a la medida con sincronización en tiempo real, auditoría criptográfica y pronóstico ML. Acción: Desarrollo de PWA móvil para meseros con mapa interactivo de 11 mesas, KDS de cocina en tiempo real vía WebSockets (Socket.io), precálculo automatizado de cuenta, sellado criptográfico SHA-256 de Cierre Z (ledger inmutable) y pronóstico semanal de insumos con BigQuery ML (ARIMA_PLUS). Resultado: 0% comandas perdidas, sincronización en <100ms, ledger contable a prueba de fraude y optimización de inventario perecedero.",
+            },
+            metrics: [
+                { value: "SHA-256", label: { en: "immutable Z-Close ledger", es: "ledger inmutable Cierre Z" } },
+                { value: "<100ms", label: { en: "real-time WebSocket KDS", es: "KDS WebSocket en tiempo real" } },
+                { value: "ARIMA_PLUS", label: { en: "BigQuery ML ingredient forecast", es: "forecast insumos BigQuery ML" } },
+                { value: "Light Bistro", label: { en: "custom touch design system", es: "design system táctil a medida" } },
+            ],
+            tech: ["Node.js", "Socket.io", "React", "Vite", "TailwindCSS", "BigQuery ML", "Docker Compose", "Nginx"],
+        },
+        {
+            category: "data-strategy",
+            title: {
+                en: "Mass Catastral & Rental Valuation ML",
+                es: "Valuación Masiva Catastral y de Renta con ML",
+            },
+            company: "Gambia Revenue Authority (2025)",
+            github: "https://github.com/Chackmilo/GRA-valuation",
+            description: {
+                en: "Situation: National tax authority required accurate, transparent mass appraisal of residential and commercial properties across heterogeneous urban regions. Task: Build an end-to-end predictive valuation and poverty scoring machine learning pipeline for over 79,000 buildings. Action: Engineered an advanced ML framework using optimized Gradient Boosting Regressor (R², RMSE, MAE, MAPE, SMAPE) integrating building footprint dimensions, construction materials, socioeconomic census metrics (DAI, Poverty Score), and geospatial heatmapping with GeoPandas. Result: Modeled 79k+ properties with baseline R² of 0.50-0.60, reducing manual field survey audit cycles from months to days with high interpretability.",
+                es: "Situación: Autoridad tributaria nacional requería valuación catastral masiva y transparente de inmuebles residenciales y comerciales en zonas urbanas heterogéneas. Tarea: Construir un pipeline de ML para avalúo predictivo y scoring de pobreza sobre más de 79.000 edificaciones. Acción: Desarrollo de framework de ML con Gradient Boosting Regressor optimizado (R², RMSE, MAE, MAPE, SMAPE) integrando dimensiones de construcción, materiales, indicadores censales socioeconómicos (DAI, Poverty Score) y mapas de calor geoespaciales con GeoPandas. Resultado: Valuación de 79k+ inmuebles con R² de 0.50-0.60, reduciendo auditorías de campo de meses a días con alta interpretabilidad.",
+            },
+            metrics: [
+                { value: "79k+", label: { en: "buildings valued", es: "edificaciones valuadas" } },
+                { value: "0.50-0.60", label: { en: "optimized R² score", es: "R² optimizado" } },
+                { value: "DAI & Poverty", label: { en: "socioeconomic scoring", es: "scoring socioeconómico" } },
+                { value: "GeoPandas", label: { en: "geospatial heatmaps", es: "mapas de calor geoespaciales" } },
+            ],
+            tech: ["Python", "Scikit-Learn", "GeoPandas", "Pandas", "Joblib", "Docker", "Pytest"],
+        },
+        {
+            category: "ai-agents",
+            title: {
+                en: "Legal Intake & Lead Qualification Agent",
+                es: "Agente de Intake Legal y Calificación de Leads",
+            },
+            company: "Fortuna Migration (2025)",
+            github: "https://github.com/Chackmilo/Fortuna_Agente",
+            description: {
+                en: "Situation: Immigration law firm overwhelmed with manual lead screening and unstructured prospective client questionnaires. Task: Build an autonomous legal intake agent to qualify immigration eligibility and route high-value cases. Action: Implemented an intelligent multi-channel agent with LangGraph, FastAPI, and RAG pipelines for dynamic legal requirement assessment, structured data extraction, and automated CRM handoff to specialized lawyers. Result: 100% automated prospect qualification, 4x faster response times, and higher conversion rates for complex visa consultations.",
+                es: "Situación: Firma de abogados de inmigración sobrecargada con revisión manual de prospectos y cuestionarios no estructurados. Tarea: Construir un agente legal autónomo de intake para calificar viabilidad migratoria y enrutar casos prioritarios. Acción: Implementación de agente multicanal con LangGraph, FastAPI y RAG para evaluación dinámica de requisitos legales, extracción estructurada de expedientes y handoff directo al CRM de abogados. Resultado: 100% de calificación automatizada, reducción de 4x en tiempo de respuesta y mayor conversión de consultas de visa.",
+            },
+            metrics: [
+                { value: "100%", label: { en: "automated qualification", es: "calificación automatizada" } },
+                { value: "4x", label: { en: "faster intake speed", es: "mayor velocidad de intake legal" } },
+                { value: "RAG", label: { en: "legal knowledge pipeline", es: "pipeline de conocimiento legal" } },
+            ],
+            tech: ["Python", "LangGraph", "FastAPI", "Docker", "RAG", "TypeScript"],
+        },
+        {
+            category: "product-growth",
+            title: {
+                en: "Operations & Business Strategy Lead",
+                es: "Líder de Operaciones y Estrategia de Negocio",
+            },
             company: "inDrive LATAM Delivery (2022 - 2024)",
             description: {
                 en: "Situation: Aggressive multi-country expansion required across LATAM delivery and courier markets. Task: Drive GMV acceleration, unit economics profitability, and operational efficiency through data and AI transformation. Action: Led cross-functional growth teams, deployed dynamic pricing ML algorithms, implemented customer service GPT agents, and designed centralized KPI executive dashboards. Result: Achieved 1.5x LATAM GMV growth, +30% operational efficiency for delivery, +20% customer retention, and automated C-level analytics.",
@@ -365,7 +453,10 @@ export const content = {
         },
         {
             category: "product-growth",
-            title: "Co-Founder & Head of Operations",
+            title: {
+                en: "Co-Founder & Head of Operations",
+                es: "Co-Fundador y Director de Operaciones",
+            },
             company: "twinlu (2020 - 2022)",
             description: {
                 en: "Situation: Regional B2B enterprises lacked custom digital platforms, automated business intelligence, and agile software delivery. Task: Build and scale a digital product and analytics agency from the ground up. Action: Directed 50+ custom software and analytics client solutions across LATAM, developed real-time BI dashboards, and implemented agile sprint frameworks. Result: Delivered 50+ successful client deployments with 100% on-time delivery rate, enabling 3x average revenue growth for core clients.",
@@ -374,7 +465,7 @@ export const content = {
             metrics: [
                 { value: "50+", label: { en: "projects delivered", es: "proyectos entregados" } },
                 { value: "100%", label: { en: "on-time delivery rate", es: "tasa de entrega a tiempo" } },
-                { value: "3x", label: { en: "client revenue growth average", es: "crecimiento promedio ingresos clientes" } },
+                { value: "3x", label: { en: "client revenue growth average", es: "crecimiento promedio en ingresos de clientes" } },
             ],
             tech: ["React", "Node.js", "Python", "PostgreSQL", "Power BI", "Scrum", "Jira"],
         },
@@ -425,7 +516,7 @@ export const content = {
             role: "VP of Engineering, RippleNami",
             text: {
                 en: "Daniel transformed our data infrastructure from fragmented systems into a unified, real-time analytics platform. His technical expertise in datalake architecture and ability to align data strategy with business outcomes has been instrumental in our growth. He's not just a talented engineer, but a strategic leader who mentors teams effectively.",
-                es: "Daniel transformó nuestra infraestructura de datos de sistemas fragmentados a una plataforma de análisis unificada en tiempo real. Su experiencia técnica en arquitectura datalake y capacidad para alinear estrategia de datos con resultados de negocio ha sido instrumental en nuestro crecimiento. No es solo un ingeniero talentoso, sino un líder estratégico que mentorea equipos efectivamente.",
+                es: "Daniel transformó nuestra infraestructura de datos de sistemas fragmentados a una plataforma de análisis unificada en tiempo real. Su experiencia técnica en arquitectura datalake y capacidad para alinear estrategia de datos con resultados de negocio ha sido instrumental en nuestro crecimiento. No es solo un ingeniero talentoso, sino un líder estratégico que guía, forma y potencia equipos con gran efectividad.",
             },
         },
         {
@@ -526,7 +617,7 @@ export const content = {
             title: { en: "Languages", es: "Idiomas" },
             items: [
                 { en: "Spanish - Native", es: "Español - Nativo" },
-                { en: "English - Advanced (B2)", es: "Inglés - Avanzado (B2)" },
+                { en: "English - Advanced (Full Professional)", es: "Inglés - Avanzado (Profesional Fluido)" },
                 { en: "German - Basic (A2)", es: "Alemán - Básico (A2)" },
             ],
         },

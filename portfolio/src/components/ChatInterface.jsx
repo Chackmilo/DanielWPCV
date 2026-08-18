@@ -110,7 +110,7 @@ export default function ChatInterface() {
                         </div>
                         <span className="text-xs text-emerald-400 flex items-center gap-1.5 mt-0.5 font-medium">
                             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            Online · Verified Bio Knowledge
+                            {t("Online · Verified Bio Knowledge", "En línea · Biografía Verificada")}
                         </span>
                     </div>
                 </div>

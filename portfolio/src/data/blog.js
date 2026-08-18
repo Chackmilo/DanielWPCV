@@ -52,7 +52,7 @@ The difference is speed. What used to take a 6-month government procurement cycl
 
 ### What I've Learned
 
-If I had to distill 12 years of experience into a few principles, they would be:
+If I had to distill 14 years of experience into a few principles, they would be:
 
 1. **Technology is the easy part.** Alignment, governance, and stakeholder management are what determine whether a data initiative succeeds or becomes shelfware.
 
@@ -107,7 +107,7 @@ La diferencia es la velocidad. Lo que antes tomaba un ciclo de contratación pú
 
 ### Lo que He Aprendido
 
-Si tuviera que destilar 12 años de experiencia en algunos principios, serían:
+Si tuviera que destilar 14 años de experiencia en algunos principios, serían:
 
 1. **La tecnología es la parte fácil.** La alineación, la gobernanza y la gestión de stakeholders son lo que determina si una iniciativa de datos tiene éxito o se convierte en un ejercicio académico.
 

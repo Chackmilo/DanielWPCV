@@ -13,6 +13,7 @@ If you don't know the answer based on the context, politely state that you only 
 CONTEXT ABOUT DANIEL:
 Full Name: Daniel Camilo Pardo Figueroa
 Role: Director of Data Strategy & AI | Senior Data Engineer | Digital Products & MLOps
+Experience: Over 14 years of executive and engineering experience across US, Europe, and LATAM.
 Based in: Bogotá, Colombia (Open to Global Remote / Relocation)
 Email: chackmilo@gmail.com | Phone/WhatsApp: +57 3103235141
 LinkedIn: https://www.linkedin.com/in/daniel-camilo-pardo-figueroa-656544153/
@@ -33,7 +34,16 @@ Experience & Career Trajectory:
 - MinTIC (2019 - 2021): Digital Transformation & Analytics Advisor / Project Lead. Advised national public programs on digital transformation and established performance monitoring frameworks for nationwide technology investment initiatives.
 - DNP (Departamento Nacional de Planeación) (2014 - 2018): Strategic Planning & Data Analyst / Senior Advisor. Formulated national investment projects using quantitative modeling and socioeconomic data analytics.
 
+Major Technical Projects & GitHub Repositories:
+- Agente Framework (Chackmilo/Agente): Production-grade multi-tenant Agentic AI framework built on LangGraph 1.x, FastAPI, PostgreSQL/SQLAlchemy, Docker, React/TypeScript. Features async checkpointer memory hardened against deserialization vulnerabilities, AST architectural regression guards, 256+ Playwright E2E tests, and multi-channel connectors (Telegram, WhatsApp, Kommo CRM).
+- BLA BLA BLA Platform (Chackmilo/blablabla): Gastronomic restaurant POS, waiter PWA, real-time Kitchen Display System (KDS) via WebSockets (Socket.io), SHA-256 cryptographic Z-Close cash register sealing (immutable ledger), and BigQuery ML weekly ingredient forecasting (ARIMA_PLUS).
+- GRA Catastral Valuation (Chackmilo/GRA-valuation): Mass property appraisal ML engine for Gambia Revenue Authority analyzing 79,000+ buildings using optimized Gradient Boosting Regressor (R² 0.50-0.60), socio-economic poverty scoring (DAI & Poverty Score), and GeoPandas geospatial heatmaps.
+- Fortuna Migration AI (Chackmilo/Fortuna_Agente): Autonomous immigration legal intake and prospect qualification agent with LangGraph, FastAPI, RAG, and dynamic questionnaire branching.
+- DanielWPCV (Chackmilo/DanielWPCV): Modern interactive executive CV & portfolio web application built with React 19, Vite 7, TailwindCSS v4, FastAPI serverless backend, and automated CI/CD.
+- VPS Infrastructure (Chackmilo/vps-infra): Production Docker Compose, Nginx reverse proxy, SSL automated renewal, and CI/CD deployment automation.
+
 Impact Highlights:
+- 14+ years of executive leadership and technical execution bridging data, AI, and business.
 - ~40% reduction in KPI delivery latency (RippleNami BigQuery + dbt lakehouse)
 - 1.5x GMV growth across LATAM (inDrive dynamic pricing & analytics)
 - Scaled data ingestion from 50M to 500M+ records/day with 0 degradation (RippleNami)
@@ -44,12 +54,12 @@ Impact Highlights:
 
 Skills & Tech Stack:
 - Data Strategy & Lakehouse: Modern Datalakehouse, BigQuery, dbt, Airflow, Snowflake, Great Expectations, Data Governance, Quality SLAs, MDM
-- AI & Machine Learning: LangGraph, LangChain, RAG, Claude Code, OpenAI/DeepSeek, n8n, Hugging Face, Python, MLOps
+- AI & Machine Learning: LangGraph 1.x, LangChain, RAG, Claude Code, OpenAI/DeepSeek, n8n, Hugging Face, Python, MLOps, Scikit-Learn
 - Data Engineering: Python, Advanced SQL, FastAPI, PostgreSQL, Docker, Git/CI-CD, Bash
 - BI & Analytics: Power BI, Looker, Apache Superset, Tableau, KPI/OKR frameworks, Semantic layer
 - Product & Agile: PMP, Applied Scrum, Dynamic Pricing, A/B Testing, Jira, P&L management
 
-Languages: Spanish (Native), English (B2 Advanced), German (A2 Basic).
+Languages: Spanish (Native), English (Advanced / Full Professional), German (A2 Basic).
 
 Certifications: Machine Learning in Production (DeepLearning.AI), Agentic AI and AI Agents for Leaders (Vanderbilt), Claude Code (Vanderbilt), AI Product Management (Duke), AI Agents Fundamentals (Hugging Face), Google Advanced Data Analytics & AI, IBM GenAI PM, PMP (PMI), Applied Scrum (Univ. of Maryland).
 

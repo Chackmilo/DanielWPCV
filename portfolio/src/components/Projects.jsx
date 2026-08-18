@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
 import Card from './Card'
 import SectionTitle from './SectionTitle'
+import { GitHubIcon, ExternalLinkIcon } from './Icons'
 import { STAR_SPLIT_RE, STAR_TEST_RE } from '../utils/constants'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -75,12 +76,36 @@ const ProjectCard = memo(function ProjectCard({ project }) {
                         <h3 className="font-heading text-xl font-bold tracking-tight text-white">
                             {project.company.split(' (')[0]}
                         </h3>
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/80 font-medium">
-                            {project.company.includes('(') ? '(' + project.company.split('(')[1] : ''}
-                        </span>
+                        <div className="flex items-center gap-2">
+                            {project.github && (
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`GitHub repository for ${project.company.split(' (')[0]}`}
+                                    className="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-1.5 rounded-lg transition-colors inline-flex items-center justify-center cursor-pointer"
+                                >
+                                    <GitHubIcon size={15} />
+                                </a>
+                            )}
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Live link for ${project.company.split(' (')[0]}`}
+                                    className="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-1.5 rounded-lg transition-colors inline-flex items-center justify-center cursor-pointer"
+                                >
+                                    <ExternalLinkIcon size={15} />
+                                </a>
+                            )}
+                            <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/80 font-medium">
+                                {project.company.includes('(') ? '(' + project.company.split('(')[1] : ''}
+                            </span>
+                        </div>
                     </div>
                     <span className="text-sm font-semibold text-accent dark:text-emerald-400">
-                        {project.title}
+                        {typeof project.title === 'object' ? t(project.title.en, project.title.es) : project.title}
                     </span>
                 </div>
 
@@ -172,7 +197,7 @@ export default function Projects() {
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.map((project) => (
-                            <ProjectCard key={project.company + project.title} project={project} />
+                            <ProjectCard key={project.company + (project.title?.en || project.title)} project={project} />
                         ))}
                     </AnimatePresence>
                 </motion.div>

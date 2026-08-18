@@ -55,7 +55,7 @@ export default function AboutMe() {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(text).then(() => {
                 setCopiedEmail(true)
-                setToastMessage(`${label} ${t('copied to clipboard!', '¡copiado al portapapeles!')}`)
+                setToastMessage(t(`${label} copied to clipboard!`, `¡${label === 'Email' ? 'Correo' : label} copiado al portapapeles!`))
                 setShowToast(true)
                 setTimeout(() => {
                     setShowToast(false)
