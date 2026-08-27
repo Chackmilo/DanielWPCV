@@ -1,0 +1,41 @@
+# .cv-evidence.yaml — read by cvtailor (`cvt sync`) from D:\AE_Daniel
+#
+# NEW project, so the full set is declared (see palmar's file for why).
+# `period.start` is this repo's first commit, 2026-03.
+#
+# Honest note: this is the weakest of the six. It is a portfolio site, and its
+# metrics are capabilities rather than outcomes. It will almost never win a slot in
+# the capped top-three Key Projects for a data or engineering posting — and that is
+# the ranking working correctly, not a reason to inflate the entry.
+id: danielwpcv
+name: "Executive Portfolio & Nabla Assistant"
+role:
+  en: "Full-Stack Developer"
+  es: "Desarrollador Full-Stack"
+period: { start: "2026", end: "present" }
+description:
+  en: "Situation: A CV and a static site could not answer the questions recruiters actually ask, and could not be read in two languages by the same audience. Task: Build a bilingual portfolio that a visitor can interrogate directly. Action: Built the frontend on React 19 and Vite with a single bilingual content source, and a serverless Python and FastAPI backend hosting a DeepSeek-backed assistant that answers questions about the profile from that same source; deployed on Vercel with automated CI/CD. Result: One content source drives the site, the assistant and the downstream CV tooling, so the profile cannot say two different things in two places."
+  es: "Situación: Un CV y un sitio estático no responden las preguntas que los reclutadores hacen en realidad, y no podían leerse en dos idiomas por la misma audiencia. Tarea: Construir un portafolio bilingüe que el visitante pueda interrogar directamente. Acción: Frontend en React 19 y Vite con una única fuente de contenido bilingüe, y backend serverless en Python y FastAPI que aloja un asistente respaldado por DeepSeek y responde preguntas sobre el perfil desde esa misma fuente; despliegue en Vercel con CI/CD automatizado. Resultado: Una sola fuente de contenido alimenta el sitio, el asistente y el tooling de CV, así que el perfil no puede decir dos cosas distintas en dos lugares."
+
+tech:
+  - React
+  - Vite
+  - "Tailwind CSS"
+  - Python
+  - FastAPI
+  - LLMs
+  - "CI/CD"
+
+metrics:
+  - "Bilingual EN/ES from a single content source"
+  - "Serverless FastAPI assistant grounded in the profile"
+  - "Automated CI/CD on Vercel"
+
+skills:
+  - { name: React, category: engineering }
+  - { name: Vite, category: engineering }
+  - { name: "Tailwind CSS", category: engineering }
+  - { name: Python, category: engineering }
+  - { name: FastAPI, category: engineering }
+  - { name: LLMs, category: ai_ml }
+  - { name: "CI/CD", category: mlops }
