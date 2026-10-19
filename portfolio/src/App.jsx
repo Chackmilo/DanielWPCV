@@ -11,6 +11,7 @@ import Skills from './components/Skills'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
 import BlogPost from './components/BlogPost'
+import CommandPalette from './components/CommandPalette'
 
 const CareerTimeline = lazy(() => import('./components/CareerTimeline'))
 const Projects = lazy(() => import('./components/Projects'))
@@ -57,7 +58,7 @@ function Home() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <main id="main" role="main">
+      <main id="main" role="main" className="bg-noise">
         <AboutMe />
         <Skills />
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><CareerTimeline /></Suspense></ErrorBoundary>
@@ -93,6 +94,7 @@ function App() {
       <ThemeProvider>
         <LanguageProvider>
           <Navbar />
+          <CommandPalette />
 
           <Routes>
             <Route path="/" element={<Home />} />

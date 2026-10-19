@@ -80,5 +80,15 @@ test.describe('Home page', () => {
         await page.locator('.lang-btn').click()
         await expect(page.getByText(/¡Hola! Soy Nabla/i)).toBeVisible()
     })
+
+    test('opens and closes command palette via button and keyboard', async ({ page }) => {
+        await page.goto('/')
+        const cmdBtn = page.getByRole('button', { name: /Open command palette|Abrir paleta de comandos/i })
+        await cmdBtn.click()
+        const dialog = page.getByRole('dialog', { name: /Command Palette|Paleta de Comandos/i })
+        await expect(dialog).toBeVisible()
+        await page.keyboard.press('Escape')
+        await expect(dialog).not.toBeVisible()
+    })
 })
 

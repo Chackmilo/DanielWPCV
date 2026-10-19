@@ -4,6 +4,16 @@ import { content } from '../data/content'
 import { SparklesIcon } from './Icons'
 import QuickChips from './QuickChips'
 
+// Lightweight markdown formatter for Nabla AI assistant responses
+function formatChatMarkdown(text) {
+    if (!text || typeof text !== 'string') return text
+    const parts = text.split(/\*\*([^*]+)\*\*/g)
+    if (parts.length === 1) return text
+    return parts.map((part, i) =>
+        i % 2 === 1 ? <strong key={i} className="font-bold text-primary dark:text-white">{part}</strong> : part
+    )
+}
+
 export default function ChatInterface() {
     const { t } = useLanguage()
     const errorMessage = t(
@@ -177,7 +187,10 @@ export default function ChatInterface() {
                                     : 'bg-white dark:bg-slate-800 rounded-2xl rounded-tl-none border border-border dark:border-slate-700 dark:text-gray-100 max-w-[90%]'
                                 }`}
                             >
-                                {displayContent}
+                                {msg.role === 'assistant' ? formatChatMarkdown(displayContent) : displayContent}
+                                {isLoading && msg.role === 'assistant' && msg.id === messages[messages.length - 1]?.id && !msg.isGreeting && (
+                                    <span className="inline-block w-1.5 h-4 ml-1 align-middle bg-accent animate-pulse" aria-hidden="true" />
+                                )}
                             </div>
                         </div>
                     )

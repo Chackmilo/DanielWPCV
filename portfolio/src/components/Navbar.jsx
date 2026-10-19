@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { content } from '../data/content'
 import { NAVBAR_SCROLL_THRESHOLD, NAVBAR_OFFSET_PX } from '../utils/constants'
-import { MoonIcon, SunIcon } from './Icons'
+import { MoonIcon, SunIcon, SearchIcon } from './Icons'
 import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
@@ -130,6 +130,19 @@ export default function Navbar() {
 
                 {/* Right controls: Theme, Language, Mobile Toggle */}
                 <div className="flex items-center gap-2.5 sm:gap-3">
+                    <button
+                        onClick={() => window.dispatchEvent(new CustomEvent('open-command-palette'))}
+                        className="hidden sm:inline-flex items-center gap-1.5 py-1.5 px-2.5 rounded-xl text-xs font-semibold text-gray-700 dark:text-gray-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-border dark:border-white/10 transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-2xs"
+                        aria-label={t('Open command palette (Ctrl+K)', 'Abrir paleta de comandos (Ctrl+K)')}
+                        title={t('Search & Quick Actions (Ctrl+K / ⌘K)', 'Buscar y Acciones Rápidas (Ctrl+K / ⌘K)')}
+                    >
+                        <SearchIcon size={14} className="text-secondary dark:text-accent" />
+                        <span className="hidden md:inline">{t('Search', 'Buscar')}</span>
+                        <kbd className="text-[10px] bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-border dark:border-white/10 font-mono text-gray-500 dark:text-gray-400">
+                            ⌘K
+                        </kbd>
+                    </button>
+
                     <button
                         onClick={toggleTheme}
                         className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-700 dark:text-gray-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-2xs"

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
 import {
@@ -17,6 +17,64 @@ import {
 } from './Icons'
 import Toast from './Toast'
 import { motion } from 'framer-motion'
+
+function AnimatedMetricValue({ value }) {
+    const isTestEnv = typeof import.meta !== 'undefined' && import.meta.env?.MODE === 'test'
+    const [display, setDisplay] = useState(value)
+    const ref = useRef(null)
+    const hasAnimated = useRef(false)
+
+    useEffect(() => {
+        if (isTestEnv || hasAnimated.current) return
+        const match = String(value).match(/^([^\d.]*)(\d+(?:\.\d+)?)(.*)$/)
+        if (!match) return
+
+        const [, prefix, numStr, suffix] = match
+        const target = parseFloat(numStr)
+        const decimals = numStr.includes('.') ? numStr.split('.')[1].length : 0
+
+        const el = ref.current
+        if (!el || typeof IntersectionObserver === 'undefined') return
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasAnimated.current) {
+                    hasAnimated.current = true
+                    const duration = 1100
+                    const start = performance.now()
+
+                    const tick = (now) => {
+                        const progress = Math.min((now - start) / duration, 1)
+                        // Ease out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3)
+                        const current = (target * eased).toFixed(decimals)
+                        setDisplay(`${prefix}${current}${suffix}`)
+                        if (progress < 1) {
+                            requestAnimationFrame(tick)
+                        } else {
+                            setDisplay(value)
+                        }
+                    }
+                    requestAnimationFrame(tick)
+                    observer.disconnect()
+                }
+            },
+            { threshold: 0.2 }
+        )
+
+        observer.observe(el)
+        return () => observer.disconnect()
+    }, [value, isTestEnv])
+
+    return (
+        <span
+            ref={ref}
+            className="block text-2xl sm:text-3xl font-black font-heading tracking-tight text-primary dark:text-white"
+        >
+            {display}
+        </span>
+    )
+}
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -224,9 +282,7 @@ export default function AboutMe() {
                                 className="glass-card rounded-2xl p-4 text-center border-t-2 border-accent dark:border-accent flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
                                 <div>
-                                    <span className="block text-2xl sm:text-3xl font-black font-heading tracking-tight text-primary dark:text-white">
-                                        {m.value}
-                                    </span>
+                                    <AnimatedMetricValue value={m.value} />
                                     <span className="block text-xs uppercase tracking-wider font-bold text-secondary dark:text-accent mt-1">
                                         {t(m.label.en, m.label.es)}
                                     </span>
