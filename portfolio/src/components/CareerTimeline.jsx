@@ -10,8 +10,8 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1,
+            staggerChildren: 0.04,
+            delayChildren: 0.02,
         }
     }
 }
@@ -110,7 +110,7 @@ export default function CareerTimeline() {
     const { t } = useLanguage()
 
     return (
-        <section id="timeline" className="py-16 md:py-24 bg-white dark:bg-bg-dark content-vis-auto relative">
+        <section id="timeline" className="py-16 md:py-24 bg-white dark:bg-bg-dark relative">
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle>{t("Career Trajectory & Milestones", "Trayectoria Profesional & Hitos")}</SectionTitle>
 

@@ -40,9 +40,9 @@ test.describe('Home page', () => {
         await expect(page.getByText('Microsoft AI & Machine Learning Engineer').first()).toBeVisible()
     })
 
-    test('renders fluent B2 English in footer', async ({ page }) => {
+    test('renders fluent English in footer', async ({ page }) => {
         await page.goto('/')
-        await expect(page.getByText(/Advanced, fluent \(B2\)|Avanzado, fluido \(B2\)/i)).toBeVisible()
+        await expect(page.getByText(/Professional Working Proficiency \(Fluent\)|Profesional y Fluido/i)).toBeVisible()
     })
 
     test('renders Certifications before Blog in the DOM for scroll-spy accuracy', async ({ page }) => {

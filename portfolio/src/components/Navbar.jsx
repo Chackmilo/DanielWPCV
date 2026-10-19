@@ -27,27 +27,19 @@ export default function Navbar() {
         { id: 'blog', label: t(nav.blog.en, nav.blog.es) },
     ], [t, nav])
 
-    // Scroll spy & scrolled threshold listener
+    // Scrolled threshold listener (toggles glass navbar with minimal renders)
     useEffect(() => {
         let ticking = false
-        const sectionIds = links.map(l => l.id)
+        let lastScrolled = false
 
         const onScroll = () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    setScrolled(window.scrollY > NAVBAR_SCROLL_THRESHOLD)
-
-                    if (isHomePage) {
-                        const scrollPosition = window.scrollY + NAVBAR_OFFSET_PX + 120
-                        for (let i = sectionIds.length - 1; i >= 0; i--) {
-                            const el = document.getElementById(sectionIds[i])
-                            if (el && el.offsetTop <= scrollPosition) {
-                                setActiveSection(sectionIds[i])
-                                break
-                            }
-                        }
+                    const isScrolled = window.scrollY > NAVBAR_SCROLL_THRESHOLD
+                    if (isScrolled !== lastScrolled) {
+                        lastScrolled = isScrolled
+                        setScrolled(isScrolled)
                     }
-
                     ticking = false
                 })
                 ticking = true
@@ -55,7 +47,37 @@ export default function Navbar() {
         }
 
         window.addEventListener('scroll', onScroll, { passive: true })
+        onScroll()
         return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
+    // Scroll spy using IntersectionObserver (zero layout thrashing during scroll)
+    useEffect(() => {
+        if (!isHomePage || typeof IntersectionObserver === 'undefined') return
+
+        const sectionIds = links.map(l => l.id)
+        const elements = sectionIds
+            .map(id => document.getElementById(id))
+            .filter(Boolean)
+
+        if (elements.length === 0) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const intersecting = entries.filter(e => e.isIntersecting)
+                if (intersecting.length > 0) {
+                    intersecting.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))
+                    setActiveSection(intersecting[0].target.id)
+                }
+            },
+            {
+                rootMargin: '-15% 0px -60% 0px',
+                threshold: [0, 0.2]
+            }
+        )
+
+        elements.forEach(el => observer.observe(el))
+        return () => observer.disconnect()
     }, [links, isHomePage])
 
     const scrollTo = useCallback((id) => {

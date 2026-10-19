@@ -33,7 +33,7 @@ export default function Blog() {
     if (!blogPosts || blogPosts.length === 0) return null
 
     return (
-        <section id="blog" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-bg-section dark:bg-slate-900/60 content-vis-auto relative">
+        <section id="blog" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-bg-section dark:bg-slate-900/60 relative">
             <div className="max-w-[1100px] mx-auto">
                 <SectionTitle>{blogTitle}</SectionTitle>
 

@@ -90,10 +90,6 @@
 }
 
 /* Base Styles */
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -115,35 +111,39 @@ body span {
   color: inherit;
 }
 
-/* Glassmorphism & Titanium Surfaces */
+/* Glassmorphism & Titanium Surfaces (Hardware-accelerated) */
 .glass-card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(226, 232, 240, 0.9);
   box-shadow: var(--shadow-card);
+  transform: translateZ(0);
 }
 
 .dark .glass-card {
   background: rgba(13, 19, 34, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  transform: translateZ(0);
 }
 
 .glass-nav {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transform: translateZ(0);
 }
 
 .dark .glass-nav {
   background: rgba(6, 9, 17, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transform: translateZ(0);
 }
 
 /* Section Title Underline */
@@ -178,18 +178,7 @@ body span {
   outline-offset: 2px;
 }
 
-/* Performance Optimizations */
-.content-vis-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 650px;
-}
-
-/* Subtle Noise Overlay for Analog Depth */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-}
-
-/* Interactive Cursor Spotlight on Glass Cards */
+/* Performance Optimizations - Clean compositing */
 .spotlight-card {
   position: relative;
   overflow: hidden;

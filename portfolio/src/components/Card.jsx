@@ -1,10 +1,20 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 
 export default function Card({ children, className = '' }) {
+    const rafRef = useRef(null)
+
     const handleMouseMove = useCallback((e) => {
-        const rect = e.currentTarget.getBoundingClientRect()
-        e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
-        e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+        if (rafRef.current) return
+        const target = e.currentTarget
+        const clientX = e.clientX
+        const clientY = e.clientY
+
+        rafRef.current = requestAnimationFrame(() => {
+            const rect = target.getBoundingClientRect()
+            target.style.setProperty('--mouse-x', `${clientX - rect.left}px`)
+            target.style.setProperty('--mouse-y', `${clientY - rect.top}px`)
+            rafRef.current = null
+        })
     }, [])
 
     return (

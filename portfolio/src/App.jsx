@@ -8,17 +8,17 @@ import { NAVBAR_OFFSET_PX } from './utils/constants'
 import Navbar from './components/Navbar'
 import AboutMe from './components/AboutMe'
 import Skills from './components/Skills'
+import CareerTimeline from './components/CareerTimeline'
+import Projects from './components/Projects'
+import Education from './components/Education'
+import Recommendations from './components/Recommendations'
+import Certifications from './components/Certifications'
+import Blog from './components/Blog'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
-import BlogPost from './components/BlogPost'
 import CommandPalette from './components/CommandPalette'
 
-const CareerTimeline = lazy(() => import('./components/CareerTimeline'))
-const Projects = lazy(() => import('./components/Projects'))
-const Education = lazy(() => import('./components/Education'))
-const Recommendations = lazy(() => import('./components/Recommendations'))
-const Blog = lazy(() => import('./components/Blog'))
-const Certifications = lazy(() => import('./components/Certifications'))
+const BlogPost = lazy(() => import('./components/BlogPost'))
 
 const SectionFallback = () => (
   <div className="flex justify-center items-center py-24">
@@ -58,15 +58,15 @@ function Home() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <main id="main" role="main" className="bg-noise">
+      <main id="main" role="main">
         <AboutMe />
         <Skills />
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><CareerTimeline /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Projects /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Education /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Recommendations /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Certifications /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Blog /></Suspense></ErrorBoundary>
+        <CareerTimeline />
+        <Projects />
+        <Education />
+        <Recommendations />
+        <Certifications />
+        <Blog />
       </main>
     </>
   )
@@ -98,7 +98,14 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route
+              path="/blog/:id"
+              element={
+                <Suspense fallback={<SectionFallback />}>
+                  <BlogPost />
+                </Suspense>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
 

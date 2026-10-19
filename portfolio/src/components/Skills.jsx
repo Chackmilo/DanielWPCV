@@ -79,7 +79,7 @@ export default function Skills() {
     const { t } = useLanguage()
 
     return (
-        <section id="skills" className="py-16 md:py-24 bg-bg-light dark:bg-bg-dark content-vis-auto relative">
+        <section id="skills" className="py-16 md:py-24 bg-bg-light dark:bg-bg-dark relative">
             <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle>{t("Skills & Strategic Capabilities", "Habilidades y Capacidades Estratégicas")}</SectionTitle>
 

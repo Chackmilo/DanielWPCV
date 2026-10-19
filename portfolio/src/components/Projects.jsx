@@ -62,7 +62,6 @@ const ProjectCard = memo(function ProjectCard({ project }) {
 
     return (
         <motion.div
-            layout
             variants={cardVariants}
             initial="hidden"
             animate="visible"
@@ -172,7 +171,7 @@ export default function Projects() {
     }, [selectedCategory])
 
     return (
-        <section id="projects" className="py-16 md:py-24 bg-bg-section dark:bg-slate-900/60 content-vis-auto relative">
+        <section id="projects" className="py-16 md:py-24 bg-bg-section dark:bg-slate-900/60 relative">
             <div className="max-w-[1350px] mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle>{t("Featured Strategic Projects", "Proyectos Estratégicos Destacados")}</SectionTitle>
 

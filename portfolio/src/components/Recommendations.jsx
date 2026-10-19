@@ -56,7 +56,7 @@ export default function Recommendations() {
     const { t } = useLanguage()
 
     return (
-        <section id="recommendations" className="py-16 md:py-24 bg-white dark:bg-bg-dark content-vis-auto relative">
+        <section id="recommendations" className="py-16 md:py-24 bg-white dark:bg-bg-dark relative">
             <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle>{t("Executive Endorsements", "Recomendaciones Ejecutivas")}</SectionTitle>
 

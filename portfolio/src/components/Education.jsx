@@ -61,7 +61,7 @@ export default function Education() {
     const { t } = useLanguage()
 
     return (
-        <section id="education" className="py-16 md:py-24 bg-bg-section dark:bg-slate-900/60 content-vis-auto relative">
+        <section id="education" className="py-16 md:py-24 bg-bg-section dark:bg-slate-900/60 relative">
             <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle>{t("Academic Background & Credentials", "Formación Académica & Credenciales")}</SectionTitle>
                 <motion.div
