@@ -61,7 +61,7 @@ Skills & Tech Stack:
 - BI & Analytics: Power BI, Looker, Apache Superset, Tableau, KPI/OKR frameworks, Semantic layer
 - Product & Agile: PMP, Applied Scrum, Dynamic Pricing, A/B Testing, Jira, P&L management
 
-Languages: Spanish (Native), English (Advanced, fluent (B2)), German (A2 Basic).
+Languages: Spanish (Native), English (Professional Working Proficiency - Fluent), German (A2 Basic).
 
 Certifications (21): Project Management Professional (PMP, PMI), Certified Scrum Master (Scrum), Google Cloud Platform (GCP) & AWS Certified, Microsoft AI & ML Engineering (Microsoft), Agentic AI and AI Agents for Leaders (Vanderbilt), Claude Code: Software Engineering with GenAI Agents (Vanderbilt), AI Product Management (Duke), IBM AI Product Manager, Machine Learning in Production (DeepLearning.AI), AI Agents Fundamentals (Hugging Face), Generative AI for Executives and Business Leaders (IBM), Generative AI for Project Managers (IBM), Generative AI for BI Analysts (IBM), Google Advanced Data Analytics, Google Data Analytics, Create Interactive Dashboards with Streamlit and Python (Coursera), Applied Scrum for Agile Project Management (Univ. of Maryland), Google Project Management, Jira Project Management (Coursera), Introduction to Deep Learning & Neural Networks (IBM), Key Technologies for Business (IBM).
 

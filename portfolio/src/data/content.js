@@ -52,7 +52,7 @@ export const content = {
                 title: { en: "Growth, Product & Engineering Leadership", es: "Growth, Producto y Liderazgo de Equipos" },
                 text: {
                     en: "Delivering 1.5x LATAM GMV growth, +30% courier/delivery operational efficiency, directing 50+ B2B software and analytics client solutions, and mentoring top-tier cross-functional engineering talent.",
-                    es: "Logro de 1.5x crecimiento en GMV en LATAM, +30% en eficiencia operativa de delivery, dirección de 50+ soluciones de analítica y software B2B, y mentoría de talento técnico de alto nivel.",
+                    es: "Crecimiento de 1.5x en GMV en LATAM, +30% en eficiencia operativa de delivery, dirección de 50+ soluciones de analítica y software B2B, y mentoría de talento técnico de alto nivel.",
                 },
                 accent: "cyan",
             },
@@ -60,37 +60,37 @@ export const content = {
         metrics: [
             {
                 value: "~40%",
-                label: { en: "KPI Latency Reduction", es: "Reducción Latencia KPIs" },
+                label: { en: "KPI Latency Reduction", es: "Reducción de Latencia en KPIs" },
                 detail: { en: "BigQuery + dbt Lakehouse (RippleNami)", es: "Lakehouse BigQuery + dbt (RippleNami)" },
                 glow: "emerald",
             },
             {
                 value: "1.5x",
-                label: { en: "LATAM GMV Growth", es: "Crecimiento GMV LATAM" },
+                label: { en: "LATAM GMV Growth", es: "Crecimiento de GMV en LATAM" },
                 detail: { en: "Pricing ML & Analytics (inDrive)", es: "Pricing ML & Analítica (inDrive)" },
                 glow: "cyan",
             },
             {
                 value: "500M+",
-                label: { en: "Daily Ingestion Scaling", es: "Escalabilidad Diaria" },
+                label: { en: "Daily Ingestion Scaling", es: "Escalamiento de Ingesta Diaria" },
                 detail: { en: "Scaled from 50M/day with 0 degradation", es: "Escalado desde 50M/día sin degradación" },
                 glow: "indigo",
             },
             {
                 value: "99.9%",
-                label: { en: "Data Quality Precision", es: "Precisión Calidad de Datos" },
+                label: { en: "Data Quality Precision", es: "Precisión en Calidad de Datos" },
                 detail: { en: "5M+ records daily via Great Expectations", es: "5M+ registros diarios con Great Expectations" },
                 glow: "amber",
             },
             {
                 value: "30x",
-                label: { en: "SQL Query Speedup", es: "Optimización Consultas SQL" },
+                label: { en: "SQL Query Speedup", es: "Aceleración de Consultas SQL" },
                 detail: { en: "15 min → 30 sec execution avg", es: "Promedio de 15 min → 30 seg" },
                 glow: "emerald",
             },
             {
                 value: "100%",
-                label: { en: "AI Support Automation", es: "Automatización Soporte IA" },
+                label: { en: "AI Support Automation", es: "Automatización de Soporte con IA" },
                 detail: { en: "LangGraph/RAG Multi-Agent (NablaOps)", es: "Multi-Agentes LangGraph/RAG (NablaOps)" },
                 glow: "indigo",
             },
@@ -347,7 +347,7 @@ export const content = {
             isPrivate: true,
             description: {
                 en: "Situation: Enterprises require resilient, decoupled multi-agent architectures without cloning infrastructure per tenant. Task: Architect a hardened, asynchronous multi-tenant AI agent core supporting dynamic tool execution and multi-channel routing. Action: Engineered a production framework on LangGraph 1.x and FastAPI with PostgreSQL/SQLAlchemy, async checkpointer memory hardened against deserialization vulnerabilities, AST architectural regression guards, 256+ Playwright E2E tests, and live multi-channel connectors (Telegram, WhatsApp, Kommo CRM). Result: 100% tenant isolation, sub-second latency, zero regression downtime in CI/CD, and battle-tested operational stability.",
-                es: "Situación: Empresas requieren arquitecturas multi-agente desacopladas y resilientes sin clonar infraestructura por inquilino. Tarea: Diseñar un núcleo de agentes IA multi-tenant asíncrono con ejecución dinámica de herramientas y enrutamiento multicanal. Acción: Desarrollo de framework en producción sobre LangGraph 1.x y FastAPI con PostgreSQL/SQLAlchemy, memoria checkpointer asíncrona blindada contra vulnerabilidades, guards de regresión arquitectónica por AST, 256+ tests Playwright E2E e integraciones multicanal (Telegram, WhatsApp, CRM Kommo). Resultado: 100% de aislamiento entre inquilinos, latencia sub-segundo, cero caídas por regresión en CI/CD y estabilidad operativa comprobada.",
+                es: "Situación: Empresas requieren arquitecturas multi-agente desacopladas y resilientes sin clonar infraestructura por inquilino. Tarea: Diseñar un núcleo de agentes IA multi-tenant asíncrono con ejecución dinámica de herramientas y enrutamiento multicanal. Acción: Desarrollo de framework en producción sobre LangGraph 1.x y FastAPI con PostgreSQL/SQLAlchemy, memoria checkpointer asíncrona blindada contra vulnerabilidades, guards de regresión arquitectónica por AST, 256+ tests Playwright E2E e integraciones multicanal (Telegram, WhatsApp, CRM Kommo). Resultado: 100% de aislamiento entre inquilinos, latencia inferior a un segundo, cero caídas por regresión en CI/CD y estabilidad operativa comprobada.",
             },
             metrics: [
                 { value: "256+", label: { en: "Playwright E2E tests", es: "pruebas E2E Playwright" } },
@@ -650,7 +650,7 @@ export const content = {
             title: { en: "Languages", es: "Idiomas" },
             items: [
                 { en: "Spanish - Native", es: "Español - Nativo" },
-                { en: "English - Advanced, fluent (B2)", es: "Inglés - Avanzado, fluido (B2)" },
+                { en: "English - Professional Working Proficiency (Fluent)", es: "Inglés - Profesional y Fluido (Competencia Avanzada)" },
                 { en: "German - Basic (A2)", es: "Alemán - Básico (A2)" },
             ],
         },

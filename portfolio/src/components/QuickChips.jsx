@@ -1,4 +1,4 @@
-﻿import { useLanguage } from '../context/LanguageContext'
+import { useLanguage } from '../context/LanguageContext'
 
 const CHIPS = [
     {
@@ -17,7 +17,7 @@ const CHIPS = [
         id: 'growth',
         icon: '📈',
         en: 'How did Daniel drive 1.5x GMV growth at inDrive?',
-        es: '¿Cómo impulsó el crecimiento de 1.5x GMV en inDrive?'
+        es: '¿Cómo impulsó el crecimiento de 1.5x en GMV en inDrive?'
     },
     {
         id: 'roles',

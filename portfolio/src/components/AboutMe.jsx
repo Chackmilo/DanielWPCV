@@ -218,7 +218,7 @@ export default function AboutMe() {
                                     className="inline-flex items-center gap-2 py-2.5 px-4 sm:px-5 rounded-xl text-sm font-bold text-white bg-secondary hover:bg-secondary-hover active:scale-95 transition-all shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/30"
                                 >
                                     <CalendarIcon size={18} />
-                                    <span>{t("Schedule 1:1 Call", "Agendar 1:1")}</span>
+                                    <span>{t("Schedule 1:1 Call", "Agendar Llamada Estratégica")}</span>
                                 </a>
 
                                 <button
