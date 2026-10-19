@@ -344,6 +344,7 @@ export const content = {
             },
             company: "Agente Core Framework (2025 - Present)",
             github: "https://github.com/Chackmilo/Agente",
+            isPrivate: true,
             description: {
                 en: "Situation: Enterprises require resilient, decoupled multi-agent architectures without cloning infrastructure per tenant. Task: Architect a hardened, asynchronous multi-tenant AI agent core supporting dynamic tool execution and multi-channel routing. Action: Engineered a production framework on LangGraph 1.x and FastAPI with PostgreSQL/SQLAlchemy, async checkpointer memory hardened against deserialization vulnerabilities, AST architectural regression guards, 256+ Playwright E2E tests, and live multi-channel connectors (Telegram, WhatsApp, Kommo CRM). Result: 100% tenant isolation, sub-second latency, zero regression downtime in CI/CD, and battle-tested operational stability.",
                 es: "Situación: Empresas requieren arquitecturas multi-agente desacopladas y resilientes sin clonar infraestructura por inquilino. Tarea: Diseñar un núcleo de agentes IA multi-tenant asíncrono con ejecución dinámica de herramientas y enrutamiento multicanal. Acción: Desarrollo de framework en producción sobre LangGraph 1.x y FastAPI con PostgreSQL/SQLAlchemy, memoria checkpointer asíncrona blindada contra vulnerabilidades, guards de regresión arquitectónica por AST, 256+ tests Playwright E2E e integraciones multicanal (Telegram, WhatsApp, CRM Kommo). Resultado: 100% de aislamiento entre inquilinos, latencia sub-segundo, cero caídas por regresión en CI/CD y estabilidad operativa comprobada.",
@@ -375,6 +376,25 @@ export const content = {
             tech: ["Python", "LangChain", "LangGraph", "RAG", "n8n", "Docker", "FastAPI", "PostgreSQL"],
         },
         {
+            category: "ai-agents",
+            title: {
+                en: "Dispute-Intake Agent & Policy-as-Code Co-Developer",
+                es: "Co-Desarrollador de Agente de Disputas & Policy-as-Code",
+            },
+            company: "AlterEgo (Factored AI Hackathon 2026)",
+            description: {
+                en: "Situation: The Factored AI & Data Hackathon 2026 asked for an AI-first customer-service system for a synthetic LATAM bank. Task: Automate transaction-dispute intake in Spanish and Portuguese without ever moving money. Action: Built an Understand-Decide-Act-Verify-Escalate pipeline where deterministic policy-as-code makes every decision. Implemented the dispute policy as code with cited clause ids, act-and-verify tool gateway that reads back writes, S3-to-DuckDB data pipeline, clause explainer, React frontend, and CI with PII masking and human review console. Result: In its rules-only configuration on a blind held-out suite of 250 conversations, unsafe outcomes fell from 48.8% to 15.6% vs. baseline.",
+                es: "Situación: El Factored AI & Data Hackathon 2026 requirió un sistema de atención al cliente AI-first para un banco sintético en LATAM. Tarea: Automatizar la recepción de disputas por transacciones en español y portugués sin mover fondos jamás. Acción: Construcción de pipeline Understand-Decide-Act-Verify-Escalate donde policy-as-code toma cada decisión. Implementación de política de disputas como código con cláusulas citadas, gateway de herramientas con verificación de relectura, pipeline S3 a DuckDB, explicador de cláusulas, frontend React y CI con enmascaramiento PII y consola de revisión humana. Resultado: En corrida ciega sobre suite held-out de 250 conversaciones (solo reglas), los resultados inseguros cayeron de 48.8% a 15.6% frente a la línea base.",
+            },
+            metrics: [
+                { value: "48.8% → 15.6%", label: { en: "unsafe outcomes drop", es: "caída resultados inseguros" } },
+                { value: "Policy-as-Code", label: { en: "deterministic rule engine", es: "motor reglas determinístico" } },
+                { value: "250-suite", label: { en: "blind held-out evaluation", es: "evaluación ciega held-out" } },
+                { value: "DuckDB + S3", label: { en: "PII masking & tool gateway", es: "enmascaramiento PII y gateway" } },
+            ],
+            tech: ["Python", "FastAPI", "React", "TypeScript", "DuckDB", "PostgreSQL", "Supabase", "Scikit-Learn", "MLflow", "Amazon S3", "Human-in-the-Loop"],
+        },
+        {
             category: "product-growth",
             title: {
                 en: "Gastronomic Automation & Cryptographic POS",
@@ -382,6 +402,7 @@ export const content = {
             },
             company: "BLA BLA BLA Restaurant (2026)",
             github: "https://github.com/Chackmilo/blablabla",
+            isPrivate: true,
             description: {
                 en: "Situation: High-volume Mediterranean restaurant required eliminating manual paper ticketing, billing latency, and kitchen communication friction. Task: Build an end-to-end bespoke POS and KDS platform with real-time sync, cryptographic audit trails, and ML forecasting. Action: Engineered a responsive PWA for waiters with 11-table live layout, real-time Kitchen Display System (KDS) via WebSockets (Socket.io), automated pre-bill calculation, immutable SHA-256 cryptographic Z-Close cash register sealing, and weekly recipe ingredient demand forecasting using BigQuery ML (ARIMA_PLUS). Result: 0% lost orders, under 100ms real-time kitchen sync, fraud-proof immutable accounting ledger, and optimized food prep inventory.",
                 es: "Situación: Restaurante mediterráneo de alta rotación requería erradicar comandas manuales en papel, demoras en facturación y fricciones salón-cocina. Tarea: Construir una plataforma POS y KDS a la medida con sincronización en tiempo real, auditoría criptográfica y pronóstico ML. Acción: Desarrollo de PWA móvil para meseros con mapa interactivo de 11 mesas, KDS de cocina en tiempo real vía WebSockets (Socket.io), precálculo automatizado de cuenta, sellado criptográfico SHA-256 de Cierre Z (ledger inmutable) y pronóstico semanal de insumos con BigQuery ML (ARIMA_PLUS). Resultado: 0% comandas perdidas, sincronización en <100ms, ledger contable a prueba de fraude y optimización de inventario perecedero.",
@@ -402,6 +423,7 @@ export const content = {
             },
             company: "Gambia Revenue Authority (2025)",
             github: "https://github.com/Chackmilo/GRA-valuation",
+            isPrivate: true,
             description: {
                 en: "Situation: National tax authority required accurate, transparent mass appraisal of residential and commercial properties across heterogeneous urban regions. Task: Build an end-to-end predictive valuation and poverty scoring machine learning pipeline for over 79,000 buildings. Action: Engineered an advanced ML framework using optimized Gradient Boosting Regressor (R², RMSE, MAE, MAPE, SMAPE) integrating building footprint dimensions, construction materials, socioeconomic census metrics (DAI, Poverty Score), and geospatial heatmapping with GeoPandas. Result: Modeled 79k+ properties with baseline R² of 0.50-0.60, reducing manual field survey audit cycles from months to days with high interpretability.",
                 es: "Situación: Autoridad tributaria nacional requería valuación catastral masiva y transparente de inmuebles residenciales y comerciales en zonas urbanas heterogéneas. Tarea: Construir un pipeline de ML para avalúo predictivo y scoring de pobreza sobre más de 79.000 edificaciones. Acción: Desarrollo de framework de ML con Gradient Boosting Regressor optimizado (R², RMSE, MAE, MAPE, SMAPE) integrando dimensiones de construcción, materiales, indicadores censales socioeconómicos (DAI, Poverty Score) y mapas de calor geoespaciales con GeoPandas. Resultado: Valuación de 79k+ inmuebles con R² de 0.50-0.60, reduciendo auditorías de campo de meses a días con alta interpretabilidad.",
@@ -422,6 +444,7 @@ export const content = {
             },
             company: "Fortuna Migration (2025)",
             github: "https://github.com/Chackmilo/Fortuna_Agente",
+            isPrivate: true,
             description: {
                 en: "Situation: Immigration law firm overwhelmed with manual lead screening and unstructured prospective client questionnaires. Task: Build an autonomous legal intake agent to qualify immigration eligibility and route high-value cases. Action: Implemented an intelligent multi-channel agent with LangGraph, FastAPI, and RAG pipelines for dynamic legal requirement assessment, structured data extraction, and automated CRM handoff to specialized lawyers. Result: 100% automated prospect qualification, 4x faster response times, and higher conversion rates for complex visa consultations.",
                 es: "Situación: Firma de abogados de inmigración sobrecargada con revisión manual de prospectos y cuestionarios no estructurados. Tarea: Construir un agente legal autónomo de intake para calificar viabilidad migratoria y enrutar casos prioritarios. Acción: Implementación de agente multicanal con LangGraph, FastAPI y RAG para evaluación dinámica de requisitos legales, extracción estructurada de expedientes y handoff directo al CRM de abogados. Resultado: 100% de calificación automatizada, reducción de 4x en tiempo de respuesta y mayor conversión de consultas de visa.",
@@ -472,6 +495,15 @@ export const content = {
     ],
 
     education: [
+        {
+            title: { en: "Microsoft AI & Machine Learning Engineer", es: "Microsoft AI & Machine Learning Engineer" },
+            institution: "Microsoft (2026)",
+            description: {
+                en: "Professional program on building scalable AI/ML infrastructure, core algorithms (deep learning, reinforcement learning), and deploying intelligent agents on Microsoft Azure.",
+                es: "Programa profesional en infraestructura escalable de IA/ML, algoritmos (deep learning, reinforcement learning) y despliegue de agentes inteligentes en Microsoft Azure.",
+            },
+            badge: "AI/ML",
+        },
         {
             title: { en: "Master in Business Engineering & Supply Chain (MBE)", es: "Máster en Business Engineering & Supply Chain (MBE)" },
             institution: "Universitat de Barcelona (2020 - 2022)",
@@ -541,36 +573,37 @@ export const content = {
         {
             category: { en: "AI, Machine Learning & Agentic Systems", es: "IA, Machine Learning y Sistemas Agénticos" },
             items: [
-                "Machine Learning in Production · DeepLearning.AI",
+                "Microsoft AI & ML Engineering · Microsoft",
                 "Agentic AI and AI Agents for Leaders · Vanderbilt University",
                 "Claude Code: Software Engineering with GenAI Agents · Vanderbilt University",
-                "AI Product Management · Duke University",
                 "AI Agents Fundamentals · Hugging Face",
-                "Google Advanced Data Analytics & AI · Google / Coursera",
-                "Generative AI for Executives · IBM",
+                "Machine Learning in Production · DeepLearning.AI",
+                "Generative AI for Executives and Business Leaders · IBM",
                 "Introduction to Deep Learning & Neural Networks · IBM",
             ],
         },
         {
-            category: { en: "Data Analytics, Lakehouse & Engineering", es: "Analítica de Datos, Lakehouse e Ingeniería" },
+            category: { en: "Data Analytics, Cloud & Engineering", es: "Analítica de Datos, Cloud e Ingeniería" },
             items: [
-                "Google Advanced Data Analytics (Professional Certificate) · Google",
+                "Google Cloud Platform (GCP) & AWS Certified · Google / AWS",
+                "Google Advanced Data Analytics · Google",
+                "Google Data Analytics · Google",
                 "Generative AI for BI Analysts · IBM",
-                "Data Analysis with R Programming · Google",
-                "Business Analytics · Campus BBVA",
-                "Create Interactive Dashboards with Streamlit · Coursera",
-                "Introduction to Software Engineering · IBM",
+                "Create Interactive Dashboards with Streamlit and Python · Coursera",
                 "Key Technologies for Business · IBM",
             ],
         },
         {
-            category: { en: "Project Management, Agile & Leadership", es: "Gestión de Proyectos, Ágil y Liderazgo" },
+            category: { en: "Project Management, Agile & Product Leadership", es: "Gestión de Proyectos, Ágil y Liderazgo de Producto" },
             items: [
-                "PMP Certification (Project Management Professional) · PMI",
+                "Project Management Professional (PMP) · PMI",
+                "Certified Scrum Master · Scrum",
+                "AI Product Management · Duke University",
+                "IBM AI Product Manager · IBM & SkillUp EdTech",
+                "Generative AI for Project Managers · IBM & SkillUp EdTech",
                 "Applied Scrum for Agile Project Management · University of Maryland",
-                "Google Project Management (6-Course Specialization) · Google",
-                "Generative AI PM · IBM",
-                "Gestión de Proyectos con Jira · Coursera",
+                "Google Project Management · Google",
+                "Jira Project Management · Coursera",
             ],
         },
     ],
@@ -617,7 +650,7 @@ export const content = {
             title: { en: "Languages", es: "Idiomas" },
             items: [
                 { en: "Spanish - Native", es: "Español - Nativo" },
-                { en: "English - Advanced (Full Professional)", es: "Inglés - Avanzado (Profesional Fluido)" },
+                { en: "English - Advanced, fluent (B2)", es: "Inglés - Avanzado, fluido (B2)" },
                 { en: "German - Basic (A2)", es: "Alemán - Básico (A2)" },
             ],
         },

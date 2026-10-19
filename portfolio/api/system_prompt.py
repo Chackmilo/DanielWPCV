@@ -21,6 +21,7 @@ GitHub: https://github.com/Chackmilo
 Open to: Director / Head of Data · AI Strategy & Engineering · Lead Data Architect · Digital Product Leadership · Senior Consulting Advisor
 
 Education:
+- Microsoft AI & Machine Learning Engineer — Microsoft (2026)
 - Master in Business Engineering & Supply Chain (MBE) — Universitat de Barcelona (2020 - 2022)
 - Master of Engineering (MEng) in Industrial Management — Universidad de los Andes & Politecnico di Milano (2014 - 2016)
 - Industrial Engineering — Universidad de los Andes (2009 - 2014)
@@ -36,6 +37,7 @@ Experience & Career Trajectory:
 
 Major Technical Projects & GitHub Repositories:
 - Agente Framework (Chackmilo/Agente): Production-grade multi-tenant Agentic AI framework built on LangGraph 1.x, FastAPI, PostgreSQL/SQLAlchemy, Docker, React/TypeScript. Features async checkpointer memory hardened against deserialization vulnerabilities, AST architectural regression guards, 256+ Playwright E2E tests, and multi-channel connectors (Telegram, WhatsApp, Kommo CRM).
+- AlterEgo (Factored AI Hackathon 2026): Autonomous dispute-intake agent for synthetic LATAM banking with policy-as-code, Understand-Decide-Act-Verify-Escalate pipeline, DuckDB + S3, PII masking, and human review console. Reduced unsafe outcomes from 48.8% to 15.6% on a blind 250-conversation test suite.
 - BLA BLA BLA Platform (Chackmilo/blablabla): Gastronomic restaurant POS, waiter PWA, real-time Kitchen Display System (KDS) via WebSockets (Socket.io), SHA-256 cryptographic Z-Close cash register sealing (immutable ledger), and BigQuery ML weekly ingredient forecasting (ARIMA_PLUS).
 - GRA Catastral Valuation (Chackmilo/GRA-valuation): Mass property appraisal ML engine for Gambia Revenue Authority analyzing 79,000+ buildings using optimized Gradient Boosting Regressor (R² 0.50-0.60), socio-economic poverty scoring (DAI & Poverty Score), and GeoPandas geospatial heatmaps.
 - Fortuna Migration AI (Chackmilo/Fortuna_Agente): Autonomous immigration legal intake and prospect qualification agent with LangGraph, FastAPI, RAG, and dynamic questionnaire branching.
@@ -59,9 +61,9 @@ Skills & Tech Stack:
 - BI & Analytics: Power BI, Looker, Apache Superset, Tableau, KPI/OKR frameworks, Semantic layer
 - Product & Agile: PMP, Applied Scrum, Dynamic Pricing, A/B Testing, Jira, P&L management
 
-Languages: Spanish (Native), English (Advanced / Full Professional), German (A2 Basic).
+Languages: Spanish (Native), English (Advanced, fluent (B2)), German (A2 Basic).
 
-Certifications: Machine Learning in Production (DeepLearning.AI), Agentic AI and AI Agents for Leaders (Vanderbilt), Claude Code (Vanderbilt), AI Product Management (Duke), AI Agents Fundamentals (Hugging Face), Google Advanced Data Analytics & AI, IBM GenAI PM, PMP (PMI), Applied Scrum (Univ. of Maryland).
+Certifications (21): Project Management Professional (PMP, PMI), Certified Scrum Master (Scrum), Google Cloud Platform (GCP) & AWS Certified, Microsoft AI & ML Engineering (Microsoft), Agentic AI and AI Agents for Leaders (Vanderbilt), Claude Code: Software Engineering with GenAI Agents (Vanderbilt), AI Product Management (Duke), IBM AI Product Manager, Machine Learning in Production (DeepLearning.AI), AI Agents Fundamentals (Hugging Face), Generative AI for Executives and Business Leaders (IBM), Generative AI for Project Managers (IBM), Generative AI for BI Analysts (IBM), Google Advanced Data Analytics, Google Data Analytics, Create Interactive Dashboards with Streamlit and Python (Coursera), Applied Scrum for Agile Project Management (Univ. of Maryland), Google Project Management, Jira Project Management (Coursera), Introduction to Deep Learning & Neural Networks (IBM), Key Technologies for Business (IBM).
 
 CV Availability: Daniel's full executive CV is available for direct download on the website at /CV_Daniel_Pardo.pdf or via the 'Download CV' button on the hero section.
 """

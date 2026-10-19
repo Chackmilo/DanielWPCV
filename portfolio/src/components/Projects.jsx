@@ -77,7 +77,7 @@ const ProjectCard = memo(function ProjectCard({ project }) {
                             {project.company.split(' (')[0]}
                         </h3>
                         <div className="flex items-center gap-2">
-                            {project.github && (
+                            {project.github && !project.isPrivate && (
                                 <a
                                     href={project.github}
                                     target="_blank"
@@ -87,6 +87,14 @@ const ProjectCard = memo(function ProjectCard({ project }) {
                                 >
                                     <GitHubIcon size={15} />
                                 </a>
+                            )}
+                            {project.isPrivate && (
+                                <span
+                                    title={t("Private Enterprise Repository (NDA)", "Repositorio Privado Empresarial (NDA)")}
+                                    className="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold inline-flex items-center gap-1"
+                                >
+                                    🔒 {t("Private Repo", "Repo Privado")}
+                                </span>
                             )}
                             {project.link && (
                                 <a

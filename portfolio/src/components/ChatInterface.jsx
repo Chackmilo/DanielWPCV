@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { content } from '../data/content'
 import { SparklesIcon } from './Icons'
+import QuickChips from './QuickChips'
 
 export default function ChatInterface() {
     const { t } = useLanguage()
@@ -9,17 +10,14 @@ export default function ChatInterface() {
         "Sorry, I'm having trouble connecting to the network.",
         "Lo siento, tengo problemas para conectarme a la red."
     )
-
     const idRef = useRef(0)
     const nextId = () => ++idRef.current
-
     const [messages, setMessages] = useState(() => [
-        { id: 0, role: 'assistant', content: t(content.chat.greeting.en, content.chat.greeting.es) }
+        { id: 0, role: 'assistant', isGreeting: true, content: '' }
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const scrollContainerRef = useRef(null)
-    const messagesEndRef = useRef(null)
     const abortRef = useRef(null)
 
     const scrollToBottom = useCallback(() => {
@@ -36,16 +34,15 @@ export default function ChatInterface() {
         scrollToBottom()
     }, [messages, scrollToBottom])
 
-    // Abort any in-flight request if the chat unmounts
     useEffect(() => () => abortRef.current?.abort(), [])
 
     const sendMessage = async (textToSend) => {
         const query = (textToSend || input).trim()
         if (!query || isLoading) return
 
+        const greetingText = t(content.chat.greeting.en, content.chat.greeting.es)
         const userMessage = { id: nextId(), role: 'user', content: query }
         const newMessages = [...messages, userMessage]
-
         setMessages(newMessages)
         setInput('')
         setIsLoading(true)
@@ -54,22 +51,66 @@ export default function ChatInterface() {
         abortRef.current = controller
 
         try {
-            const contextMessages = newMessages.slice(-10).map(({ role, content }) => ({ role, content }))
-
+            const contextMessages = newMessages.slice(-10).map((m) => ({
+                role: m.role,
+                content: m.isGreeting ? greetingText : m.content
+            }))
             const response = await fetch('/api/chat', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'text/event-stream, application/json'
+                },
                 body: JSON.stringify({ messages: contextMessages }),
                 signal: controller.signal
             })
-
             if (!response.ok) {
                 throw new Error('Network response was not ok')
             }
 
-            const data = await response.json()
-            const replyContent = data.reply || errorMessage
-            setMessages([...newMessages, { id: nextId(), role: 'assistant', content: replyContent }])
+            const contentType = response.headers.get('content-type') || ''
+
+            // 1. Real-time SSE Streaming (Production FastAPI)
+            if (contentType.includes('text/event-stream') && response.body) {
+                const assistantId = nextId()
+                setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: '' }])
+                const reader = response.body.getReader()
+                const decoder = new TextDecoder()
+                let buffer = ''
+                while (true) {
+                    const { value, done } = await reader.read()
+                    if (done) break
+                    buffer += decoder.decode(value, { stream: true })
+                    const lines = buffer.split('\n\n')
+                    buffer = lines.pop() || ''
+                    for (const line of lines) {
+                        const trimmed = line.trim()
+                        if (!trimmed.startsWith('data: ')) continue
+                        const dataStr = trimmed.slice(6).trim()
+                        if (dataStr === '[DONE]') break
+                        try {
+                            const parsed = JSON.parse(dataStr)
+                            if (parsed.error) throw new Error(parsed.error)
+                            if (parsed.content) {
+                                setMessages((prev) =>
+                                    prev.map((m) =>
+                                        m.id === assistantId ? { ...m, content: m.content + parsed.content } : m
+                                    )
+                                )
+                            }
+                        } catch (err) {
+                            if (err.message === 'AI service error' || err.message === 'Stream error') {
+                                throw err
+                            }
+                        }
+                    }
+                }
+            } else {
+                // 2. JSON Fallback (Playwright E2E Mocks & Standard JSON)
+                const data = await response.json()
+                const replyContent = data.reply || errorMessage
+                setMessages([...newMessages, { id: nextId(), role: 'assistant', content: replyContent }])
+            }
         } catch (error) {
             if (controller.signal.aborted) return
             console.error('Error in chat:', error)
@@ -83,13 +124,6 @@ export default function ChatInterface() {
         if (e) e.preventDefault()
         sendMessage()
     }
-
-    const suggestions = [
-        { en: "What is Daniel's current role & focus?", es: "¿Cuál es el rol actual de Daniel?" },
-        { en: "BigQuery Lakehouse impact at RippleNami?", es: "¿Impacto de BigQuery en RippleNami?" },
-        { en: "1.5x LATAM GMV & pricing at inDrive?", es: "¿Crecimiento 1.5x GMV en inDrive?" },
-        { en: "LangGraph AI Agents at NablaOps?", es: "¿Agentes LangGraph en NablaOps?" },
-    ]
 
     return (
         <div className="glass-card text-text-dark dark:text-white rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[540px] border border-border dark:border-white/10 transition-all duration-300">
@@ -114,7 +148,6 @@ export default function ChatInterface() {
                         </span>
                     </div>
                 </div>
-
                 <div className="hidden sm:flex items-center gap-1 text-xs text-gray-400">
                     <SparklesIcon size={14} className="text-accent" />
                     <span>DeepSeek / OpenAI</span>
@@ -128,24 +161,27 @@ export default function ChatInterface() {
                 aria-atomic="false"
                 className="flex-grow p-4 sm:p-6 bg-slate-50/70 dark:bg-slate-900/60 flex flex-col gap-4 overflow-y-auto scroll-smooth"
             >
-                {messages.map((msg) => (
-                    <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : ''} animate-fade-in-up`}>
-                        {msg.role === 'assistant' && (
-                            <div className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5 shadow-sm">
-                                ∇
-                            </div>
-                        )}
-                        <div
-                            className={`p-3.5 sm:p-4 text-sm sm:text-base shadow-sm leading-relaxed ${msg.role === 'user'
-                                ? 'bg-secondary text-white rounded-2xl rounded-tr-none max-w-[85%] font-medium'
-                                : 'bg-white dark:bg-slate-800 rounded-2xl rounded-tl-none border border-border dark:border-slate-700 dark:text-gray-100 max-w-[90%]'
+                {messages.map((msg) => {
+                    const displayContent = msg.isGreeting ? t(content.chat.greeting.en, content.chat.greeting.es) : msg.content
+                    if (!displayContent && msg.role === 'assistant') return null
+                    return (
+                        <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : ''} animate-fade-in-up`}>
+                            {msg.role === 'assistant' && (
+                                <div className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5 shadow-sm">
+                                    ∇
+                                </div>
+                            )}
+                            <div
+                                className={`p-3.5 sm:p-4 text-sm sm:text-base shadow-sm leading-relaxed ${msg.role === 'user'
+                                    ? 'bg-secondary text-white rounded-2xl rounded-tr-none max-w-[85%] font-medium'
+                                    : 'bg-white dark:bg-slate-800 rounded-2xl rounded-tl-none border border-border dark:border-slate-700 dark:text-gray-100 max-w-[90%]'
                                 }`}
-                        >
-                            {msg.content}
+                            >
+                                {displayContent}
+                            </div>
                         </div>
-                    </div>
-                ))}
-
+                    )
+                })}
                 {isLoading && (
                     <div className="flex gap-3 animate-fade-in-up">
                         <div className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5 shadow-sm">
@@ -158,22 +194,11 @@ export default function ChatInterface() {
                         </div>
                     </div>
                 )}
-                <div ref={messagesEndRef} />
             </div>
 
-            {/* Suggestion Chips */}
-            <div className="px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-t border-border dark:border-white/5 flex gap-2 overflow-x-auto">
-                {suggestions.map((s, idx) => (
-                    <button
-                        key={idx}
-                        type="button"
-                        onClick={() => sendMessage(t(s.en, s.es))}
-                        disabled={isLoading}
-                        className="whitespace-nowrap text-xs bg-white dark:bg-slate-800 hover:bg-secondary hover:text-white dark:hover:bg-secondary text-gray-700 dark:text-gray-300 py-1.5 px-3 rounded-full border border-border dark:border-white/10 transition-colors shadow-2xs cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                    >
-                        💡 {t(s.en, s.es)}
-                    </button>
-                ))}
+            {/* Suggestion Chips via QuickChips component */}
+            <div className="py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-t border-border dark:border-white/5">
+                <QuickChips onSelect={sendMessage} disabled={isLoading} />
             </div>
 
             {/* Input Form */}

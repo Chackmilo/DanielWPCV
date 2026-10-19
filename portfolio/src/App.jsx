@@ -64,8 +64,8 @@ function Home() {
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Projects /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Education /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Recommendations /></Suspense></ErrorBoundary>
-        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Blog /></Suspense></ErrorBoundary>
         <ErrorBoundary><Suspense fallback={<SectionFallback />}><Certifications /></Suspense></ErrorBoundary>
+        <ErrorBoundary><Suspense fallback={<SectionFallback />}><Blog /></Suspense></ErrorBoundary>
       </main>
     </>
   )

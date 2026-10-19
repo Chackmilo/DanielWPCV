@@ -29,4 +29,56 @@ test.describe('Home page', () => {
             expect(after).not.toBe(before)
         }).toPass()
     })
+
+    test('renders AlterEgo in projects', async ({ page }) => {
+        await page.goto('/')
+        await expect(page.getByText(/AlterEgo/i).first()).toBeVisible()
+    })
+
+    test('renders Microsoft AI & Machine Learning Engineer in education', async ({ page }) => {
+        await page.goto('/')
+        await expect(page.getByText('Microsoft AI & Machine Learning Engineer').first()).toBeVisible()
+    })
+
+    test('renders fluent B2 English in footer', async ({ page }) => {
+        await page.goto('/')
+        await expect(page.getByText(/Advanced, fluent \(B2\)|Avanzado, fluido \(B2\)/i)).toBeVisible()
+    })
+
+    test('renders Certifications before Blog in the DOM for scroll-spy accuracy', async ({ page }) => {
+        await page.goto('/')
+        await page.locator('#certifications').waitFor({ state: 'attached' })
+        await page.locator('#blog').waitFor({ state: 'attached' })
+        const order = await page.evaluate(() => {
+            const certs = document.getElementById('certifications')
+            const blog = document.getElementById('blog')
+            if (!certs || !blog) return false
+            // DOCUMENT_POSITION_FOLLOWING (4) significa que blog está después de certifications
+            return Boolean(certs.compareDocumentPosition(blog) & Node.DOCUMENT_POSITION_FOLLOWING)
+        })
+        expect(order).toBe(true)
+    })
+
+    test('applies --font-size-section-title CSS variable to h2 section titles', async ({ page }) => {
+        await page.goto('/')
+        const fontSize = await page.locator('#skills h2').evaluate((el) => {
+            return window.getComputedStyle(el).fontSize
+        })
+        // Debe ser mayor a 24px (ej. ~30px a 40px según el clamp), no el 16px por defecto
+        expect(parseFloat(fontSize)).toBeGreaterThan(24)
+    })
+
+    test('hides private GitHub links or shows private badge instead of 404 links', async ({ page }) => {
+        await page.goto('/')
+        const privateRepoLinks = page.locator('a[href="https://github.com/Chackmilo/Agente"], a[href="https://github.com/Chackmilo/blablabla"], a[href="https://github.com/Chackmilo/GRA-valuation"], a[href="https://github.com/Chackmilo/Fortuna_Agente"]')
+        await expect(privateRepoLinks).toHaveCount(0)
+    })
+
+    test('updates Nabla AI initial greeting dynamically when toggling language', async ({ page }) => {
+        await page.goto('/')
+        await expect(page.getByText(/Hello! I am Nabla/i)).toBeVisible()
+        await page.locator('.lang-btn').click()
+        await expect(page.getByText(/¡Hola! Soy Nabla/i)).toBeVisible()
+    })
 })
+

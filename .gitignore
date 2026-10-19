@@ -10,6 +10,7 @@ playwright-report/
 playwright/.cache/
 .env
 .env.*
+!.env.example
 
 # Python
 .venv/
@@ -34,3 +35,4 @@ Thumbs.db
 .agents/
 .gemini/
 skills-lock.json
+repomix-output.*

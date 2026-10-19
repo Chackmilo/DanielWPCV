@@ -25,6 +25,7 @@
   /* Typography */
   --font-sans: 'Plus Jakarta Sans Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Outfit', 'Plus Jakarta Sans Variable', var(--font-sans);
+  --font-size-section-title: clamp(1.875rem, 3.5vw, 2.5rem);
 
   /* Shadows & Glows */
   --shadow-card: 0 4px 6px -1px rgba(6, 9, 17, 0.06), 0 2px 4px -2px rgba(6, 9, 17, 0.06);

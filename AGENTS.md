@@ -48,6 +48,11 @@ El asistente dispone de acceso total a GitHub mediante la herramienta de comando
    - **Descripción**: Plataforma interactiva para creación y formulación de visualizaciones complejas asistidas por IA.
    - **Stack**: Python, TypeScript, React, SCSS.
 
+5. **`AlterEgo`** *(Factored AI & Data Hackathon 2026)*
+   - **Descripción**: Agente de recepción de disputas transaccionales para banca sintética en LATAM con arquitectura *Understand-Decide-Act-Verify-Escalate*, decisiones 100% determinísticas gobernadas por *Policy-as-Code* (cláusulas citadas), enmascaramiento estricto de PII, gateway de herramientas con relectura obligatoria y consola de revisión humana.
+   - **Resultados**: Reducción de resultados inseguros del 48.8% al 15.6% en evaluación ciega (suite held-out de 250 conversaciones).
+   - **Stack**: Python, FastAPI, React, TypeScript, DuckDB, Supabase, PostgreSQL, Scikit-Learn, MLflow, Amazon S3, Human-in-the-Loop.
+
 ---
 
 ### 🍽️ 2. Automatización Gastronómica & POS Inteligente
