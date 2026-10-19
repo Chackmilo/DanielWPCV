@@ -1,7 +1,7 @@
 export const blogPosts = [
     {
         id: "from-pmo-to-ai-leadership",
-        date: "2025-03-01",
+        date: "2026-03-01",
         title: {
             en: "From Government PMO to Leading Global AI Strategies",
             es: "De PMO Gubernamental a Liderar Estrategias Globales de IA",
@@ -126,7 +126,7 @@ Ese es el efecto compuesto de una carrera no lineal. Y no lo cambiaría por nada
     },
     {
         id: "my-path-to-ai",
-        date: "2025-03-03",
+        date: "2026-03-03",
         title: {
             en: "My Story with Artificial Intelligence",
             es: "Mi Historia con la Inteligencia Artificial",
@@ -239,7 +239,7 @@ Eso es lo que me mueve. Eso es lo que soy.
     },
     {
         id: "the-ui-ux-dilemma-and-ai",
-        date: "2025-03-10",
+        date: "2026-03-10",
         title: {
             en: "The UI/UX Maze: From Window Sales and Levantine Kitchens to the Lifesaver of AI",
             es: "El Laberinto del UI/UX: De Ventanas de Casa y Cocina Levantina al Salvavidas de la IA",

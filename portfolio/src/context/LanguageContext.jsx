@@ -7,7 +7,6 @@ export function LanguageProvider({ children }) {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('lang')
             if (saved === 'en' || saved === 'es') return saved
-            if (navigator.language && navigator.language.startsWith('es')) return 'es'
         }
         return 'en'
     })
